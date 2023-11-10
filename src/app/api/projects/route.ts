@@ -1,71 +1,15 @@
-import { Project, connectToDB } from "@/db";
+import { Project } from "@/db";
+import { getter, poster } from "@/db/helpers";
 import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  try {
-    await connectToDB();
-    const extractData = await Project.find({});
-
-    if (extractData) {
-      return NextResponse.json({
-        statusCode: 200,
-        error: null,
-        data: extractData,
-      });
-    } else {
-      return NextResponse.json({
-        statusCode: 400,
-        error: {
-          message: "Something went wrong. Please try again",
-        },
-        data: null,
-      });
-    }
-  } catch (error) {
-    console.error(error);
-
-    return NextResponse.json({
-      statusCode: 500,
-      error: {
-        message: "Something went wrong. Please try again",
-      },
-      data: null,
-    });
-  }
+  const projectGetterResult: NextResponse = await getter(Project);
+  return projectGetterResult;
 }
 
 export async function POST(req: NextRequest) {
-  try {
-    await connectToDB();
-    const extractData = await req.json();
-    const saveData = await Project.create(extractData);
-
-    if (saveData) {
-      return NextResponse.json({
-        statusCode: 201,
-        error: null,
-        data: "Data saved successfully",
-      });
-    } else {
-      return NextResponse.json({
-        statusCode: 400,
-        error: {
-          message: "Something went wrong. Please try again",
-        },
-        data: null,
-      });
-    }
-  } catch (error) {
-    console.error(error);
-
-    return NextResponse.json({
-      statusCode: 500,
-      error: {
-        message: "Something went wrong. Please try again",
-      },
-      data: null,
-    });
-  }
+  const projectPosterResult: NextResponse = await poster(Project, req);
+  return projectPosterResult;
 }
