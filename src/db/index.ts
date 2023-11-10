@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import About from "./models/about.model";
 import Contact from "./models/contact.model";
-import Education from "./models/education.model";
+import Formation from "./models/formation.model";
 import Experience from "./models/experience.model";
 import Home from "./models/home.model";
 import Project from "./models/project.model";
@@ -28,7 +28,7 @@ const connectToDB = async () => {
 export {
   About,
   Contact,
-  Education,
+  Formation,
   Experience,
   Home,
   Project,
