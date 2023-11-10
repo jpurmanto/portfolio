@@ -13,10 +13,10 @@ import {
 import { motion } from "framer-motion";
 
 export default function ExperienceView({
-  educationData,
+  formationData,
   experienceData,
 }: {
-  educationData: EducationInterface[];
+  formationData: EducationInterface[];
   experienceData: ExperienceInterface[];
 }) {
   return (
@@ -97,8 +97,8 @@ export default function ExperienceView({
             <div className="flex w-full">
               <motion.div className="container">
                 <Timeline position="right">
-                  {educationData && educationData.length
-                    ? educationData.map((educationItem) => (
+                  {formationData && formationData.length
+                    ? formationData.map((formationItem) => (
                         <TimelineItem>
                           <TimelineSeparator>
                             <TimelineDot className="bg-green-main" />
@@ -106,12 +106,12 @@ export default function ExperienceView({
                           </TimelineSeparator>
                           <TimelineContent>
                             <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
-                              <p className="font-bold">{educationItem.year}</p>
+                              <p className="font-bold">{formationItem.year}</p>
                               <h3 className="font-extrabold mt-2">
-                                {educationItem.college}
+                                {formationItem.college}
                               </h3>
                               <p className="font-extrabold mt-2">
-                                {educationItem.degree}
+                                {formationItem.degree}
                               </p>
                             </div>
                           </TimelineContent>

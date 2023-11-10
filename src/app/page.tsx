@@ -1,15 +1,20 @@
-import { AboutView, ContactView, ExperienceView } from "@/components/views";
-import HomeView from "@/components/views/HomeView";
-import { AboutInterface } from "@/db";
+import {
+  AboutView,
+  ContactView,
+  ExperienceView,
+  HomeView,
+  ProjectView,
+} from "@/components/views";
 import { getSectionData } from "@/services";
 
 export default async function Home() {
-  const aboutSectionData: AboutInterface[] | any = await getSectionData(
+  const aboutSectionData = await getSectionData(
     "about"
   );
-  const educationSectionData = await getSectionData("education");
+  const formationSectionData = await getSectionData("formation");
   const experienceSectionData = await getSectionData("experience");
   const homeSectionData = await getSectionData("home");
+  const projectSectionData = await getSectionData("project");
 
   return (
     <main>
@@ -20,9 +25,10 @@ export default async function Home() {
         }
       />
       <ExperienceView
-        educationData={educationSectionData}
+        formationData={formationSectionData}
         experienceData={experienceSectionData}
       />
+      <ProjectView data={projectSectionData} />
       <ContactView />
     </main>
   );
