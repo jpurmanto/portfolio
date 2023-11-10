@@ -1,3 +1,2 @@
-import getSectionData from "./getSectionData";
-
-export { getSectionData };
+export * from "./getSectionData";
+export * from "./addData";

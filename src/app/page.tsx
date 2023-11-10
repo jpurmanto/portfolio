@@ -1,8 +1,11 @@
 import { AboutView } from "@/components/views";
+import { AboutInterface } from "@/db";
 import { getSectionData } from "@/services";
 
 export default async function Home() {
-  const aboutSectionData = await getSectionData("about");
+  const aboutSectionData: AboutInterface[] | any = await getSectionData(
+    "about"
+  );
 
   return (
     <main>

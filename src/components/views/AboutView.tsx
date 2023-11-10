@@ -4,7 +4,7 @@ import { AnimationWrapper, transitionVariants } from "@/helpers";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useMemo } from "react";
-import aboutImage from "/about.jpg";
+import aboutImage from "/about.svg";
 import { AboutInterface } from "@/db";
 
 const skillItemVariant = {

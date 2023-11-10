@@ -2,19 +2,16 @@ import { Link as LinkScroll } from "react-scroll";
 
 interface Props {
   activeLink: string;
-  getMenuItems: {
-    id: string;
-    label: string;
-  }[];
+  navbarItems: NavbarItem[];
   setActiveLink: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function CreateNavbarLinks({
   activeLink,
-  getMenuItems,
+  navbarItems,
   setActiveLink,
 }: Props): JSX.Element[] {
-  return getMenuItems.map((item) => (
+  return navbarItems.map((item) => (
     <LinkScroll
       activeClass="active"
       to={item.id}

@@ -2,14 +2,13 @@ import { connectToDB } from "@/db";
 import { Document, Model } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
-type MongooseModel<T extends Document> = Model<T>;
-
 export async function poster<T extends Document>(
   model: MongooseModel<T>,
   req: NextRequest
 ): Promise<NextResponse> {
   try {
     await connectToDB();
+
     const data = await req.json();
     const savedData = await model.create(data);
 

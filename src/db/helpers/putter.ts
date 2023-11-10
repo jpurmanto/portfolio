@@ -2,8 +2,6 @@ import { connectToDB } from "@/db";
 import { Document, Model } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
-type MongooseModel<T extends Document> = Model<T>;
-
 export async function putter<T extends Document>(
   model: MongooseModel<T>,
   req: NextRequest

@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { scroller } from "react-scroll";
 
 export default function Navbar(): JSX.Element {
-  const [activeLink, setActiveLink] = useState("home");
-  const [scrollActive, setScrollActive] = useState(false);
+  const [activeLink, setActiveLink] = useState<string>("home");
+  const [scrollActive, setScrollActive] = useState<Boolean>(false);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -35,7 +35,7 @@ export default function Navbar(): JSX.Element {
             <CreateNavbarLinks
               setActiveLink={setActiveLink}
               activeLink={activeLink}
-              getMenuItems={navbarItems}
+              navbarItems={navbarItems}
             />
           </ul>
           <div className="col-start-10 col-end-12 font-medium flex justify-center items-center">
@@ -60,7 +60,7 @@ export default function Navbar(): JSX.Element {
             <CreateNavbarLinks
               setActiveLink={setActiveLink}
               activeLink={activeLink}
-              getMenuItems={navbarItems}
+              navbarItems={navbarItems}
             />
           </ul>
         </div>

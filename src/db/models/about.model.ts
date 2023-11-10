@@ -19,4 +19,5 @@ const aboutSchema = new mongoose.Schema<AboutInterface>(
   { timestamps: true }
 );
 
-export const About = mongoose.models.About || mongoose.model("About", aboutSchema);
+export const About =
+  mongoose.models.About || mongoose.model("About", aboutSchema);

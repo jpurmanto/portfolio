@@ -1,6 +1,6 @@
-export default async function getSectionData(currentSection: string) {
+export async function getSectionData(currentSection: string) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/${currentSection}/get`,
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/${currentSection}`,
     {
       method: "GET",
       cache: "no-store",
