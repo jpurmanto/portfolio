@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 interface Props {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }
 
 export default function AnimationWrapper({

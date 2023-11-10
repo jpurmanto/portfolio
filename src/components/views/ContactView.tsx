@@ -5,7 +5,7 @@ import { AnimationWrapper } from "@/helpers";
 import { addData } from "@/services";
 import { useEffect, useState } from "react";
 
-export default function ClientContactView() {
+export default function ContactView() {
   const [formData, setFormData] = useState<ContactFormData>(
     initialContactFormData
   );

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mui/lab": "^5.0.0-alpha.152",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^10.16.4",
     "mongoose": "^8.0.0",
