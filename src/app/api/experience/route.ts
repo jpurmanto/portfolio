@@ -1,4 +1,4 @@
-import { Formation, connectToDB } from "@/db";
+import { Experience, connectToDB } from "@/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     await connectToDB();
-    const extractData = await Formation.find({});
+    const extractData = await Experience.find({});
 
     if (extractData) {
       return NextResponse.json({
@@ -28,11 +28,11 @@ export async function GET() {
 
     return NextResponse.json({
       statusCode: 500,
-      error: {
-        message: "Something went wrong. Please try again",
-      },
-      data: null,
-    });
+        error: {
+          message: "Something went wrong. Please try again",
+        },
+        data: null,
+      });
   }
 }
 
@@ -40,15 +40,13 @@ export async function POST(req: NextRequest) {
   try {
     await connectToDB();
     const extractData = await req.json();
-    const saveData = await Formation.create(extractData);
+    const saveData = await Experience.create(extractData);
 
     if (saveData) {
       return NextResponse.json({
         statusCode: 201,
         error: null,
-        data: {
-          message: "Data saved successfully",
-        },
+        data: "Data saved successfully",
       });
     } else {
       return NextResponse.json({
@@ -64,10 +62,11 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       statusCode: 500,
-      error: {
-        message: "Something went wrong. Please try again",
-      },
-      data: null,
-    });
+        error: {
+          message: "Something went wrong. Please try again",
+        },
+        data: null,
+      });
   }
 }
+
