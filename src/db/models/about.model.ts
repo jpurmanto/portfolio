@@ -1,6 +1,14 @@
 import mongoose from "mongoose";
 
-const aboutSchema = new mongoose.Schema(
+export interface AboutInterface {
+  aboutme: string;
+  noofprojects: string;
+  yearofexperience: string;
+  noofclients: string;
+  skills: string;
+}
+
+export const aboutSchema = new mongoose.Schema<AboutInterface>(
   {
     aboutme: String,
     noofprojects: String,
@@ -11,6 +19,4 @@ const aboutSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const About = mongoose.models.About || mongoose.model("About", aboutSchema);
-
-export default About;
+export const About = mongoose.models.About || mongoose.model("About", aboutSchema);

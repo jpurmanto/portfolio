@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import About from "./models/about.model";
 import Contact from "./models/contact.model";
 import Formation from "./models/formation.model";
 import Experience from "./models/experience.model";
@@ -25,8 +24,9 @@ const connectToDB = async () => {
   }
 };
 
+export * from "./models/about.model";
 export {
-  About,
+  // About,
   Contact,
   Formation,
   Experience,
