@@ -1,6 +1,13 @@
 import mongoose from "mongoose";
 
-const projectSchema = new mongoose.Schema(
+export interface ProjectInterface {
+  name: string;
+  website: string;
+  technologies: string;
+  github: string;
+}
+
+const projectSchema = new mongoose.Schema<ProjectInterface>(
   {
     name: String,
     website: String,
@@ -10,7 +17,5 @@ const projectSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Project =
+export const Project =
   mongoose.models.Project || mongoose.model("Project", projectSchema);
-
-export default Project;

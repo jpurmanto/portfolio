@@ -1,10 +1,4 @@
 import mongoose from "mongoose";
-import Contact from "./models/contact.model";
-import Formation from "./models/formation.model";
-import Experience from "./models/experience.model";
-import Home from "./models/home.model";
-import Project from "./models/project.model";
-import User from "./models/user.model";
 
 let isConnected = false;
 
@@ -25,13 +19,10 @@ const connectToDB = async () => {
 };
 
 export * from "./models/about.model";
-export {
-  // About,
-  Contact,
-  Formation,
-  Experience,
-  Home,
-  Project,
-  User,
-  connectToDB,
-};
+export * from "./models/contact.model";
+export * from "./models/experience.model";
+export * from "./models/formation.model";
+export * from "./models/home.model";
+export * from "./models/project.model";
+export * from "./models/user.model";
+export { connectToDB };

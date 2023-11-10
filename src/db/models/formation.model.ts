@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 
-const educationSchema = new mongoose.Schema(
+export interface EducationInterface {
+  degree: string;
+  year: string;
+  college: string;
+}
+
+const educationSchema = new mongoose.Schema<EducationInterface>(
   {
     degree: String,
     year: String,
@@ -9,7 +15,5 @@ const educationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Formation =
+export const Formation =
   mongoose.models.Formation || mongoose.model("Formation", educationSchema);
-
-export default Formation;

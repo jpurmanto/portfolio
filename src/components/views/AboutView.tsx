@@ -15,7 +15,7 @@ const skillItemVariant = {
   },
 };
 
-export default function About({ data }: { data: AboutInterface }) {
+export default function AboutView({ data }: { data: AboutInterface }) {
   const setVariants = useMemo(() => transitionVariants(), []);
 
   const aboutDataInfo = [

@@ -10,10 +10,10 @@ export async function poster<T extends Document>(
 ): Promise<NextResponse> {
   try {
     await connectToDB();
-    const extractData = await req.json();
-    const saveData = await model.create(extractData);
+    const data = await req.json();
+    const savedData = await model.create(data);
 
-    if (saveData) {
+    if (savedData) {
       return NextResponse.json({
         statusCode: 201,
         error: null,

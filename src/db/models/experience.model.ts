@@ -1,6 +1,14 @@
 import mongoose from "mongoose";
 
-const experienceSchema = new mongoose.Schema(
+export interface ExperienceInterface {
+  position: string;
+  company: string;
+  duration: string;
+  location: string;
+  jobprofile: string;
+}
+
+const experienceSchema = new mongoose.Schema<ExperienceInterface>(
   {
     position: String,
     company: String,
@@ -11,7 +19,5 @@ const experienceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Experience =
+export const Experience =
   mongoose.models.Experience || mongoose.model("Experience", experienceSchema);
-
-export default Experience;

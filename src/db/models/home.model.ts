@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
-const homeSchema = new mongoose.Schema(
+export interface HomeInterface {
+  heading: string;
+  summary: string;
+}
+
+const homeSchema = new mongoose.Schema<HomeInterface>(
   {
     heading: String,
     summary: String,
@@ -8,6 +13,4 @@ const homeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Home = mongoose.models.Home || mongoose.model("Home", homeSchema);
-
-export default Home;
+export const Home = mongoose.models.Home || mongoose.model("Home", homeSchema);

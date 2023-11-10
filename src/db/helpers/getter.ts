@@ -9,12 +9,12 @@ export async function getter<T extends Document>(
 ): Promise<NextResponse> {
   try {
     await connectToDB();
-    const extractData = await model.find({});
-    if (extractData) {
+    const data = await model.find({});
+    if (data) {
       return NextResponse.json({
         statusCode: 200,
         error: null,
-        data: extractData,
+        data,
       });
     } else {
       return NextResponse.json({

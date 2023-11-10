@@ -8,7 +8,7 @@ export interface AboutInterface {
   skills: string;
 }
 
-export const aboutSchema = new mongoose.Schema<AboutInterface>(
+const aboutSchema = new mongoose.Schema<AboutInterface>(
   {
     aboutme: String,
     noofprojects: String,

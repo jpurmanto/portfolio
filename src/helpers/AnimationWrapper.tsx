@@ -2,14 +2,16 @@
 
 import { motion } from "framer-motion";
 
+interface Props {
+  children: React.ReactNode;
+  className: string;
+}
+
 export default function AnimationWrapper({
   children,
   className,
   ...props
-}: {
-  children: React.ReactNode;
-  className: string;
-}) {
+}: Props): JSX.Element {
   return (
     <motion.div
       initial="offscreen"

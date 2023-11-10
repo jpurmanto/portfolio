@@ -11,10 +11,10 @@ export async function putter<T extends Document>(
   try {
     await connectToDB();
 
-    const extractData = await req.json();
-    const { _id, ...rest } = extractData;
+    const data = await req.json();
+    const { _id, ...rest } = data;
 
-    const updateData = await model.findOneAndUpdate(
+    const updatedData = await model.findOneAndUpdate(
       {
         _id: _id,
       },
@@ -22,7 +22,7 @@ export async function putter<T extends Document>(
       { new: true }
     );
 
-    if (updateData) {
+    if (updatedData) {
       return NextResponse.json({
         statusCode: 200,
         error: null,
