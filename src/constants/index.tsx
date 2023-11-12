@@ -1,3 +1,4 @@
+import { AboutInterface } from "@/db";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -30,6 +31,47 @@ export const initialContactFormData: ContactFormData = {
   name: "",
   email: "",
   message: "",
+};
+
+export const aboutFields: FormField[] = [
+  {
+    name: "aboutme",
+    placeholder: "About Me",
+    type: "text",
+    label: "About Me",
+  },
+  {
+    name: "noofprojects",
+    placeholder: "No of projects",
+    type: "text",
+    label: "Enter no of projects",
+  },
+  {
+    name: "yearofexperience",
+    placeholder: "No of experience",
+    type: "text",
+    label: "Enter no of experience",
+  },
+  {
+    name: "noofclients",
+    placeholder: "No of clients",
+    type: "text",
+    label: "Enter no of clients",
+  },
+  {
+    name: "skills",
+    placeholder: "skills",
+    type: "text",
+    label: "Skills",
+  },
+];
+
+export const initialAboutFormData: AboutInterface = {
+  aboutme: "",
+  noofprojects: "",
+  yearofexperience: "",
+  noofclients: "",
+  skills: "",
 };
 
 export const navbarItems: NavbarItem[] = [
