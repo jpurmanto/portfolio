@@ -107,6 +107,14 @@ export const experienceFields: FormField[] = [
   },
 ];
 
+export const initialExperienceFormData = {
+  position: "",
+  company: "",
+  duration: "",
+  location: "",
+  jobprofile: "",
+};
+
 export const formationFields: FormField[] = [
   {
     name: "degree",
@@ -128,6 +136,12 @@ export const formationFields: FormField[] = [
   },
 ];
 
+export const initialFormationFormData = {
+  degree: "",
+  year: "",
+  college: "",
+};
+
 export const homeFields: FormField[] = [
   {
     name: "heading",
@@ -143,6 +157,11 @@ export const homeFields: FormField[] = [
   },
 ];
 
+export const initialHomeFormData = {
+  heading: "",
+  summary: "",
+};
+
 export const loginFields: FormField[] = [
   {
     name: "username",
@@ -157,6 +176,11 @@ export const loginFields: FormField[] = [
     label: "Enter Password",
   },
 ];
+
+export const initialLoginFormData = {
+  username: "",
+  password: "",
+};
 
 export const projectsFields: FormField[] = [
   {
@@ -184,6 +208,13 @@ export const projectsFields: FormField[] = [
     label: "github",
   },
 ];
+
+export const initialProjectFormData = {
+  name: "",
+  website: "",
+  technologies: "",
+  github: "",
+};
 
 export const navbarItems: NavbarItem[] = [
   {
