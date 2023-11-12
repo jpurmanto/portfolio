@@ -6,33 +6,6 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-export const contactFields: FormField[] = [
-  {
-    name: "name",
-    placeholder: "Enter your name",
-    type: "text",
-    label: "Name",
-  },
-  {
-    name: "email",
-    placeholder: "Enter your email",
-    type: "email",
-    label: "Email",
-  },
-  {
-    name: "message",
-    placeholder: "Enter your message",
-    type: "text",
-    label: "Message",
-  },
-];
-
-export const initialContactFormData: ContactFormData = {
-  name: "",
-  email: "",
-  message: "",
-};
-
 export const aboutFields: FormField[] = [
   {
     name: "aboutme",
@@ -73,6 +46,54 @@ export const initialAboutFormData: AboutInterface = {
   noofclients: "",
   skills: "",
 };
+
+export const contactFields: FormField[] = [
+  {
+    name: "name",
+    placeholder: "Enter your name",
+    type: "text",
+    label: "Name",
+  },
+  {
+    name: "email",
+    placeholder: "Enter your email",
+    type: "email",
+    label: "Email",
+  },
+  {
+    name: "message",
+    placeholder: "Enter your message",
+    type: "text",
+    label: "Message",
+  },
+];
+
+export const initialContactFormData: ContactFormData = {
+  name: "",
+  email: "",
+  message: "",
+};
+
+export const educationFields: FormField[] = [
+  {
+    name: "degree",
+    placeholder: "Degree Name",
+    type: "text",
+    label: "Enter Degree Name",
+  },
+  {
+    name: "year",
+    placeholder: "Year",
+    type: "text",
+    label: "Year",
+  },
+  {
+    name: "college",
+    placeholder: "College Name",
+    type: "text",
+    label: "Enter College Name",
+  },
+];
 
 export const navbarItems: NavbarItem[] = [
   {

@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
-export interface EducationInterface {
+export interface FormationInterface {
   degree: string;
   year: string;
   college: string;
 }
 
-const educationSchema = new mongoose.Schema<EducationInterface>(
+const formationSchema = new mongoose.Schema<FormationInterface>(
   {
     degree: String,
     year: String,
@@ -16,4 +16,4 @@ const educationSchema = new mongoose.Schema<EducationInterface>(
 );
 
 export const Formation =
-  mongoose.models.Formation || mongoose.model("Formation", educationSchema);
+  mongoose.models.Formation || mongoose.model("Formation", formationSchema);
