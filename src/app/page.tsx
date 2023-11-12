@@ -14,7 +14,7 @@ export default async function Home() {
   const formationSectionData = await getSectionData("formation");
   const experienceSectionData = await getSectionData("experience");
   const homeSectionData = await getSectionData("home");
-  // const projectSectionData = await getSectionData("project");
+  const projectSectionData = await getSectionData("projects");
 
   return (
     <main>
@@ -28,7 +28,7 @@ export default async function Home() {
         formationData={formationSectionData}
         experienceData={experienceSectionData}
       />
-      {/* <ProjectView data={projectSectionData} /> */}
+      <ProjectView data={projectSectionData} />
       <ContactView />
     </main>
   );

@@ -1,13 +1,17 @@
 export async function getSectionData(currentSection: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/${currentSection}`,
-    {
-      method: "GET",
-      cache: "no-store",
-    }
-  );
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/${currentSection}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
 
-  const data = await res.json();
+    const data = await res.json();
 
-  return data && data.data;
+    return data && data.data;
+  } catch (error) {
+    console.error(error);
+  }
 }

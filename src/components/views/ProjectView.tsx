@@ -21,6 +21,7 @@ export default function ProjectView({ data }: { data: ProjectInterface[] }) {
           <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
             {"My Projects".split(" ").map((item, index) => (
               <span
+                key={index}
                 className={`${index === 1 ? "text-green-main" : "text-[#000]"}`}
               >
                 {item}{" "}
@@ -62,11 +63,14 @@ export default function ProjectView({ data }: { data: ProjectInterface[] }) {
                             {item.name}
                           </h3>
                           <p className="text-sm mt-2 text-black-500 capitalize font-bold">
-                            {item.createdAt.split("T")[0]}
+                            {item.createdAt?.split("T")[0]}
                           </p>
                           <div className="grid gap-2 mt-5 grid-cols-2 h-full max-h-[200px] w-full">
                             {item?.technologies.split(",").map((techItem) => (
-                              <div className="w-full flex justify-start items-center">
+                              <div
+                                key={index}
+                                className="w-full flex justify-start items-center"
+                              >
                                 <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[120px]  px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-semibold rounded-lg text-xs tracking-widest hover:shadow-green-main transition-all outline-none">
                                   {techItem}
                                 </button>
