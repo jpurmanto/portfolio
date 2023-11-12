@@ -4,7 +4,7 @@ import { experienceFields } from "@/constants";
 import { ExperienceInterface } from "@/db";
 import { FormFields } from "@/helpers";
 
-export default function AdminExperienceView({
+export default function ExperienceCMS({
   data,
   formData,
   setFormData,
