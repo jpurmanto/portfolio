@@ -74,7 +74,40 @@ export const initialContactFormData: ContactFormData = {
   message: "",
 };
 
-export const educationFields: FormField[] = [
+export const experienceFields: FormField[] = [
+  {
+    name: "position",
+    placeholder: "Position",
+    type: "text",
+    label: "Position",
+  },
+  {
+    name: "company",
+    placeholder: "Company",
+    type: "text",
+    label: "Company",
+  },
+  {
+    name: "duration",
+    placeholder: "Duration",
+    type: "text",
+    label: "Duration",
+  },
+  {
+    name: "location",
+    placeholder: "Location",
+    type: "text",
+    label: "Location",
+  },
+  {
+    name: "jobprofile",
+    placeholder: "Job Profile",
+    type: "text",
+    label: "Job Profile",
+  },
+];
+
+export const formationFields: FormField[] = [
   {
     name: "degree",
     placeholder: "Degree Name",

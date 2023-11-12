@@ -1,17 +1,17 @@
 "use client";
 
-import { formationFields } from "@/constants";
-import { FormationInterface } from "@/db";
+import { experienceFields } from "@/constants";
+import { ExperienceInterface } from "@/db";
 import { FormFields } from "@/helpers";
 
-export default function FormationCMS({
+export default function AdminExperienceView({
   data,
   formData,
   setFormData,
   handleSaveData,
 }: {
-  data: FormationInterface[];
-  formData: FormationInterface;
+  data: ExperienceInterface[];
+  formData: ExperienceInterface;
   setFormData: React.Dispatch<React.SetStateAction<string>>;
   handleSaveData: (arg: string) => {};
 }) {
@@ -22,20 +22,22 @@ export default function FormationCMS({
           {data && data.length
             ? data.map((item) => (
                 <div className="flex flex-col gap-4 border p-4 border-green-600">
-                  <p>{item.degree}</p>
-                  <p>{item.college}</p>
-                  <p>{item.year}</p>
+                  <p>{item.position}</p>
+                  <p>{item.company}</p>
+                  <p>{item.duration}</p>
+                  <p>{item.location}</p>
+                  <p>{item.jobprofile}</p>
                 </div>
               ))
             : null}
         </div>
         <FormFields
-          fields={formationFields}
+          fields={experienceFields}
           formData={formData}
           setFormData={setFormData}
         />
         <button
-          onClick={() => handleSaveData("formation")}
+          onClick={() => handleSaveData("experience")}
           className="mt-[10px] border border-green-600 p-4 font-bold text-[16px]"
         >
           Add Info
