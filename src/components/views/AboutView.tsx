@@ -41,7 +41,7 @@ export default function AboutView({ data }: { data: AboutInterface }) {
       id="about"
     >
       <div className="w-full flex">
-        <AnimationWrapper className="rounded-lg w-full grid-flow-row grid grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-green-main bg-ehite-500 z-10">
+        {/* <AnimationWrapper className="rounded-lg w-full grid-flow-row grid grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-green-main bg-ehite-500 z-10">
           {aboutDataInfo.map((infoItem, index) => (
             <motion.div
               className={`flex items-center justify-start
@@ -69,7 +69,7 @@ export default function AboutView({ data }: { data: AboutInterface }) {
               </div>
             </motion.div>
           ))}
-        </AnimationWrapper>
+        </AnimationWrapper> */}
       </div>
       <AnimationWrapper className={"pt-6"}>
         <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">

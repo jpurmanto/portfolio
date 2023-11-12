@@ -2,13 +2,11 @@
 
 import { ProjectInterface } from "@/db";
 import { AnimationWrapper } from "@/helpers";
-import { motion, useScroll } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
 export default function ProjectView({ data }: { data: ProjectInterface[] }) {
   const containerRef = useRef(null);
-  const { scrollXProgress } = useScroll({ container: containerRef });
   const router = useRouter();
 
   return (
@@ -28,23 +26,6 @@ export default function ProjectView({ data }: { data: ProjectInterface[] }) {
               </span>
             ))}
           </h1>
-          <svg id="progress" width={100} height={100} viewBox="0 0 100 100">
-            <circle
-              cx={"50"}
-              cy={"50"}
-              r="30"
-              pathLength={"1"}
-              className="stroke-[#000]"
-            />
-            <motion.circle
-              cx={"50"}
-              cy={"50"}
-              r="30"
-              pathLength={"1"}
-              className="stroke-green-main"
-              style={{ pathLength: scrollXProgress }}
-            />
-          </svg>
         </div>
       </AnimationWrapper>
       <AnimationWrapper>
