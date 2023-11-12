@@ -13,6 +13,11 @@ interface NavbarItem {
   label: string;
 }
 
+type LoginFormData = {
+  username: string;
+  password: string;
+};
+
 type ContactFormData = {
   name: string;
   email: string;
