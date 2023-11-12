@@ -4,14 +4,14 @@ import { aboutFields } from "@/constants";
 import { AboutInterface } from "@/db";
 import { FormFields } from "@/helpers";
 
-export default function AdminAboutView({
+export default function AboutCMS({
   formData,
   setFormData,
   handleSaveData,
 }: {
   formData: AboutInterface;
-  setFormData: React.Dispatch<React.SetStateAction<string>>;
-  handleSaveData: (arg: string) => {};
+  setFormData: React.Dispatch<React.SetStateAction<AboutInterface>>;
+  handleSaveData: any;
 }) {
   return (
     <div className="w-full">

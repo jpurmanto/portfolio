@@ -12,8 +12,8 @@ export default function ExperienceCMS({
 }: {
   data: ExperienceInterface[];
   formData: ExperienceInterface;
-  setFormData: React.Dispatch<React.SetStateAction<string>>;
-  handleSaveData: (arg: string) => {};
+  setFormData: React.Dispatch<React.SetStateAction<ExperienceInterface>>;
+  handleSaveData: any;
 }) {
   return (
     <div className="w-full">

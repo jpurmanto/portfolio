@@ -5,7 +5,7 @@ export interface ProjectInterface {
   website: string;
   technologies: string;
   github: string;
-  createdAt: string;
+  createdAt?: string;
 }
 
 const projectSchema = new mongoose.Schema<ProjectInterface>(

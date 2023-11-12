@@ -3,7 +3,7 @@
 interface Props {
   fields: FormField[];
   formData: any;
-  setFormData: React.Dispatch<React.SetStateAction<string>>;
+  setFormData: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export default function FormFields({ fields, formData, setFormData }: Props) {

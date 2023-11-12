@@ -10,8 +10,8 @@ export default function HomeCMS({
   handleSaveData,
 }: {
   formData: HomeInterface;
-  setFormData: React.Dispatch<React.SetStateAction<string>>;
-  handleSaveData: (arg: string) => {};
+  setFormData: React.Dispatch<React.SetStateAction<HomeInterface>>;
+  handleSaveData: any;
 }) {
   return (
     <div className="w-full">
@@ -22,7 +22,7 @@ export default function HomeCMS({
           setFormData={setFormData}
         />
         <button
-          onClick={() => handleSaveData("home")}
+          onClick={() => handleSaveData()}
           className="mt-[10px] border border-green-600 p-4 font-bold text-[16px]"
         >
           Add Info

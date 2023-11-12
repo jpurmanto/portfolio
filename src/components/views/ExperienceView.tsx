@@ -1,6 +1,6 @@
 "use client";
 
-import { EducationInterface, ExperienceInterface } from "@/db";
+import { FormationInterface, ExperienceInterface } from "@/db";
 import { AnimationWrapper } from "@/helpers";
 import {
   Timeline,
@@ -16,7 +16,7 @@ export default function ExperienceView({
   formationData,
   experienceData,
 }: {
-  formationData: EducationInterface[];
+  formationData: FormationInterface[];
   experienceData: ExperienceInterface[];
 }) {
   return (
@@ -31,6 +31,7 @@ export default function ExperienceView({
               <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
                 {"My Experince".split(" ").map((item, index) => (
                   <span
+                    key={index}
                     className={`${
                       index === 1 ? "text-green-main" : "text-[#000]"
                     }`}
@@ -46,8 +47,8 @@ export default function ExperienceView({
               <motion.div className="container">
                 <Timeline position="right">
                   {experienceData && experienceData.length
-                    ? experienceData.map((experienceItem) => (
-                        <TimelineItem>
+                    ? experienceData.map((experienceItem, index) => (
+                        <TimelineItem key={index}>
                           <TimelineSeparator>
                             <TimelineDot className="bg-green-main" />
                             <TimelineConnector className="bg-green-main" />
@@ -83,6 +84,7 @@ export default function ExperienceView({
               <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
                 {"My Education".split(" ").map((item, index) => (
                   <span
+                    key={index}
                     className={`${
                       index === 1 ? "text-green-main" : "text-[#000]"
                     }`}
@@ -98,8 +100,8 @@ export default function ExperienceView({
               <motion.div className="container">
                 <Timeline position="right">
                   {formationData && formationData.length
-                    ? formationData.map((formationItem) => (
-                        <TimelineItem>
+                    ? formationData.map((formationItem, index) => (
+                        <TimelineItem key={index}>
                           <TimelineSeparator>
                             <TimelineDot className="bg-green-main" />
                             <TimelineConnector className="bg-green-main" />

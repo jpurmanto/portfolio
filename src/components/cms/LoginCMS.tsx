@@ -9,7 +9,7 @@ export default function LoginCMS({
   handleLogin,
 }: {
   formData: LoginFormData;
-  setFormData: React.Dispatch<React.SetStateAction<string>>;
+  setFormData: React.Dispatch<React.SetStateAction<LoginFormData>>;
   handleLogin: () => {};
 }) {
   return (

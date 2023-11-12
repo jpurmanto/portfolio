@@ -11,8 +11,9 @@ export default function CreateNavbarLinks({
   navbarItems,
   setActiveLink,
 }: Props): JSX.Element[] {
-  return navbarItems.map((item) => (
+  return navbarItems.map((item, index) => (
     <LinkScroll
+      key={index}
       activeClass="active"
       to={item.id}
       spy={true}

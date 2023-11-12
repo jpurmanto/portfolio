@@ -12,8 +12,8 @@ export default function FormationCMS({
 }: {
   data: FormationInterface[];
   formData: FormationInterface;
-  setFormData: React.Dispatch<React.SetStateAction<string>>;
-  handleSaveData: (arg: string) => {};
+  setFormData: React.Dispatch<React.SetStateAction<FormationInterface>>;
+  handleSaveData: any;
 }) {
   return (
     <div className="w-full">

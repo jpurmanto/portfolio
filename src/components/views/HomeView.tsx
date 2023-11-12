@@ -6,7 +6,7 @@ import { AnimationWrapper, transitionVariants } from "@/helpers";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useMemo, useRef } from "react";
-import profilePicture from "/me.jpg";
+import profilePicture from "public/me.jpg";
 
 export default function HomeView({ data }: { data: HomeInterface[] }) {
   const setVariants = useMemo(() => transitionVariants(), []);
@@ -72,7 +72,6 @@ export default function HomeView({ data }: { data: HomeInterface[] }) {
               <Image
                 src={profilePicture}
                 alt="Profile Picture"
-                layout="responsive"
                 quality={100}
                 height={300}
                 width={300}

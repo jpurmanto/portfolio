@@ -40,8 +40,8 @@ export async function POST(req: NextRequest) {
         message: "Login successful",
       },
     });
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.error(error);
 
     return NextResponse.json({
       statusCode: 500,

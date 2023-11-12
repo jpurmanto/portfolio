@@ -1,8 +1,17 @@
+import {
+  AboutCMS,
+  ContactCMS,
+  ExperienceCMS,
+  FormationCMS,
+  HomeCMS,
+  ProjectCMS,
+} from "@/components/cms";
 import { AboutInterface } from "@/db";
+import { saveData } from "@/helpers";
 import {
   FaFacebookF,
-  FaLinkedinIn,
   FaInstagram,
+  FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa";
 
@@ -272,5 +281,107 @@ export const socialIcons = [
         className="w-[40px] h-[40px] "
       />
     ),
+  },
+];
+
+export const menuItemsList = (
+  currentSelectedTab: string,
+  allData: Record<string, any>,
+  setters: Setters,
+  dataMap: Record<string, any>,
+  update: boolean
+) => [
+  {
+    id: "home",
+    label: "Home",
+    component: (
+      <HomeCMS
+        formData={dataMap["home"]}
+        setFormData={setters["home"]}
+        handleSaveData={saveData(
+          currentSelectedTab,
+          allData,
+          setters,
+          dataMap,
+          update
+        )}
+      />
+    ),
+  },
+  {
+    id: "about",
+    label: "About",
+    component: (
+      <AboutCMS
+        formData={dataMap["about"]}
+        setFormData={setters["about"]}
+        handleSaveData={saveData(
+          currentSelectedTab,
+          allData,
+          setters,
+          dataMap,
+          update
+        )}
+      />
+    ),
+  },
+  {
+    id: "experience",
+    label: "Experience",
+    component: (
+      <ExperienceCMS
+        data={allData?.experience}
+        formData={dataMap["experience"]}
+        setFormData={setters["experience"]}
+        handleSaveData={saveData(
+          currentSelectedTab,
+          allData,
+          setters,
+          dataMap,
+          update
+        )}
+      />
+    ),
+  },
+  {
+    id: "formation",
+    label: "Formation",
+    component: (
+      <FormationCMS
+        data={allData?.formation}
+        formData={dataMap["formation"]}
+        setFormData={setters["formation"]}
+        handleSaveData={saveData(
+          currentSelectedTab,
+          allData,
+          setters,
+          dataMap,
+          update
+        )}
+      />
+    ),
+  },
+  {
+    id: "project",
+    label: "Project",
+    component: (
+      <ProjectCMS
+        data={allData?.project}
+        formData={dataMap["project"]}
+        setFormData={setters["project"]}
+        handleSaveData={saveData(
+          currentSelectedTab,
+          allData,
+          setters,
+          dataMap,
+          update
+        )}
+      />
+    ),
+  },
+  {
+    id: "contact",
+    label: "Contact",
+    component: <ContactCMS data={allData && allData?.contact} />,
   },
 ];

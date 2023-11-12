@@ -31,3 +31,14 @@ interface FormField {
   type: string;
   label: string;
 }
+
+interface Setters {
+  all: React.Dispatch<React.SetStateAction<Record<string, any>>>;
+  about: React.Dispatch<React.SetStateAction<AboutInterface>>;
+  experience: React.Dispatch<React.SetStateAction<any>>;
+  formation: React.Dispatch<React.SetStateAction<any>>;
+  home: React.Dispatch<React.SetStateAction<any>>;
+  login: React.Dispatch<React.SetStateAction<any>>;
+  project: React.Dispatch<React.SetStateAction<any>>;
+  update: React.Dispatch<React.SetStateAction<boolean>>;
+}

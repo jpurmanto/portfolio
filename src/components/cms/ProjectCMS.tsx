@@ -12,8 +12,8 @@ export default function ProjectCMS({
 }: {
   data: ProjectInterface[];
   formData: ProjectInterface;
-  setFormData: React.Dispatch<React.SetStateAction<string>>;
-  handleSaveData: (arg: string) => {};
+  setFormData: React.Dispatch<React.SetStateAction<ProjectInterface>>;
+  handleSaveData: any;
 }) {
   return (
     <div className="w-full">
@@ -36,7 +36,7 @@ export default function ProjectCMS({
           setFormData={setFormData}
         />
         <button
-          onClick={() => handleSaveData("project")}
+          onClick={() => handleSaveData}
           className="mt-[10px] border border-green-600 p-4 font-bold text-[16px]"
         >
           Add Info
