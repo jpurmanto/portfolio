@@ -143,6 +143,33 @@ export const homeFields: FormField[] = [
   },
 ];
 
+export const projectsFields: FormField[] = [
+  {
+    name: "name",
+    placeholder: "Project Name",
+    type: "text",
+    label: "Project Name",
+  },
+  {
+    name: "technologies",
+    placeholder: "Enter Technologies",
+    type: "text",
+    label: "Enter Technologies",
+  },
+  {
+    name: "website",
+    placeholder: "Website",
+    type: "text",
+    label: "Website",
+  },
+  {
+    name: "github",
+    placeholder: "Github",
+    type: "text",
+    label: "github",
+  },
+];
+
 export const navbarItems: NavbarItem[] = [
   {
     id: "home",
