@@ -128,6 +128,21 @@ export const formationFields: FormField[] = [
   },
 ];
 
+export const homeFields: FormField[] = [
+  {
+    name: "heading",
+    placeholder: "Enter heading text",
+    type: "text",
+    label: "Enter heading text",
+  },
+  {
+    name: "summary",
+    placeholder: "Enter Career summary",
+    type: "text",
+    label: "Enter Career summary",
+  },
+];
+
 export const navbarItems: NavbarItem[] = [
   {
     id: "home",
