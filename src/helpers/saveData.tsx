@@ -1,4 +1,5 @@
 import { addData, updateData } from "@/services";
+import { ApiResponse, Setters } from "@/types";
 import { getAllData, resetFormData } from ".";
 
 export async function saveData(
@@ -8,11 +9,11 @@ export async function saveData(
   dataMap: Record<string, any>,
   update: boolean
 ) {
-  const response = update
+  const response: ApiResponse = update
     ? await updateData(currentSelectedTab, dataMap[currentSelectedTab])
     : await addData(currentSelectedTab, dataMap[currentSelectedTab]);
 
-  if (response.success) {
+  if (response?.statusCode === 200) {
     resetFormData(setters);
 
     getAllData(allData, currentSelectedTab, setters);

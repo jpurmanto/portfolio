@@ -1,37 +1,25 @@
-import { AboutInterface, HomeInterface } from "@/db";
 import { getData } from "@/services";
+import { ApiResponse, Setters } from "@/types";
 
 export async function getAllData(
   allData: any,
   currentSelectedTab: string,
   setters: Setters
 ) {
-  const response = await getData(currentSelectedTab);
+  const response: ApiResponse = await getData(currentSelectedTab);
 
-  if (
-    currentSelectedTab === "home" &&
-    response &&
-    response.data &&
-    response.data.length
-  ) {
-    setters["home"](response && response.data[0]);
-    setters["update"](true);
+  if (currentSelectedTab === "home" && response?.data?.length) {
+    setters["home"](response?.data[0]);
   }
 
-  if (
-    currentSelectedTab === "about" &&
-    response &&
-    response.data &&
-    response.data.length
-  ) {
-    setters["about"](response && response.data[0]);
-    setters["update"](true);
+  if (currentSelectedTab === "about" && response?.data?.length) {
+    setters["about"](response?.data[0]);
   }
 
-  if (response?.success) {
+  if (response?.statusCode === 200) {
     setters["all"]({
       ...allData,
-      [currentSelectedTab]: response && response.data,
+      [currentSelectedTab]: response?.data,
     });
   }
 }

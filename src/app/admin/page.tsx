@@ -1,6 +1,7 @@
 "use client";
 
-import { LoginCMS } from "@/components/cms";
+import { LoginView } from "@/components/views";
+import { adminNavbarItems } from "@/constants";
 import {
   initialAboutFormData,
   initialExperienceFormData,
@@ -8,9 +9,9 @@ import {
   initialHomeFormData,
   initialLoginFormData,
   initialProjectFormData,
-  menuItemsList,
-} from "@/constants";
-import { getAllData, handleLogin, resetFormData } from "@/helpers";
+} from "@/constants/fields";
+import { getAllData, handleLogin } from "@/helpers";
+import { Setters } from "@/types";
 import { useEffect, useState } from "react";
 
 export default function AdminView() {
@@ -25,11 +26,10 @@ export default function AdminView() {
   );
   const [homeViewFormData, setHomeViewFormData] = useState(initialHomeFormData);
   const [loginFormData, setLoginFormData] = useState(initialLoginFormData);
-  const [projectViewFormData, setProjectViewFormData] = useState(
+  const [projectsViewFormData, setProjectsViewFormData] = useState(
     initialProjectFormData
   );
   const [allData, setAllData] = useState<Record<string, any>>({});
-  const [update, setUpdate] = useState<boolean>(false);
   const [authUser, setAuthUser] = useState<boolean>(false);
 
   const setters: Setters = {
@@ -39,8 +39,7 @@ export default function AdminView() {
     formation: setFormationViewFormData,
     home: setHomeViewFormData,
     login: setLoginFormData,
-    project: setProjectViewFormData,
-    update: setUpdate,
+    projects: setProjectsViewFormData,
   };
 
   const dataMap: Record<string, any> = {
@@ -48,16 +47,15 @@ export default function AdminView() {
     about: aboutViewFormData,
     formation: formationViewFormData,
     experience: experienceViewFormData,
-    project: projectViewFormData,
+    projects: projectsViewFormData,
   };
 
-  const menuItems = menuItemsList(
-    currentSelectedTab,
-    allData,
-    setters,
-    dataMap,
-    update
-  );
+  const menuItems: {
+    id: string;
+    label: string;
+    update?: boolean;
+    component: React.ReactElement;
+  }[] = adminNavbarItems(currentSelectedTab, allData, setters, dataMap);
 
   useEffect(() => {
     getAllData(allData, currentSelectedTab, setters);
@@ -69,7 +67,7 @@ export default function AdminView() {
 
   if (!authUser)
     return (
-      <LoginCMS
+      <LoginView
         formData={loginFormData}
         handleLogin={() => handleLogin(loginFormData, setAuthUser)}
         setFormData={setLoginFormData}
@@ -85,12 +83,10 @@ export default function AdminView() {
             type="button"
             className="p-4 font-bold text-xl text-black"
             onClick={() => {
-              setCurrentSelectedTab(item.id);
-              resetFormData(setters);
-              setUpdate(false);
+              setCurrentSelectedTab(item.id ?? currentSelectedTab);
             }}
           >
-            {item.label}
+            {item?.label}
           </button>
         ))}
         <button
@@ -105,7 +101,10 @@ export default function AdminView() {
       </nav>
       <div className="mt-10 p-10">
         {menuItems.map(
-          (item) => item.id === currentSelectedTab && item.component
+          (item) =>
+            item.id === currentSelectedTab && (
+              <div key={item.id}>{item.component}</div>
+            )
         )}
       </div>
     </div>

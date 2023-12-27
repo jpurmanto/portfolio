@@ -75,6 +75,7 @@ export default function HomeView({ data }: { data: HomeInterface[] }) {
                 height={300}
                 width={300}
                 className="absolute top-[-15px]"
+                priority
               />
             </motion.div>
           </motion.div>

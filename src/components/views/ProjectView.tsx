@@ -12,7 +12,7 @@ export default function ProjectView({ data }: { data: ProjectInterface[] }) {
   return (
     <div
       className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto"
-      id="project"
+      id="projects"
     >
       <AnimationWrapper className={"py-6 sm:py-16"}>
         <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">

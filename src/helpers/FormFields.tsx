@@ -1,5 +1,7 @@
 "use client";
 
+import { FormField } from "@/types";
+
 interface Props {
   fields: FormField[];
   formData: any;
@@ -7,8 +9,8 @@ interface Props {
 }
 
 export default function FormFields({ fields, formData, setFormData }: Props) {
-  return fields.map((fieldItem) => (
-    <div className="mb-4">
+  return fields.map((fieldItem, index) => (
+    <div key={index} className="mb-4">
       <label className="block text-gray-700 text-sm font-bold mb-2">
         {fieldItem.label}
       </label>

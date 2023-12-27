@@ -1,44 +1,46 @@
-type MongooseModel<T extends Document> = Model<T>;
+import { AboutInterface } from "@/db";
+import { Model } from "mongoose";
 
-type ApiResponse = {
-  status: number;
+export type MongooseModel<T extends Document> = Model<T>;
+
+export type ApiResponse = {
+  statusCode: number;
   error: {
     message: string;
   } | null;
   data: any | null;
 };
 
-interface NavbarItem {
+export type NavbarItem = {
   id: string;
   label: string;
 }
 
-type LoginFormData = {
+export type LoginFormData = {
   username: string;
   password: string;
 };
 
-type ContactFormData = {
+export type ContactFormData = {
   name: string;
   email: string;
   message: string;
   [key: string]: string;
 };
 
-interface FormField {
+export type FormField = {
   name: string;
   placeholder: string;
   type: string;
   label: string;
-}
+};
 
-interface Setters {
+export type Setters = {
   all: React.Dispatch<React.SetStateAction<Record<string, any>>>;
   about: React.Dispatch<React.SetStateAction<AboutInterface>>;
   experience: React.Dispatch<React.SetStateAction<any>>;
   formation: React.Dispatch<React.SetStateAction<any>>;
   home: React.Dispatch<React.SetStateAction<any>>;
   login: React.Dispatch<React.SetStateAction<any>>;
-  project: React.Dispatch<React.SetStateAction<any>>;
-  update: React.Dispatch<React.SetStateAction<boolean>>;
-}
+  projects: React.Dispatch<React.SetStateAction<any>>;
+};

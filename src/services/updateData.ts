@@ -3,7 +3,7 @@ export async function updateData(
   formData: Record<string, any>
 ) {
   try {
-    const response = await fetch(`/api/${currentTab}/update`, {
+    const response = await fetch(`/api/${currentTab}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

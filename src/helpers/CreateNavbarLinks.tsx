@@ -1,3 +1,4 @@
+import { NavbarItem } from "@/types";
 import { Link as LinkScroll } from "react-scroll";
 
 interface Props {

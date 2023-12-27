@@ -20,16 +20,16 @@ export default function AboutView({ data }: { data: AboutInterface }) {
 
   const aboutDataInfo = [
     {
-      label: "Client",
-      value: data?.noofclients || "0",
+      label: data?.noofclients ? "Clients" : "",
+      value: data?.noofclients ?? "",
     },
     {
-      label: "Projects",
-      value: data?.noofprojects || "0",
+      label: data?.noofprojects ? "Projects" : "",
+      value: data?.noofprojects ?? "",
     },
     {
-      label: "Experience",
-      value: data?.yearofexperience || "0",
+      label: data?.yearofexperience ? "Experience" : "",
+      value: data?.yearofexperience ?? "",
     },
   ];
 
@@ -41,35 +41,31 @@ export default function AboutView({ data }: { data: AboutInterface }) {
       id="about"
     >
       <div className="w-full flex">
-        {/* <AnimationWrapper className="rounded-lg w-full grid-flow-row grid grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-green-main bg-ehite-500 z-10">
-          {aboutDataInfo.map((infoItem, index) => (
-            <motion.div
-              className={`flex items-center justify-start
-                ${
-                  index === 0
-                    ? "sm:justify-start"
-                    : index === 1
-                    ? "sm:justify-center"
-                    : "sm:justify-end"
-                } py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0
+        <AnimationWrapper className="rounded-lg w-full flex flex-col md:flex-row items-center justify-center py-9 divide-y-2 md:divide-y-0 md:divide-x-2 divide-green-main bg-white-500 z-10">
+          {aboutDataInfo.map((infoItem, index) =>
+            infoItem.value !== "" ? (
+              <motion.div
+                className={`flex items-center justify-center
+                 py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0
                 `}
-              key={index}
-              custom={{ duration: 2 + index }}
-              variants={setVariants}
-            >
-              <div className="flex m-0 w-40 sm:w-auto">
-                <div className="flex flex-col">
-                  <p className="text-[50px] text-green-main font-bold">
-                    {infoItem.value}+
-                  </p>
-                  <p className="text-[25px] font-bold text-[#000000]">
-                    {infoItem.label}
-                  </p>
+                key={index}
+                custom={{ duration: 2 + index }}
+                variants={setVariants}
+              >
+                <div className="flex mx-20 w-40 sm:w-auto">
+                  <div className="flex flex-col">
+                    <p className="text-[50px] text-green-main font-bold text-center">
+                      {infoItem.value}+
+                    </p>
+                    <p className="text-[25px] font-bold text-[#000000]">
+                      {infoItem.label}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </AnimationWrapper> */}
+              </motion.div>
+            ) : null
+          )}
+        </AnimationWrapper>
       </div>
       <AnimationWrapper className={"pt-6"}>
         <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">

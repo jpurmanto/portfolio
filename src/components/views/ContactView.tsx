@@ -1,6 +1,6 @@
 "use client";
 
-import { contactFields, initialContactFormData } from "@/constants";
+import { contactFields, initialContactFormData } from "@/constants/fields";
 import { AnimationWrapper } from "@/helpers";
 import { addData } from "@/services";
 import { useEffect, useState } from "react";
@@ -14,7 +14,7 @@ export default function ContactView() {
   async function handleSendMessage() {
     const res: ApiResponse = await addData("contact", formData);
 
-    if (res && res.status === 200) {
+    if (res?.statusCode === 200) {
       setFormData(initialContactFormData);
       setShowSuccessMessage(true);
     }

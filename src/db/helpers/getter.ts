@@ -3,7 +3,7 @@ import { Document, Model } from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function getter<T extends Document>(
-  model: MongooseModel<T>
+  model: Model<T>
 ): Promise<NextResponse> {
   try {
     await connectToDB();

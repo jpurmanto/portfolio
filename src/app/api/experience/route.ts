@@ -1,5 +1,5 @@
 import { Experience } from "@/db";
-import { getter, poster } from "@/db/helpers";
+import { getter, poster, putter } from "@/db/helpers";
 import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -12,4 +12,9 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const experiencePosterResult: NextResponse = await poster(Experience, req);
   return experiencePosterResult;
+}
+
+export async function PUT(req: NextRequest) {
+  const experiencePutterResult: NextResponse = await putter(Experience, req);
+  return experiencePutterResult;
 }

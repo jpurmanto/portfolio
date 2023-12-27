@@ -3,7 +3,7 @@ import { Document, Model } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function putter<T extends Document>(
-  model: MongooseModel<T>,
+  model: Model<T>,
   req: NextRequest
 ): Promise<NextResponse> {
   try {
