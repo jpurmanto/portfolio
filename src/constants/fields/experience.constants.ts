@@ -2,41 +2,55 @@ import { FormField } from "@/types";
 
 export const experienceFields: FormField[] = [
   {
-    name: "position",
-    placeholder: "Position",
+    name: "title",
+    placeholder: "Title...",
     type: "text",
-    label: "Position",
-  },
-  {
-    name: "company",
-    placeholder: "Company",
-    type: "text",
-    label: "Company",
-  },
-  {
-    name: "duration",
-    placeholder: "Duration",
-    type: "text",
-    label: "Duration",
+    label: "Title",
   },
   {
     name: "location",
-    placeholder: "Location",
+    placeholder: "City, Country",
     type: "text",
     label: "Location",
   },
   {
-    name: "jobprofile",
-    placeholder: "Job Profile",
+    name: "description",
+    placeholder: "Description...",
     type: "text",
-    label: "Job Profile",
+    label: "Description",
+  },
+  {
+    name: "buttonText",
+    placeholder: "Button text...",
+    type: "text",
+    label: "Button text",
+  },
+  {
+    name: "date",
+    placeholder: "2020-2024",
+    type: "text",
+    label: "Date",
+  },
+  {
+    name: "icon",
+    placeholder: "work / school",
+    type: "text",
+    label: "Icon",
+  },
+  {
+    name: "tech",
+    placeholder: "TypeScript, Node.js...",
+    type: "text",
+    label: "Tech Stack",
   },
 ];
 
 export const initialExperienceFormData = {
-  position: "",
-  company: "",
-  duration: "",
+  title: "",
   location: "",
-  jobprofile: "",
+  description: "",
+  buttonText: "",
+  date: "",
+  icon: "",
+  tech: "",
 };

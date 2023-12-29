@@ -2,17 +2,20 @@ import mongoose from "mongoose";
 
 export interface ProjectInterface {
   name: string;
-  website: string;
-  technologies: string;
+  date: string;
+  description: string;
+  tech: string;
+  deploy: string;
   github: string;
-  createdAt?: string;
 }
 
 const projectSchema = new mongoose.Schema<ProjectInterface>(
   {
     name: String,
-    website: String,
-    technologies: String,
+    date: String,
+    description: String,
+    tech: String,
+    deploy: String,
     github: String,
   },
   { timestamps: true }

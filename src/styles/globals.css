@@ -4,11 +4,12 @@
 
 :root {
   --primary-color: #725ac1;
+  --secondary-color: #717CF0;
 }
 
 @layer base {
   button {
-    @apply relative inline-block py-2 px-4 text-center text-base font-semibold tracking-wider text-[var(--primary-color)] bg-transparent cursor-pointer transition-all ease-out duration-500 border-2 border-[var(--primary-color)] rounded-lg;
+    @apply relative inline-block py-2 px-4 text-center text-base font-semibold tracking-wider text-[var(--primary-color)] bg-transparent cursor-pointer transition-all ease-out duration-500 border-2 border-[var(--primary-color)] rounded-lg select-none;
     box-shadow: inset 0 0 0 0 var(--primary-color);
     text-decoration: none;
   }
@@ -79,7 +80,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: green;
+  background: var(--secondary-color);
   -webkit-border-radius: 1ex;
 }
 

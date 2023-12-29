@@ -1,16 +1,24 @@
 import mongoose from "mongoose";
 
 export interface FormationInterface {
-  degree: string;
-  year: string;
-  college: string;
+  title: string;
+  location: string;
+  description: string;
+  buttonText: string;
+  date: string;
+  icon: string;
+  tech: string;
 }
 
 const formationSchema = new mongoose.Schema<FormationInterface>(
   {
-    degree: String,
-    year: String,
-    college: String,
+    title: String,
+    location: String,
+    description: String,
+    buttonText: String,
+    date: String,
+    icon: String,
+    tech: String,
   },
   { timestamps: true }
 );

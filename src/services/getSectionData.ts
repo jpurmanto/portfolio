@@ -8,9 +8,9 @@ export async function getSectionData(currentSection: string) {
       }
     );
 
-    const data = await res.json();
+    const { data } = await res.json();
 
-    return data && data.data;
+    return data.reverse();
   } catch (error) {
     console.error(error);
   }

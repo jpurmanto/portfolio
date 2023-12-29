@@ -33,8 +33,6 @@ export default function AboutView({ data }: { data: AboutInterface }) {
     },
   ];
 
-  const headingText = "Why hire me for your next project?";
-
   return (
     <div
       className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto"
@@ -71,16 +69,8 @@ export default function AboutView({ data }: { data: AboutInterface }) {
       <AnimationWrapper className={"pt-6"}>
         <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
           <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
-            {headingText.split(" ").map((item, index) => (
-              <span
-                key={index}
-                className={`${
-                  index === 6 ? "text-[var(--primary-color)]" : "text-[#000]"
-                }`}
-              >
-                {item}{" "}
-              </span>
-            ))}
+            Why hire me for your next{" "}
+            <span className="text-[var(--primary-color)]">project?</span>
           </h1>
           <p className="text-[#000] mt-4 mb-8 font-bold">{data?.aboutme}</p>
         </div>
@@ -114,7 +104,7 @@ export default function AboutView({ data }: { data: AboutInterface }) {
                 className="w-full flex justify-center items-center"
                 variants={skillItemVariant}
               >
-                <span className="bg-blue-100 text-blue-800 text-2xl font-medium me-2 px-2.5 py-0.5 rounded border border-[#b8bef8] select-none">
+                <span className="bg-blue-100 text-blue-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded-xl border border-[#b8bef8] select-none">
                   {skill}
                 </span>
               </motion.div>

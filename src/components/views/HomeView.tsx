@@ -58,18 +58,9 @@ export default function HomeView({ data }: { data: HomeInterface[] }) {
             </p>
             <motion.div className="flex gap-7 cursor-pointer">
               {socialIcons.map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{
-                    type: "spring",
-                    damping: 20,
-                    stiffness: 80,
-                    duration: 1,
-                  }}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.8, borderRadius: "100%" }}
+                  className="hover:scale-110 active:scale-90 transition-all ease-in-out duration-200"
                 >
                   <a href={item.url} rel="noreferrer noopener" target="_blank">
                     <i
@@ -77,7 +68,7 @@ export default function HomeView({ data }: { data: HomeInterface[] }) {
                       className={`ri-${item.icon} text-[var(--primary-color)] text-4xl`}
                     />
                   </a>
-                </motion.div>
+                </div>
               ))}
             </motion.div>
           </div>

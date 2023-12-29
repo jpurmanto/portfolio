@@ -2,27 +2,55 @@ import { FormField } from "@/types";
 
 export const formationFields: FormField[] = [
   {
-    name: "degree",
-    placeholder: "Enter degree/course name...",
+    name: "title",
+    placeholder: "Title...",
     type: "text",
-    label: "Degree/Course",
+    label: "Title",
   },
   {
-    name: "year",
-    placeholder: "Enter the year...",
+    name: "location",
+    placeholder: "City, Country",
     type: "text",
-    label: "Year",
+    label: "Location",
   },
   {
-    name: "college",
-    placeholder: "Enter Intitute/E-Learning platform name...",
+    name: "description",
+    placeholder: "Description...",
     type: "text",
-    label: "Intitute/E-Learning platform",
+    label: "Description",
+  },
+  {
+    name: "buttonText",
+    placeholder: "Button text...",
+    type: "text",
+    label: "Button text",
+  },
+  {
+    name: "date",
+    placeholder: "2020-2024",
+    type: "text",
+    label: "Date",
+  },
+  {
+    name: "icon",
+    placeholder: "work / school",
+    type: "text",
+    label: "Icon",
+  },
+  {
+    name: "tech",
+    placeholder: "TypeScript, Node.js...",
+    type: "text",
+    label: "Tech Stack",
   },
 ];
 
 export const initialFormationFormData = {
-  degree: "",
-  year: "",
-  college: "",
+  title: "",
+  location: "",
+  description: "",
+  buttonText: "",
+  date: "",
+  icon: "",
+  tech: "",
 };

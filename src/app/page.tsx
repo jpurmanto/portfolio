@@ -1,7 +1,7 @@
 import {
   AboutView,
   ContactView,
-  ExperienceView,
+  TimelineView,
   HomeView,
   ProjectView,
 } from "@/components/views";
@@ -24,7 +24,7 @@ export default async function Home() {
           aboutSectionData && aboutSectionData.length ? aboutSectionData[0] : []
         }
       />
-      <ExperienceView
+      <TimelineView
         formationData={formationSectionData}
         experienceData={experienceSectionData}
       />

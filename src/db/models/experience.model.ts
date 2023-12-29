@@ -1,20 +1,24 @@
 import mongoose from "mongoose";
 
 export interface ExperienceInterface {
-  position: string;
-  company: string;
-  duration: string;
+  title: string;
   location: string;
-  jobprofile: string;
+  description: string;
+  buttonText: string;
+  date: string;
+  icon: string;
+  tech: string;
 }
 
 const experienceSchema = new mongoose.Schema<ExperienceInterface>(
   {
-    position: String,
-    company: String,
-    duration: String,
+    title: String,
     location: String,
-    jobprofile: String,
+    description: String,
+    buttonText: String,
+    date: String,
+    icon: String,
+    tech: String,
   },
   { timestamps: true }
 );

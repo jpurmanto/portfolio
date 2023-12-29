@@ -11,11 +11,6 @@ export type ApiResponse = {
   data: any | null;
 };
 
-export type NavbarItem = {
-  id: string;
-  label: string;
-}
-
 export type LoginFormData = {
   username: string;
   password: string;
