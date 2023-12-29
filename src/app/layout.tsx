@@ -1,6 +1,7 @@
 import NavbarWrapper from "@/components/ui/NavbarWrapper";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
+import "remixicon/fonts/remixicon.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -10,8 +10,11 @@ interface Props {
 
 export default function FormFields({ fields, formData, setFormData }: Props) {
   return fields.map((fieldItem, index) => (
-    <div key={index} className="mb-4">
-      <label className="block text-gray-700 text-sm font-bold mb-2">
+    <div id="input-group" key={index} className="mt-1 mb-4 text-sm leading-5">
+      <label
+        htmlFor={fieldItem.name}
+        className="block text-[var(--primary-color)] text-sm font-bold mb-2"
+      >
         {fieldItem.label}
       </label>
       <input
@@ -26,7 +29,8 @@ export default function FormFields({ fields, formData, setFormData }: Props) {
             [fieldItem.name]: e.target.value,
           });
         }}
-        className="shadow border rounded w-full py-2 px-3 text-gray-700 tracking-wide focus:outline-none focus:shadow-outline"
+        className="w-full rounded-lg border border-[var(--primary-color)] outline-0 text-gray-700 tracking-wide focus:outline-none"
+        style={{padding: "0.44rem 1rem"}}
       />
     </div>
   ));

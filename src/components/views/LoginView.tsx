@@ -13,9 +13,17 @@ export default function LoginView({
   setFormData: React.Dispatch<React.SetStateAction<LoginFormData>>;
   handleLogin: () => {};
 }) {
+  const isValidForm = () => {
+    return formData &&
+      formData.username !== "" &&
+      formData.password !== ""
+      ? true
+      : false;
+  };
+
   return (
-    <div className="w-full">
-      <div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="flex min-h-full flex-1 flex-col items-center justify-center mt-[calc(100vh/3)]">
+      <form className="w-80 bg-white shadow-md rounded-lg p-8">
         <FormFields
           fields={loginFields}
           formData={formData}
@@ -23,11 +31,13 @@ export default function LoginView({
         />
         <button
           onClick={handleLogin}
-          className="mt-[10px] border border-green-600 p-4 font-bold text-[16px]"
+          disabled={!isValidForm()}
+          className="w-full py-1"
+          type="button"
         >
           Login
         </button>
-      </div>
+      </form>
     </div>
   );
 }

@@ -20,7 +20,9 @@ export default function ProjectView({ data }: { data: ProjectInterface[] }) {
             {"My Projects".split(" ").map((item, index) => (
               <span
                 key={index}
-                className={`${index === 1 ? "text-green-main" : "text-[#000]"}`}
+                className={`${
+                  index === 1 ? "text-[var(--primary-color)]" : "text-[#000]"
+                }`}
               >
                 {item}{" "}
               </span>
@@ -36,7 +38,7 @@ export default function ProjectView({ data }: { data: ProjectInterface[] }) {
                   className="w-full flex items-stretch cursor-pointer"
                   key={index}
                 >
-                  <div className="border-2 w-full relative border-green-main transition-all rounded-lg flex flex-col">
+                  <div className="border-2 w-full relative border-[var(--primary-color)] transition-all rounded-lg flex flex-col">
                     <div className="flex p-4 flex-col xl:flex-row w-full items-stretch xl:items-center">
                       <div className="flex order-2 xl:order-1">
                         <div className="flex flex-col">
@@ -52,7 +54,7 @@ export default function ProjectView({ data }: { data: ProjectInterface[] }) {
                                 key={index}
                                 className="w-full flex justify-start items-center"
                               >
-                                <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[120px]  px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-semibold rounded-lg text-xs tracking-widest hover:shadow-green-main transition-all outline-none">
+                                <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[120px]  px-6 border-[2px] border-[var(--primary-color)] bg-[#fff] text-[#000] font-semibold rounded-lg text-xs tracking-widest hover:shadow-[var(--primary-color)] transition-all outline-none">
                                   {techItem}
                                 </button>
                               </div>
@@ -64,13 +66,13 @@ export default function ProjectView({ data }: { data: ProjectInterface[] }) {
                     <div className="absolute w-full bottom-0 justify-center flex gap-2">
                       <button
                         onClick={() => router.push(item.website)}
-                        className="p-2 text-white-500 font-semibold text-[14px] tracking-widest bg-green-main transition-all outline-none"
+                        className="p-2 text-white font-semibold text-[14px] tracking-widest bg-[var(--primary-color)] transition-all outline-none"
                       >
                         Website
                       </button>
                       <button
                         onClick={() => router.push(item.github)}
-                        className="p-2 text-white-500 font-semibold text-[14px] tracking-widest bg-green-main transition-all outline-none"
+                        className="p-2 text-white font-semibold text-[14px] tracking-widest bg-[var(--primary-color)] transition-all outline-none"
                       >
                         Github
                       </button>

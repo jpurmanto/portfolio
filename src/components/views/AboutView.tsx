@@ -1,11 +1,11 @@
 "use client";
 
+import { AboutInterface } from "@/db";
 import { AnimationWrapper, transitionVariants } from "@/helpers";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useMemo } from "react";
 import aboutImage from "public/about.svg";
-import { AboutInterface } from "@/db";
+import { useMemo } from "react";
 
 const skillItemVariant = {
   hidden: { y: 20, opacity: 0 },
@@ -20,20 +20,20 @@ export default function AboutView({ data }: { data: AboutInterface }) {
 
   const aboutDataInfo = [
     {
-      label: data?.noofclients ? "Clients" : "",
+      label: "Clients",
       value: data?.noofclients ?? "",
     },
     {
-      label: data?.noofprojects ? "Projects" : "",
+      label: "Projects",
       value: data?.noofprojects ?? "",
     },
     {
-      label: data?.yearofexperience ? "Experience" : "",
+      label: "Experience",
       value: data?.yearofexperience ?? "",
     },
   ];
 
-  const headingText = "Why Hire Me For Your Next Project ?";
+  const headingText = "Why hire me for your next project?";
 
   return (
     <div
@@ -41,7 +41,7 @@ export default function AboutView({ data }: { data: AboutInterface }) {
       id="about"
     >
       <div className="w-full flex">
-        <AnimationWrapper className="rounded-lg w-full flex flex-col md:flex-row items-center justify-center py-9 divide-y-2 md:divide-y-0 md:divide-x-2 divide-green-main bg-white-500 z-10">
+        <AnimationWrapper className="rounded-lg w-full flex flex-col md:flex-row items-center justify-center py-9 divide-y-2 md:divide-y-0 md:divide-x-2 divide-[var(--primary-color)] bg-white z-10">
           {aboutDataInfo.map((infoItem, index) =>
             infoItem.value !== "" ? (
               <motion.div
@@ -54,7 +54,7 @@ export default function AboutView({ data }: { data: AboutInterface }) {
               >
                 <div className="flex mx-20 w-40 sm:w-auto">
                   <div className="flex flex-col">
-                    <p className="text-[50px] text-green-main font-bold text-center">
+                    <p className="text-[50px] text-[var(--primary-color)] font-bold text-center">
                       {infoItem.value}+
                     </p>
                     <p className="text-[25px] font-bold text-[#000000]">
@@ -67,13 +67,16 @@ export default function AboutView({ data }: { data: AboutInterface }) {
           )}
         </AnimationWrapper>
       </div>
+
       <AnimationWrapper className={"pt-6"}>
         <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
           <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
             {headingText.split(" ").map((item, index) => (
               <span
                 key={index}
-                className={`${index === 6 ? "text-green-main" : "text-[#000]"}`}
+                className={`${
+                  index === 6 ? "text-[var(--primary-color)]" : "text-[#000]"
+                }`}
               >
                 {item}{" "}
               </span>
@@ -82,15 +85,20 @@ export default function AboutView({ data }: { data: AboutInterface }) {
           <p className="text-[#000] mt-4 mb-8 font-bold">{data?.aboutme}</p>
         </div>
       </AnimationWrapper>
+
       <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8">
         <AnimationWrapper className="flex w-full">
-          <motion.div variants={setVariants} className="h-full w-full p-4">
+          <motion.div
+            variants={setVariants}
+            className="h-full w-full p-4 select-none"
+          >
             <Image
               src={aboutImage}
               alt="About Me"
               height={500}
               width={500}
               quality={75}
+              draggable="false"
               priority
             />
           </motion.div>
@@ -98,7 +106,7 @@ export default function AboutView({ data }: { data: AboutInterface }) {
         <AnimationWrapper className={"flex items-center w-full p-4"}>
           <motion.div
             variants={setVariants}
-            className="grid gap-4 grid-cols-3 h-full max-h-[200px] w-full"
+            className="grid grid-cols-2 gap-4 h-full max-h-[200px] w-full"
           >
             {data?.skills?.split(",").map((skill, index) => (
               <motion.div
@@ -106,9 +114,9 @@ export default function AboutView({ data }: { data: AboutInterface }) {
                 className="w-full flex justify-center items-center"
                 variants={skillItemVariant}
               >
-                <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[160px] px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-semibold rounded-lg text-xl tracking-widest hover:shadow-green-main transition-all outline-none">
+                <span className="bg-blue-100 text-blue-800 text-2xl font-medium me-2 px-2.5 py-0.5 rounded border border-[#b8bef8] select-none">
                   {skill}
-                </button>
+                </span>
               </motion.div>
             ))}
           </motion.div>

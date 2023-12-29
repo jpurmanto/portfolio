@@ -23,12 +23,7 @@ export default function BaseCMS({
           formData={formData}
           setFormData={setFormData}
         />
-        <button
-          onClick={handleSaveData}
-          className="mt-[10px] border border-green-600 p-4 font-bold text-[16px]"
-        >
-          Submit
-        </button>
+        <button onClick={handleSaveData}>Submit</button>
       </div>
     </div>
   );

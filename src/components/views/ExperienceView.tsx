@@ -1,6 +1,6 @@
 "use client";
 
-import { FormationInterface, ExperienceInterface } from "@/db";
+import { ExperienceInterface, FormationInterface } from "@/db";
 import { AnimationWrapper } from "@/helpers";
 import {
   Timeline,
@@ -33,7 +33,9 @@ export default function ExperienceView({
                   <span
                     key={index}
                     className={`${
-                      index === 1 ? "text-green-main" : "text-[#000]"
+                      index === 1
+                        ? "text-[var(--primary-color)]"
+                        : "text-[#000]"
                     }`}
                   >
                     {item}{" "}
@@ -50,11 +52,11 @@ export default function ExperienceView({
                     ? experienceData.map((experienceItem, index) => (
                         <TimelineItem key={index}>
                           <TimelineSeparator>
-                            <TimelineDot className="bg-green-main" />
-                            <TimelineConnector className="bg-green-main" />
+                            <TimelineDot className="bg-[var(--primary-color)]" />
+                            <TimelineConnector className="bg-[var(--primary-color)]" />
                           </TimelineSeparator>
                           <TimelineContent>
-                            <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
+                            <div className="border-[2px] p-4 rounded-[8px] border-[var(--primary-color)] mt-[14px] ml-[16px]">
                               <p className="font-bold">
                                 {experienceItem.duration}
                               </p>
@@ -86,7 +88,9 @@ export default function ExperienceView({
                   <span
                     key={index}
                     className={`${
-                      index === 1 ? "text-green-main" : "text-[#000]"
+                      index === 1
+                        ? "text-[var(--primary-color)]"
+                        : "text-[#000]"
                     }`}
                   >
                     {item}{" "}
@@ -103,11 +107,11 @@ export default function ExperienceView({
                     ? formationData.map((formationItem, index) => (
                         <TimelineItem key={index}>
                           <TimelineSeparator>
-                            <TimelineDot className="bg-green-main" />
-                            <TimelineConnector className="bg-green-main" />
+                            <TimelineDot className="bg-[var(--primary-color)]" />
+                            <TimelineConnector className="bg-[var(--primary-color)]" />
                           </TimelineSeparator>
                           <TimelineContent>
-                            <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
+                            <div className="border-[2px] p-4 rounded-[8px] border-[var(--primary-color)] mt-[14px] ml-[16px]">
                               <p className="font-bold">{formationItem.year}</p>
                               <h3 className="font-extrabold mt-2">
                                 {formationItem.college}

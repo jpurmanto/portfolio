@@ -3,15 +3,15 @@ import { FormField } from "@/types";
 export const loginFields: FormField[] = [
   {
     name: "username",
-    placeholder: "Enter User name",
+    placeholder: "",
     type: "text",
-    label: "Enter User name",
+    label: "Username",
   },
   {
     name: "password",
-    placeholder: "Enter Password",
+    placeholder: "",
     type: "password",
-    label: "Enter Password",
+    label: "Password",
   },
 ];
 

@@ -75,13 +75,12 @@ export default function AdminView() {
     );
 
   return (
-    <div className="border-b border-gray-200">
+    <main>
       <nav className="-mb-0.5 flex justify-center spcae-x-6" role="tablist">
         {menuItems.map((item) => (
           <button
             key={item.id}
             type="button"
-            className="p-4 font-bold text-xl text-black"
             onClick={() => {
               setCurrentSelectedTab(item.id ?? currentSelectedTab);
             }}
@@ -94,7 +93,6 @@ export default function AdminView() {
             setAuthUser(false);
             sessionStorage.removeItem("authUser");
           }}
-          className="p-4 font-bold text-xl text-black"
         >
           Logout
         </button>
@@ -107,6 +105,6 @@ export default function AdminView() {
             )
         )}
       </div>
-    </div>
+    </main>
   );
 }
