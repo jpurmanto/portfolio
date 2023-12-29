@@ -8,7 +8,7 @@ import Image from "next/image";
 import profilePicture from "public/profile.png";
 import { useMemo, useRef } from "react";
 
-export default function HomeView({ data }: { data: HomeInterface[] }) {
+export default function HomeView({ data }: { data: HomeInterface }) {
   const setVariants = useMemo(() => transitionVariants(), []);
   const containerRef = useRef(null);
 
@@ -37,8 +37,8 @@ export default function HomeView({ data }: { data: HomeInterface[] }) {
               id="heading"
               className="mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal"
             >
-              {data && data.length
-                ? data[0]?.heading.split(" ").map((item, index) => (
+              {data
+                ? data?.heading.split(" ").map((item, index) => (
                     <span
                       key={index}
                       className={`${
@@ -54,7 +54,7 @@ export default function HomeView({ data }: { data: HomeInterface[] }) {
             </h1>
 
             <p id="summary" className="text-[#000] mt-4 mb-6 font-bold">
-              {data && data.length ? data[0]?.summary : null}
+              {data ? data?.summary : null}
             </p>
             <motion.div className="flex gap-7 cursor-pointer">
               {socialIcons.map((item, index) => (
