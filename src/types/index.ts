@@ -1,5 +1,6 @@
 import { AboutInterface } from "@/db";
 import { Model } from "mongoose";
+import { SVGProps } from "react";
 
 export type MongooseModel<T extends Document> = Model<T>;
 
@@ -38,4 +39,9 @@ export type Setters = {
   home: React.Dispatch<React.SetStateAction<any>>;
   login: React.Dispatch<React.SetStateAction<any>>;
   projects: React.Dispatch<React.SetStateAction<any>>;
+};
+
+export type CustomIconProps<T extends SVGElement> = SVGProps<T> & {
+  title?: string;
+  size?: string | number;
 };

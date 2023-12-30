@@ -85,13 +85,6 @@ export default function Timeline({
                 })}
               </div>
 
-              {/* <Image
-                src={element.icon === "school" ? schoolIcon : workIcon}
-                alt={element.icon}
-                className={`${color} w-8 p-1 rounded-lg z-20 absolute left-4 top-4 sm:hidden select-none`}
-                draggable="false"
-              /> */}
-
               {element.buttonText ? (
                 <a
                   className={`${color} text-gray-950 font-medium px-4 py-1 rounded-md mx-auto cursor-pointer hover:text-gray-100 transition-colors duration-300 select-none`}
