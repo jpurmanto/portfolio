@@ -5,7 +5,9 @@ import { AnimationWrapper, transitionVariants } from "@/helpers";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import aboutImage from "public/about.svg";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import EditButton from "../ui/EditButton";
+import { updateData } from "@/services";
 
 const skillItemVariant = {
   hidden: { y: 20, opacity: 0 },
@@ -15,8 +17,23 @@ const skillItemVariant = {
   },
 };
 
-export default function AboutView({ data }: { data: AboutInterface }) {
+export default function AboutView({
+  data,
+}: {
+  data: AboutInterface & { _id: string };
+}) {
   const setVariants = useMemo(() => transitionVariants(), []);
+  const [authUser, setAuthUser] = useState<boolean>(false);
+  const [editField, setEditField] = useState("");
+  const [currentData, setCurrentData] = useState({
+    _id: data._id,
+    aboutme: data.aboutme,
+    skills: data.skills,
+  });
+
+  useEffect(() => {
+    setAuthUser(JSON.parse(sessionStorage.getItem("authUser")!));
+  }, []);
 
   const aboutDataInfo = [
     {
@@ -67,12 +84,44 @@ export default function AboutView({ data }: { data: AboutInterface }) {
       </div>
 
       <AnimationWrapper className={"pt-6"}>
-        <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
-          <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
+        <div className="flex flex-col justify-center items-center">
+          <h1 className="sm:leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
             Why hire me for your next{" "}
             <span className="text-[var(--primary-color)]">project?</span>
           </h1>
-          <p className="text-[#000] mt-4 mb-8 font-bold">{data?.aboutme}</p>
+
+          <section className="flex items-start justify-start w-full">
+            {authUser ? (
+              <EditButton
+                color={editField === "aboutme" ? "red" : "black"}
+                handler={() => setEditField("aboutme")}
+              />
+            ) : null}
+
+            <p
+              contentEditable={editField === "aboutme"}
+              suppressContentEditableWarning={true}
+              className="text-[#000] mt-4 mb-8 font-bold"
+              onInput={(e) => {
+                setCurrentData({
+                  ...currentData,
+                  aboutme: e.currentTarget.innerText,
+                });
+              }}
+              onKeyDown={async (e) => {
+                if (e.key === "Escape") {
+                  setEditField("");
+                  e.currentTarget.innerText = data.aboutme;
+                }
+                if (e.key === "Enter") {
+                  setEditField("");
+                  await updateData("about", currentData);
+                }
+              }}
+            >
+              {data.aboutme ?? ""}
+            </p>
+          </section>
         </div>
       </AnimationWrapper>
 
@@ -94,22 +143,54 @@ export default function AboutView({ data }: { data: AboutInterface }) {
           </motion.div>
         </AnimationWrapper>
         <AnimationWrapper className={"flex items-center w-full p-4"}>
-          <motion.div
-            variants={setVariants}
-            className="grid grid-cols-2 gap-4 h-full max-h-[200px] w-full"
-          >
-            {data?.skills?.split(",").map((skill, index) => (
-              <motion.div
-                key={index}
-                className="w-full flex justify-center items-center"
-                variants={skillItemVariant}
-              >
-                <span className="bg-blue-100 text-blue-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded-xl border border-[#b8bef8] select-none">
-                  {skill}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
+          <section className="flex items-start justify-start w-full">
+            <motion.div
+              variants={setVariants}
+              className="grid grid-cols-2 gap-4 h-full max-h-[200px] w-full"
+            >
+              {authUser ? (
+                <EditButton
+                  color={editField === "skills" ? "red" : "black"}
+                  handler={() => setEditField("skills")}
+                />
+              ) : null}
+
+              {data?.skills?.split(",").map((skill, index) => (
+                <motion.div
+                  key={index}
+                  className="w-full flex justify-center items-center"
+                  variants={skillItemVariant}
+                >
+                  <span
+                    contentEditable={editField === "skills"}
+                    suppressContentEditableWarning={true}
+                    className="bg-blue-100 text-blue-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded-xl border border-[#b8bef8] select-none"
+                    onInput={(e) => {
+                      const skillsArr = currentData.skills.split(", ");
+                      skillsArr[index] = e.currentTarget.innerText;
+
+                      setCurrentData({
+                        ...currentData,
+                        skills: skillsArr.join(", "),
+                      });
+                    }}
+                    onKeyDown={async (e) => {
+                      if (e.key === "Escape") {
+                        setEditField("");
+                        e.currentTarget.innerText = skill;
+                      }
+                      if (e.key === "Enter") {
+                        setEditField("");
+                        await updateData("about", currentData);
+                      }
+                    }}
+                  >
+                    {skill}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </section>
         </AnimationWrapper>
       </div>
     </div>

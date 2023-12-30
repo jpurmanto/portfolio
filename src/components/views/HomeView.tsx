@@ -16,7 +16,6 @@ export default function HomeView({
   data: HomeInterface & { _id: string };
 }) {
   const setVariants = useMemo(() => transitionVariants(), []);
-  const containerRef = useRef(null);
   const [authUser, setAuthUser] = useState<boolean>(false);
   const [editField, setEditField] = useState("");
   const [currentData, setCurrentData] = useState({
@@ -36,7 +35,7 @@ export default function HomeView({
           className={"flex flex-col gap-3 py-6 sm:py-16"}
           variants={setVariants}
         >
-          <motion.div ref={containerRef} className="select-none">
+          <motion.div className="select-none">
             <Image
               src={profilePicture}
               alt="Profile Picture"
@@ -60,6 +59,7 @@ export default function HomeView({
 
               <h1
                 contentEditable={editField === "heading"}
+                suppressContentEditableWarning={true}
                 className="realtive mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal"
                 onInput={(e) => {
                   setCurrentData({
@@ -104,6 +104,7 @@ export default function HomeView({
 
                 <p
                   contentEditable={editField === "summary"}
+                  suppressContentEditableWarning={true}
                   className="text-[#000] mt-4 mb-6 font-bold"
                   onInput={(e) => {
                     setCurrentData({
