@@ -9,8 +9,12 @@ export default function TimelineView({
   formationData,
   experienceData,
 }: {
-  formationData: FormationInterface[];
-  experienceData: ExperienceInterface[];
+  formationData: (FormationInterface & {
+    _id: string;
+  })[];
+  experienceData: (ExperienceInterface & {
+    _id: string;
+  })[];
 }) {
   return (
     <main
