@@ -2,15 +2,29 @@
 
 import { contactFields, initialContactFormData } from "@/constants/fields";
 import { AnimationWrapper } from "@/helpers";
-import { addData } from "@/services";
+import { addData, getData } from "@/services";
 import { ApiResponse, ContactFormData } from "@/types";
 import { useEffect, useState } from "react";
+import { ContactCMS } from "../cms";
 
 export default function ContactView() {
   const [formData, setFormData] = useState<ContactFormData>(
     initialContactFormData
   );
   const [showSuccessMessage, setShowSuccessMessage] = useState<Boolean>(false);
+  const [authUser, setAuthUser] = useState<boolean>(false);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    setAuthUser(JSON.parse(sessionStorage.getItem("authUser")!));
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const msg = await getData("contact");
+      setMessages(msg.data);
+    })();
+  }, []);
 
   async function handleSendMessage() {
     const res: ApiResponse = await addData("contact", formData);
@@ -37,6 +51,10 @@ export default function ContactView() {
       ? true
       : false;
   };
+
+  if (authUser) {
+    return <ContactCMS data={messages} />;
+  }
 
   return (
     <div

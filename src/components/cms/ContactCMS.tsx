@@ -4,7 +4,7 @@ import { ContactInterface } from "@/db";
 
 export default function ContactCMS({ data }: { data: ContactInterface[] }) {
   return (
-    <div className="flex flex-col gap-5">
+    <div id="contact" className="flex flex-col gap-5">
       {data && data.length
         ? data.map((item, index) => (
             <div key={index} className="p-5 border">
