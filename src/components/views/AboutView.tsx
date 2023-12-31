@@ -83,6 +83,7 @@ export default function AboutView({
   const renderEditButton = (field: string) => {
     return (
       <EditButton
+        field={field}
         color={setEditColor(field)}
         handler={() => setEditField(field)}
       />

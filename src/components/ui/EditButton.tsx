@@ -4,9 +4,11 @@ import { EditIcon } from "./EditIcon";
 export default function EditButton({
   color,
   handler,
+  field,
 }: {
   color: string;
   handler: React.MouseEventHandler<SVGSVGElement>;
+  field?: string,
 }) {
   return (
     <EditIcon
@@ -14,7 +16,7 @@ export default function EditButton({
       size={33}
       className="absolute -translate-x-8 cursor-pointer select-none"
       onClick={handler}
-      title="Edit"
+      title={`Edit ${field}`}
     />
   );
 }

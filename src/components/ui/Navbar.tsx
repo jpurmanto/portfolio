@@ -7,20 +7,7 @@ import { scroller } from "react-scroll";
 
 export default function Navbar(): JSX.Element {
   const [activeLink, setActiveLink] = useState<string>("home");
-  const [scrollActive, setScrollActive] = useState<Boolean>(false);
   const [showSidebar, setShowSidebar] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollActive(window.screenY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [setScrollActive]);
 
   return (
     <header

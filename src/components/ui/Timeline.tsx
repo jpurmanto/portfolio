@@ -77,6 +77,7 @@ export default function Timeline({
   const renderEditButton = (itemId: string, field: string) => {
     return (
       <EditButton
+        field={field}
         color={setEditColor(itemId, field)}
         handler={() => setEditField({ id: itemId, field: field })}
       />
