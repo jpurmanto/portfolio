@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     <main>
-      <HomeView data={aboutSectionData?.length ? homeSectionData[0] : []} />
+      <HomeView data={homeSectionData?.length ? homeSectionData[0] : []} />
       <AboutView data={aboutSectionData?.length ? aboutSectionData[0] : []} />
       <TimelineView
         formationData={formationSectionData}
