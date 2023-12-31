@@ -2,7 +2,7 @@
 
 import { contactFields, initialContactFormData } from "@/constants/fields";
 import { AnimationWrapper } from "@/helpers";
-import { addData, getData } from "@/services";
+import { addData, getSectionData } from "@/services";
 import { ApiResponse, ContactFormData } from "@/types";
 import { useEffect, useState } from "react";
 import { ContactCMS } from "../cms";
@@ -21,8 +21,8 @@ export default function ContactView() {
 
   useEffect(() => {
     (async () => {
-      const msg = await getData("contact");
-      setMessages(msg.data);
+      const msgList = await getSectionData("contact");
+      setMessages(msgList ?? []);
     })();
   }, []);
 
@@ -117,7 +117,7 @@ export default function ContactView() {
               )}
               {showSuccessMessage && (
                 <p className="text-[14px] text-[var(--primary-color)] font-bold my-[8px]">
-                  Your message wass successfully delivered!
+                  Your message has been successfully delivered!
                 </p>
               )}
               <div className="p-2 w-full">

@@ -9,15 +9,19 @@ export default function ContactCMS({ data }: { data: ContactInterface[] }) {
         My <span className="text-[var(--primary-color)]">Messages</span>
       </h1>
       <div id="contact" className="flex flex-col gap-5 w-full">
-        {data && data.length
-          ? data.map((item, index) => (
-              <div key={index} className="p-5 border">
-                <p>{item.name}</p>
-                <p>{item.email}</p>
-                <p>{item.message}</p>
-              </div>
-            ))
-          : null}
+        {data?.length ? (
+          data.map((item, index) => (
+            <div key={index} className="p-5 border">
+              <p>{item.name}</p>
+              <p>{item.email}</p>
+              <p>{item.message}</p>
+            </div>
+          ))
+        ) : (
+          <div className="text-center text-2xl text-gray-500 select-none pb-20">
+            <em>No messages yet...</em>
+          </div>
+        )}
       </div>
     </main>
   );
