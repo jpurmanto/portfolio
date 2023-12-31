@@ -7,7 +7,7 @@ import { updateData } from "@/services";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import profilePicture from "public/profile.png";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import EditButton from "../ui/EditButton";
 
 export default function HomeView({
@@ -27,6 +27,64 @@ export default function HomeView({
   useEffect(() => {
     setAuthUser(JSON.parse(sessionStorage.getItem("authUser")!));
   }, []);
+
+  const setEditColor = (field: string) => {
+    return editField === field ? "red" : "black";
+  };
+
+  const handleChange = (e: React.FormEvent<HTMLDivElement>, field: string) => {
+    setCurrentData({
+      ...currentData,
+      [field]: e.currentTarget.innerText,
+    });
+  };
+
+  const handleBlur = (e: React.FormEvent<HTMLDivElement>, field: string) => {
+    setEditField("");
+    // @ts-ignore
+    e.currentTarget.innerText = data[field];
+  };
+
+  const handleKeyDown = async (
+    e: React.KeyboardEvent<HTMLDivElement>,
+    field: string
+  ) => {
+    if (e.key === "Escape") {
+      handleBlur(e, field);
+    }
+    if (e.key === "Enter") {
+      setEditField("");
+      await updateData("home", currentData);
+    }
+  };
+
+  const renderEditButton = (field: string) => {
+    return (
+      <EditButton
+        color={setEditColor(field)}
+        handler={() => setEditField(field)}
+      />
+    );
+  };
+
+  const renderContent = (
+    field: string,
+    className: string,
+    children: ReactNode
+  ) => {
+    return (
+      <p
+        contentEditable={editField === field}
+        suppressContentEditableWarning={true}
+        className={className}
+        onInput={(e) => handleChange(e, field)}
+        onKeyDown={(e) => handleKeyDown(e, field)}
+        onBlur={(e) => handleBlur(e, field)}
+      >
+        {children}
+      </p>
+    );
+  };
 
   return (
     <div id="home" className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto">
@@ -49,83 +107,47 @@ export default function HomeView({
           </motion.div>
 
           <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
-            <section className="flex flex-row items-start">
+            <section className="group/heading flex flex-row items-start">
               {authUser ? (
-                <EditButton
-                  color={editField === "heading" ? "red" : "black"}
-                  handler={() => setEditField("heading")}
-                />
+                <span className="hidden group-hover/heading:flex">
+                  {renderEditButton("heading")}
+                </span>
               ) : null}
 
-              <h1
-                contentEditable={editField === "heading"}
-                suppressContentEditableWarning={true}
-                className="realtive mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal"
-                onInput={(e) => {
-                  setCurrentData({
-                    ...currentData,
-                    heading: e.currentTarget.innerText,
-                  });
-                }}
-                onKeyDown={async (e) => {
-                  if (e.key === "Escape") {
-                    setEditField("");
-                    e.currentTarget.innerText = data.heading;
-                  }
-                  if (e.key === "Enter") {
-                    setEditField("");
-                    await updateData("home", currentData);
-                  }
-                }}
-              >
-                {currentData.heading.split(" ").map((item, index) => (
-                  <span
-                    key={index}
-                    className={`${
-                      index === 2 || index === 3
-                        ? "text-[var(--primary-color)]"
-                        : "text-[#000]"
-                    }`}
-                  >
-                    {item}{" "}
-                  </span>
-                ))}
-              </h1>
+              {renderContent(
+                "heading",
+                "realtive mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal",
+                <>
+                  {currentData.heading.split(" ").map((item, index) => (
+                    <span
+                      key={index}
+                      className={`${
+                        index === 2 || index === 3
+                          ? "text-[var(--primary-color)]"
+                          : "text-[#000]"
+                      }`}
+                    >
+                      {item}{" "}
+                    </span>
+                  ))}
+                </>
+              )}
             </section>
 
-            <section>
-              <div className="flex items-start justify-start w-full">
+            <section className="group/summary">
+              <article className="flex items-start justify-start w-full">
                 {authUser ? (
-                  <EditButton
-                    color={editField === "summary" ? "red" : "black"}
-                    handler={() => setEditField("summary")}
-                  />
+                  <span className="hidden group-hover/summary:flex">
+                    {renderEditButton("summary")}
+                  </span>
                 ) : null}
 
-                <p
-                  contentEditable={editField === "summary"}
-                  suppressContentEditableWarning={true}
-                  className="text-[#000] mt-4 mb-6 font-bold"
-                  onInput={(e) => {
-                    setCurrentData({
-                      ...currentData,
-                      summary: e.currentTarget.innerText,
-                    });
-                  }}
-                  onKeyDown={async (e) => {
-                    if (e.key === "Escape") {
-                      setEditField("");
-                      e.currentTarget.innerText = data.summary;
-                    }
-                    if (e.key === "Enter") {
-                      setEditField("");
-                      await updateData("home", currentData);
-                    }
-                  }}
-                >
-                  {data ? data?.summary : null}
-                </p>
-              </div>
+                {renderContent(
+                  "summary",
+                  "text-[#000] mt-4 mb-6 font-bold",
+                  data ? data?.summary : null
+                )}
+              </article>
 
               <motion.div className="flex gap-7 cursor-pointer">
                 {socialIcons.map((item, index) => (
