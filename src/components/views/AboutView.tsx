@@ -50,6 +50,64 @@ export default function AboutView({
     },
   ];
 
+  const setEditColor = (field: string) => {
+    return editField === field ? "red" : "black";
+  };
+
+  const handleChange = (e: React.FormEvent<HTMLDivElement>, field: string) => {
+    setCurrentData({
+      ...currentData,
+      [field]: e.currentTarget.innerText,
+    });
+  };
+
+  const handleBlur = (e: React.FormEvent<HTMLDivElement>, field: string) => {
+    setEditField("");
+    // @ts-ignore
+    e.currentTarget.innerText = data[field];
+  };
+
+  const handleKeyDown = async (
+    e: React.KeyboardEvent<HTMLDivElement>,
+    field: string
+  ) => {
+    if (e.key === "Escape") {
+      handleBlur(e, field);
+    }
+    if (e.key === "Enter") {
+      setEditField("");
+      await updateData("about", currentData);
+    }
+  };
+
+  const renderEditButton = (field: string) => {
+    return (
+      <EditButton
+        color={setEditColor(field)}
+        handler={() => setEditField(field)}
+      />
+    );
+  };
+
+  const renderContent = (
+    field: string,
+    className: string,
+    children: React.ReactNode
+  ) => {
+    return (
+      <p
+        contentEditable={editField === field}
+        suppressContentEditableWarning={true}
+        className={className}
+        onInput={(e) => handleChange(e, field)}
+        onKeyDown={(e) => handleKeyDown(e, field)}
+        onBlur={(e) => handleBlur(e, field)}
+      >
+        {children}
+      </p>
+    );
+  };
+
   return (
     <div
       className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto"
@@ -86,41 +144,23 @@ export default function AboutView({
       <AnimationWrapper className={"pt-6"}>
         <div className="flex flex-col justify-center items-center">
           <h1 className="sm:leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
-            Why hire me for your next{" "}
+            Why hire <span className="text-[var(--primary-color)]">me</span> for
+            your next{" "}
             <span className="text-[var(--primary-color)]">project?</span>
           </h1>
 
-          <section className="flex items-start justify-start w-full">
+          <section className="group/aboutme flex items-start justify-start w-full">
             {authUser ? (
-              <EditButton
-                color={editField === "aboutme" ? "red" : "black"}
-                handler={() => setEditField("aboutme")}
-              />
+              <span className="hidden group-hover/aboutme:flex">
+                {renderEditButton("aboutme")}
+              </span>
             ) : null}
 
-            <p
-              contentEditable={editField === "aboutme"}
-              suppressContentEditableWarning={true}
-              className="text-[#000] mt-4 mb-8 font-bold"
-              onInput={(e) => {
-                setCurrentData({
-                  ...currentData,
-                  aboutme: e.currentTarget.innerText,
-                });
-              }}
-              onKeyDown={async (e) => {
-                if (e.key === "Escape") {
-                  setEditField("");
-                  e.currentTarget.innerText = data.aboutme;
-                }
-                if (e.key === "Enter") {
-                  setEditField("");
-                  await updateData("about", currentData);
-                }
-              }}
-            >
-              {data.aboutme ?? ""}
-            </p>
+            {renderContent(
+              "aboutme",
+              "text-[#000] mt-4 mb-8 font-bold",
+              data.aboutme ?? ""
+            )}
           </section>
         </div>
       </AnimationWrapper>
@@ -143,18 +183,17 @@ export default function AboutView({
           </motion.div>
         </AnimationWrapper>
         <AnimationWrapper className={"flex items-center w-full p-4"}>
-          <section className="flex items-start justify-start w-full">
+          <section className="group/skills flex items-start justify-start w-full">
+            {authUser ? (
+              <span className="hidden group-hover/skills:block">
+                {renderEditButton("skills")}
+              </span>
+            ) : null}
+
             <motion.div
               variants={setVariants}
               className="grid grid-cols-2 gap-4 h-full max-h-[200px] w-full"
             >
-              {authUser ? (
-                <EditButton
-                  color={editField === "skills" ? "red" : "black"}
-                  handler={() => setEditField("skills")}
-                />
-              ) : null}
-
               {data?.skills?.split(",").map((skill, index) => (
                 <motion.div
                   key={index}
