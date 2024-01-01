@@ -7,7 +7,7 @@ interface Props {
   setShowSidebar?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function CreateNavbarLinks({
+export function CreateNavbarLinks({
   activeLink,
   navbarItems,
   setActiveLink,

@@ -3,9 +3,9 @@
 import { ExperienceInterface, FormationInterface } from "@/db";
 import { AnimationWrapper } from "@/helpers";
 import { motion } from "framer-motion";
-import Timeline from "../ui/Timeline";
+import { Timeline } from "../ui";
 
-export default function TimelineView({
+export function TimelineView({
   formationData,
   experienceData,
 }: {

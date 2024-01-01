@@ -1,6 +1,6 @@
 "use client";
 
-import { LoginView } from "@/components/views";
+import { LoginForm } from "@/components/forms";
 import { adminNavbarItems } from "@/constants";
 import {
   initialAboutFormData,
@@ -67,7 +67,7 @@ export default function AdminView() {
 
   if (!authUser)
     return (
-      <LoginView
+      <LoginForm
         formData={loginFormData}
         handleLogin={() => handleLogin(loginFormData, setAuthUser)}
         setFormData={setLoginFormData}

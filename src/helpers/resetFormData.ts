@@ -7,7 +7,7 @@ import {
 } from "@/constants/fields";
 import { Setters } from "@/types";
 
-export default function resetFormData(setters: Setters) {
+export function resetFormData(setters: Setters) {
   setters["home"](initialHomeFormData);
   setters["about"](initialAboutFormData);
   setters["experience"](initialExperienceFormData);

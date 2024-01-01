@@ -4,7 +4,7 @@ import { loginFields } from "@/constants/fields";
 import { FormFields } from "@/helpers";
 import { LoginFormData } from "@/types";
 
-export default function LoginView({
+export function LoginForm({
   formData,
   setFormData,
   handleLogin,

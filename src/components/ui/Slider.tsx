@@ -1,3 +1,5 @@
+"use client";
+
 import { ProjectInterface } from "@/db";
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -8,7 +10,7 @@ import { A11y, Autoplay, Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProjectCard } from "../cards";
 
-export default function Slider({ data }: { data: ProjectInterface[] }) {
+export function Slider({ data }: { data: ProjectInterface[] }) {
   return (
     <Swiper
       modules={[Navigation, Scrollbar, A11y, Autoplay]}

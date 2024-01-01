@@ -2,7 +2,7 @@
 
 import { navbarItems } from "@/constants";
 import { CreateNavbarLinks } from "@/helpers";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { scroller } from "react-scroll";
 
 export default function Navbar(): JSX.Element {

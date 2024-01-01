@@ -2,12 +2,12 @@
 
 import { AboutInterface } from "@/db";
 import { AnimationWrapper, transitionVariants } from "@/helpers";
+import { updateData } from "@/services";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import aboutImage from "public/about.svg";
 import { useEffect, useMemo, useState } from "react";
-import EditButton from "../ui/EditButton";
-import { updateData } from "@/services";
+import { EditButton } from "../ui";
 
 const skillItemVariant = {
   hidden: { y: 20, opacity: 0 },
@@ -17,7 +17,7 @@ const skillItemVariant = {
   },
 };
 
-export default function AboutView({
+export function AboutView({
   data,
 }: {
   data: AboutInterface & { _id: string };
@@ -26,9 +26,9 @@ export default function AboutView({
   const [authUser, setAuthUser] = useState<boolean>(false);
   const [editField, setEditField] = useState("");
   const [currentData, setCurrentData] = useState({
-    _id: data._id,
-    aboutme: data.aboutme,
-    skills: data.skills,
+    _id: data?._id,
+    aboutme: data?.aboutme,
+    skills: data?.skills,
   });
 
   useEffect(() => {
@@ -160,7 +160,7 @@ export default function AboutView({
             {renderContent(
               "aboutme",
               "text-[#000] mt-4 mb-8 font-bold",
-              data.aboutme ?? ""
+              data?.aboutme ?? ""
             )}
           </section>
         </div>

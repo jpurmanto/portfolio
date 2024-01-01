@@ -7,9 +7,9 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import Slider from "../ui/Slider";
+import { Slider } from "../ui";
 
-export default function ProjectView({ data }: { data: ProjectInterface[] }) {
+export function ProjectView({ data }: { data: ProjectInterface[] }) {
   return (
     <div
       className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto"

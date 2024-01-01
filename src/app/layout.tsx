@@ -1,4 +1,4 @@
-import NavbarWrapper from "@/components/ui/NavbarWrapper";
+import { NavbarWrapper } from "@/components/ui";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import "remixicon/fonts/remixicon.css";

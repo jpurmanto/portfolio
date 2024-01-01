@@ -7,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-export default function AnimationWrapper({
+export function AnimationWrapper({
   children,
   className,
   ...props

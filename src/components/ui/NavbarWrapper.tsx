@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 
-export default function NavbarWrapper({
+export function NavbarWrapper({
   children,
 }: {
   children: React.ReactNode;

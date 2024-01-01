@@ -1,9 +1,9 @@
 import {
   AboutView,
   ContactView,
-  TimelineView,
   HomeView,
   ProjectView,
+  TimelineView,
 } from "@/components/views";
 import { getSectionData } from "@/services";
 
@@ -16,8 +16,8 @@ export default async function Home() {
 
   return (
     <main>
-      <HomeView data={homeSectionData?.length ? homeSectionData[0] : []} />
-      <AboutView data={aboutSectionData?.length ? aboutSectionData[0] : []} />
+      <HomeView data={homeSectionData} />
+      <AboutView data={aboutSectionData} />
       <TimelineView
         formationData={formationSectionData}
         experienceData={experienceSectionData}

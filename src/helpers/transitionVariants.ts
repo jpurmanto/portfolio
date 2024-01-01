@@ -1,4 +1,4 @@
-export default function transitionVariants() {
+export function transitionVariants() {
   return {
     offscreen: {
       y: 150,

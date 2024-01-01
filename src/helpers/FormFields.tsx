@@ -8,7 +8,7 @@ interface Props {
   setFormData: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function FormFields({ fields, formData, setFormData }: Props) {
+export function FormFields({ fields, formData, setFormData }: Props) {
   return fields.map((fieldItem, index) => (
     <div id="input-group" key={index} className="mt-1 mb-4 text-sm leading-5">
       <label

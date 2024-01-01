@@ -1,14 +1,16 @@
+"use client";
+
 import React from "react";
 import { EditIcon } from "./EditIcon";
 
-export default function EditButton({
+export function EditButton({
   color,
   handler,
   field,
 }: {
   color: string;
   handler: React.MouseEventHandler<SVGSVGElement>;
-  field?: string,
+  field?: string;
 }) {
   return (
     <EditIcon

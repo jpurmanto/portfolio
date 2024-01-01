@@ -8,9 +8,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import profilePicture from "public/profile.png";
 import { ReactNode, useEffect, useMemo, useState } from "react";
-import EditButton from "../ui/EditButton";
+import { EditButton } from "../ui";
 
-export default function HomeView({
+export function HomeView({
   data,
 }: {
   data: HomeInterface & { _id: string };
@@ -19,9 +19,9 @@ export default function HomeView({
   const [authUser, setAuthUser] = useState<boolean>(false);
   const [editField, setEditField] = useState("");
   const [currentData, setCurrentData] = useState({
-    _id: data._id,
-    heading: data.heading,
-    summary: data.summary,
+    _id: data?._id,
+    heading: data?.heading,
+    summary: data?.summary,
   });
 
   useEffect(() => {
@@ -119,7 +119,7 @@ export default function HomeView({
                 "heading",
                 "realtive mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal",
                 <>
-                  {currentData.heading.split(" ").map((item, index) => (
+                  {currentData.heading?.split(" ").map((item, index) => (
                     <span
                       key={index}
                       className={`${

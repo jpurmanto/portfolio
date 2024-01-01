@@ -2,7 +2,7 @@
 
 import { ContactInterface } from "@/db";
 
-export default function ContactCMS({ data }: { data: ContactInterface[] }) {
+export function Inbox({ data }: { data: ContactInterface[] }) {
   return (
     <main className="flex flex-col items-center">
       <h1 className="leading-[70px] my-24 text-3xl lg:text-4xl xl:text-5xl font-medium">

@@ -1,19 +1,8 @@
-import AnimationWrapper from "./AnimationWrapper";
-import CreateNavbarLinks from "./CreateNavbarLinks";
-import FormFields from "./FormFields";
-import { getAllData } from "./getAllData";
-import { handleLogin } from "./handleLogin";
-import resetFormData from "./resetFormData";
-import { saveData } from "./saveData";
-import transitionVariants from "./transitionVariants";
-
-export {
-  AnimationWrapper,
-  CreateNavbarLinks,
-  FormFields,
-  getAllData,
-  handleLogin,
-  resetFormData,
-  saveData,
-  transitionVariants,
-};
+export * from "./AnimationWrapper";
+export * from "./CreateNavbarLinks";
+export * from "./FormFields";
+export * from "./getAllData";
+export * from "./handleLogin";
+export * from "./resetFormData";
+export * from "./saveData";
+export * from "./transitionVariants";

@@ -1,4 +1,5 @@
-import { BaseCMS, ContactCMS } from "@/components/cms";
+import { BaseCMS } from "@/components/cms";
+import { Inbox } from "@/components/ui";
 import {
   aboutFields,
   experienceFields,
@@ -77,7 +78,7 @@ export const adminNavbarItems = (
       id: "contact",
       label: "Contact",
       update: false,
-      component: <ContactCMS data={allData && allData?.contact} />,
+      component: <Inbox data={allData && allData?.contact} />,
     },
   ];
 

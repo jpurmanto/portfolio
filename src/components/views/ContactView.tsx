@@ -1,59 +1,31 @@
 "use client";
 
-import { contactFields, initialContactFormData } from "@/constants/fields";
 import { AnimationWrapper } from "@/helpers";
-import { addData, getSectionData } from "@/services";
-import { ApiResponse, ContactFormData } from "@/types";
-import { useEffect, useState } from "react";
-import { ContactCMS } from "../cms";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { ContactForm } from "../forms";
+import { Inbox } from "../ui";
 
-export default function ContactView() {
-  const [formData, setFormData] = useState<ContactFormData>(
-    initialContactFormData
-  );
-  const [showSuccessMessage, setShowSuccessMessage] = useState<Boolean>(false);
+export function ContactView() {
   const [authUser, setAuthUser] = useState<boolean>(false);
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setAuthUser(JSON.parse(sessionStorage.getItem("authUser")!));
   }, []);
 
   useEffect(() => {
     (async () => {
-      const msgList = await getSectionData("contact");
-      setMessages(msgList ?? []);
+      if (authUser) {
+        const { getSectionData } = await import("@/services");
+
+        const msgList = await getSectionData("contact");
+        setMessages(msgList ?? []);
+      } else null;
     })();
-  }, []);
-
-  async function handleSendMessage() {
-    const res: ApiResponse = await addData("contact", formData);
-
-    if (res?.statusCode === 201) {
-      setFormData(initialContactFormData);
-      setShowSuccessMessage(true);
-    }
-  }
-
-  useEffect(() => {
-    if (showSuccessMessage) {
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 1500);
-    }
-  }, [showSuccessMessage]);
-
-  const isValidForm = () => {
-    return formData &&
-      formData.name !== "" &&
-      formData.email !== "" &&
-      formData.message !== ""
-      ? true
-      : false;
-  };
+  }, [authUser]);
 
   if (authUser) {
-    return <ContactCMS data={messages} />;
+    return <Inbox data={messages} />;
   }
 
   return (
@@ -68,67 +40,8 @@ export default function ContactView() {
           </h1>
         </div>
       </AnimationWrapper>
-      <div className="text-gray-500 relative">
-        <div className="container px-5">
-          <div className="w-full">
-            <div className="flex flex-wrap -m-2">
-              {contactFields.map((contactField, index) =>
-                contactField.name === "message" ? (
-                  <div key={index} className="p-2 w-full">
-                    <div className="relative">
-                      <label className="text-sm text-[#000]">
-                        {contactField.label}
-                      </label>
-                      <textarea
-                        id={contactField.name}
-                        name={contactField.name}
-                        value={formData[contactField.name]}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            [contactField.name]: e.target.value,
-                          })
-                        }
-                        className="w-full border-[var(--primary-color)] border-[2px] bg-[#ffffff] rounded  h-32 text-base outline-none text-[#000000] py-1 px-3 resize-none leading-6"
-                      ></textarea>
-                    </div>
-                  </div>
-                ) : (
-                  <div key={index} className="p-2 w-full">
-                    <div className="relative">
-                      <label className="text-sm text-[#000]">
-                        {contactField.label}
-                      </label>
-                      <input
-                        id={contactField.name}
-                        name={contactField.name}
-                        value={formData[contactField.name]}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            [contactField.name]: e.target.value,
-                          })
-                        }
-                        className="w-full border-[var(--primary-color)] border-[2px] bg-[#ffffff] rounded  text-base outline-none text-[#000000] py-1 px-3 leading-6"
-                      />
-                    </div>
-                  </div>
-                )
-              )}
-              {showSuccessMessage && (
-                <p className="text-[14px] text-[var(--primary-color)] font-bold my-[8px]">
-                  Your message has been successfully delivered!
-                </p>
-              )}
-              <div className="p-2 w-full">
-                <button disabled={!isValidForm()} onClick={handleSendMessage}>
-                  Send Message
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <ContactForm />
     </div>
   );
 }
