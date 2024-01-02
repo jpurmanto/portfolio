@@ -3,18 +3,32 @@
 import { ProjectInterface } from "@/db";
 import "swiper/css";
 import "swiper/css/autoplay";
+import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import { A11y, Autoplay, Navigation, Scrollbar } from "swiper/modules";
+import {
+  A11y,
+  Autoplay,
+  EffectCoverflow,
+  Keyboard,
+  Mousewheel,
+  Navigation,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProjectCard } from "../cards";
 
 export function Slider({ data }: { data: ProjectInterface[] }) {
   return (
     <Swiper
-      modules={[Navigation, Scrollbar, A11y, Autoplay]}
-      slidesPerView={3}
+      modules={[
+        A11y,
+        Autoplay,
+        Keyboard,
+        Mousewheel,
+        EffectCoverflow,
+        Navigation,
+      ]}
+      centeredSlides={true}
+      slidesPerView={"auto"}
       spaceBetween={50}
       breakpoints={{
         300: {
@@ -30,9 +44,21 @@ export function Slider({ data }: { data: ProjectInterface[] }) {
           spaceBetween: 50,
         },
       }}
-      autoplay
+      effect={"coverflow"}
+      coverflowEffect={{
+        rotate: 44,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: false,
+      }}
+      keyboard={{
+        enabled: true,
+      }}
       navigation
-      scrollbar={{ draggable: true }}
+      mousewheel
+      autoplay
+      loop
     >
       {data?.length
         ? data.map((item, index) => (

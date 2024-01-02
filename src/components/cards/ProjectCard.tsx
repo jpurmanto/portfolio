@@ -2,7 +2,7 @@ import { ProjectInterface } from "@/db";
 
 export function ProjectCard({ item }: { item: ProjectInterface }) {
   return (
-    <article className="flex flex-col justify-between border border-gray-600 rounded-lg px-8 py-4 bg-gray-100 w-full text-center z-10 md:w-96 mb-4">
+    <article className="flex flex-col justify-between border border-gray-600 rounded-lg px-8 py-4 bg-gray-100 w-full text-center z-10 md:w-96 my-2 select-none">
       <section>
         <div className="text-xl font-medium text-[var(--primary-color)]">
           {item.name}
