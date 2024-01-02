@@ -55,9 +55,9 @@ export function Slider({ data }: { data: ProjectInterface[] }) {
       keyboard={{
         enabled: true,
       }}
+      autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
       navigation
       mousewheel
-      autoplay
       loop
     >
       {data?.length

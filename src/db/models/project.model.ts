@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 export interface ProjectInterface {
   name: string;
   date: string;
+  summary: string;
+  image?: string;
   description: string;
   tech: string;
   deploy: string;
@@ -13,6 +15,11 @@ const projectSchema = new mongoose.Schema<ProjectInterface>(
   {
     name: String,
     date: String,
+    summary: String,
+    image: {
+      type: String,
+      default: "https://i.imgur.com/BjCN4gy.jpg",
+    },
     description: String,
     tech: String,
     deploy: String,

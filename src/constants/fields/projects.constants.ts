@@ -14,6 +14,12 @@ export const projectsFields: FormField[] = [
     label: "Project date",
   },
   {
+    name: "summary",
+    placeholder: "Enter project summary...",
+    type: "text",
+    label: "Project summary",
+  },
+  {
     name: "description",
     placeholder: "Enter project description...",
     type: "text",
