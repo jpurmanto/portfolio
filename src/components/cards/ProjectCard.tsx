@@ -1,21 +1,18 @@
 "use client";
 
 import { ProjectInterface } from "@/db";
-import ModalContext from "@/providers/modal-provider";
-import { useCallback, useContext } from "react";
+import { useModal } from "@/hooks";
 import ProjectDetails from "./ProjectDetails";
 
 export function ProjectCard({ item }: { item: ProjectInterface }) {
-  const { setModalOpen, setModalContent } = useContext(ModalContext);
-
-  const handleShowDetails = useCallback(() => {
-    setModalContent(<ProjectDetails item={item} />);
-    setModalOpen(true);
-  }, [setModalContent, setModalOpen]);
+  const { showModal } = useModal();
 
   return (
-    <article className="relative mb-12 mt-3 select-none">
-      <section className="overflow-hidden rounded-[10px] hover:scale-105 transition-transform ease-in-out duration-300">
+    <article className="relative mb-12 mt-3 select-none hover:scale-105 transition-transform ease-in-out duration-300">
+      <section
+        className="overflow-hidden rounded-[10px]"
+        // onClick={() => showModal(<img src={item.image} />)}
+      >
         <img src={item.image} alt={item.name} className="w-full" />
       </section>
 
@@ -26,7 +23,10 @@ export function ProjectCard({ item }: { item: ProjectInterface }) {
           {item.summary}
         </span>
 
-        <button className="py-1 px-2.5" onClick={handleShowDetails}>
+        <button
+          className="py-1 px-2.5"
+          onClick={() => showModal(<ProjectDetails item={item} />)}
+        >
           Details
         </button>
       </section>

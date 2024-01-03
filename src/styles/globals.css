@@ -60,7 +60,7 @@
   @apply left-0 w-full;
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
   width: 5px;
 }
 
@@ -71,11 +71,12 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
-}
+} */
 
 ::-webkit-scrollbar {
   height: 5px;
   width: 5px;
+  margin: 10px 0;
   background: #fff3;
   -webkit-border-radius: 1ex;
 }
@@ -87,16 +88,4 @@ body::-webkit-scrollbar-thumb {
 
 ::-webkit-scrollbar-corner {
   background: #fff3;
-}
-
-.MuiTimelineItem-root::before {
-  flex: 0 !important;
-}
-
-.MuiTimelineDot-root {
-  background-color: rgba(47, 171, 115, 1) !important;
-}
-
-.MuiTimelineConnector-root {
-  background-color: rgba(47, 171, 115, 1) !important;
 }
