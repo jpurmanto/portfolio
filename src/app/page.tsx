@@ -1,3 +1,4 @@
+import Modal from "@/components/ui/Modal";
 import {
   AboutView,
   ContactView,
@@ -24,6 +25,7 @@ export default async function Home() {
       />
       <ProjectView data={projectSectionData} />
       <ContactView />
+      <Modal />
     </main>
   );
 }

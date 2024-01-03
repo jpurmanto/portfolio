@@ -2,18 +2,19 @@
 
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
+import Providers from "@/providers";
 
-export function NavbarWrapper({
+export function AppWrapper({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactElement;
 }): JSX.Element {
   const pathName = usePathname();
 
   return (
     <>
       {pathName !== "/admin" ? <Navbar /> : null}
-      {children}
+      <Providers>{children}</Providers>
     </>
   );
 }
