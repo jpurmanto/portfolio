@@ -3,30 +3,23 @@
 import { socialIcons } from "@/constants";
 import { HomeInterface } from "@/db";
 import { AnimationWrapper, transitionVariants } from "@/helpers";
+import AuthContext from "@/providers/auth-provider";
 import { updateData } from "@/services";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import profilePicture from "public/profile.png";
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, useContext, useMemo, useState } from "react";
 import { EditButton } from "../ui";
 
-export function HomeView({
-  data,
-}: {
-  data: HomeInterface & { _id: string };
-}) {
+export function HomeView({ data }: { data: HomeInterface & { _id: string } }) {
   const setVariants = useMemo(() => transitionVariants(), []);
-  const [authUser, setAuthUser] = useState<boolean>(false);
+  const { authUser } = useContext(AuthContext);
   const [editField, setEditField] = useState("");
   const [currentData, setCurrentData] = useState({
     _id: data?._id,
     heading: data?.heading,
     summary: data?.summary,
   });
-
-  useEffect(() => {
-    setAuthUser(JSON.parse(sessionStorage.getItem("authUser")!));
-  }, []);
 
   const setEditColor = (field: string) => {
     return editField === field ? "red" : "black";

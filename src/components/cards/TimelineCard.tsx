@@ -1,9 +1,10 @@
 "use client";
 
 import { ExperienceInterface, FormationInterface } from "@/db";
+import AuthContext from "@/providers/auth-provider";
 import { updateData } from "@/services";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { EditButton } from "../ui";
 import schoolIcon from "/public/assets/school.svg";
 import workIcon from "/public/assets/work.svg";
@@ -17,15 +18,11 @@ export function TimelineCard({
   item: (ExperienceInterface | FormationInterface) & { _id: string };
   index: number;
 }) {
-  const [authUser, setAuthUser] = useState<boolean>(false);
+  const { authUser } = useContext(AuthContext);
   const [editField, setEditField] = useState<
     { id: string; field: string } | undefined
   >();
   const [currentData, setCurrentData] = useState(data);
-
-  useEffect(() => {
-    setAuthUser(JSON.parse(sessionStorage.getItem("authUser")!));
-  }, []);
 
   const isEditable = (itemId: string, field: string) => {
     return editField?.id === itemId && editField?.field === field;

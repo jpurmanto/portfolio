@@ -11,10 +11,13 @@ import {
   initialProjectFormData,
 } from "@/constants/fields";
 import { getAllData, handleLogin } from "@/helpers";
+import AuthContext from "@/providers/auth-provider";
 import { Setters } from "@/types";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function AdminView() {
+  const { authUser, setAuthUser } = useContext(AuthContext);
+
   const [currentSelectedTab, setCurrentSelectedTab] = useState<string>("home");
   const [aboutViewFormData, setAboutViewFormData] =
     useState(initialAboutFormData);
@@ -30,7 +33,6 @@ export default function AdminView() {
     initialProjectFormData
   );
   const [allData, setAllData] = useState<Record<string, any>>({});
-  const [authUser, setAuthUser] = useState<boolean>(false);
 
   const setters: Setters = {
     all: setAllData,
@@ -60,10 +62,6 @@ export default function AdminView() {
   useEffect(() => {
     getAllData(allData, currentSelectedTab, setters);
   }, [currentSelectedTab]);
-
-  useEffect(() => {
-    setAuthUser(JSON.parse(sessionStorage.getItem("authUser")!));
-  }, []);
 
   if (!authUser)
     return (

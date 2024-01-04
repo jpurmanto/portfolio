@@ -1,17 +1,14 @@
 "use client";
 
 import { AnimationWrapper } from "@/helpers";
-import { useEffect, useLayoutEffect, useState } from "react";
+import AuthContext from "@/providers/auth-provider";
+import { useContext, useEffect, useState } from "react";
 import { ContactForm } from "../forms";
 import { Inbox } from "../ui";
 
 export function ContactView() {
-  const [authUser, setAuthUser] = useState<boolean>(false);
+  const { authUser } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
-
-  useLayoutEffect(() => {
-    setAuthUser(JSON.parse(sessionStorage.getItem("authUser")!));
-  }, []);
 
   useEffect(() => {
     (async () => {

@@ -2,11 +2,12 @@
 
 import { AboutInterface } from "@/db";
 import { AnimationWrapper, transitionVariants } from "@/helpers";
+import AuthContext from "@/providers/auth-provider";
 import { updateData } from "@/services";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import aboutImage from "public/about.svg";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { EditButton } from "../ui";
 
 const skillItemVariant = {
@@ -23,17 +24,13 @@ export function AboutView({
   data: AboutInterface & { _id: string };
 }) {
   const setVariants = useMemo(() => transitionVariants(), []);
-  const [authUser, setAuthUser] = useState<boolean>(false);
+  const { authUser } = useContext(AuthContext);
   const [editField, setEditField] = useState("");
   const [currentData, setCurrentData] = useState({
     _id: data?._id,
     aboutme: data?.aboutme,
     skills: data?.skills,
   });
-
-  useEffect(() => {
-    setAuthUser(JSON.parse(sessionStorage.getItem("authUser")!));
-  }, []);
 
   const aboutDataInfo = [
     {

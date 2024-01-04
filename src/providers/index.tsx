@@ -1,3 +1,4 @@
+import { AuthProvider } from "./auth-provider";
 import { ModalProvider } from "./modal-provider";
 
 export default function Providers({
@@ -6,8 +7,8 @@ export default function Providers({
   children: React.ReactElement;
 }) {
   return (
-    <ModalProvider>
-      {children}
-    </ModalProvider>
-  )
+    <AuthProvider>
+      <ModalProvider>{children}</ModalProvider>
+    </AuthProvider>
+  );
 }

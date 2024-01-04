@@ -3,7 +3,7 @@ import { ApiResponse, LoginFormData } from "@/types";
 
 export async function handleLogin(
   loginFormData: LoginFormData,
-  setAuthUser: React.Dispatch<React.SetStateAction<boolean>>
+  setAuthUser: (value: boolean) => void
 ) {
   const res: ApiResponse = await login(loginFormData);
 
