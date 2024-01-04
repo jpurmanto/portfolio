@@ -7,9 +7,8 @@ export const useClickOverlay = <T extends HTMLElement>(
   const handleOverlayClick = (e: MouseEvent): void => {
     const { current } = ref;
 
-    if (current === e.target) {
-      handleClose();
-    }
+    if (current !== e.target) return;
+    handleClose();
   };
 
   useEffect(() => {

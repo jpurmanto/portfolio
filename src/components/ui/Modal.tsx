@@ -1,6 +1,6 @@
 "use client";
 
-import { useClickOverlay, useModal, useScrollLock } from "@/hooks";
+import { useClickOverlay, useKey, useModal, useScrollLock } from "@/hooks";
 import ModalContext from "@/providers/modal-provider";
 import { useContext, useEffect, useRef } from "react";
 
@@ -10,21 +10,12 @@ export function Modal(): JSX.Element {
   const { lockScroll, unlockScroll } = useScrollLock();
   const overlay = useRef<HTMLDivElement>(null);
 
+  useClickOverlay(overlay, closeModal);
+  useKey("Escape", closeModal);
+
   useEffect(() => {
     modalOpen ? lockScroll() : unlockScroll();
   }, [modalOpen]);
-
-  useClickOverlay(overlay, closeModal);
-
-  useEffect(() => {
-    const handleKeydown = ({ key }: KeyboardEvent) => {
-      if (!modalOpen || key !== "Escape") return;
-      closeModal();
-    };
-
-    document.addEventListener("keydown", handleKeydown);
-    return () => document.removeEventListener("keydown", handleKeydown);
-  }, [overlay, modalOpen]);
 
   return (
     <>

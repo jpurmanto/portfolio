@@ -17,11 +17,22 @@ export const useScrollLock = () => {
   }, []);
 
   useLayoutEffect(() => {
-    const scrollBarCompensation = window.innerWidth - document.body.offsetWidth;
-    document.body.style.setProperty(
-      "--scrollbar-compensation",
-      `${scrollBarCompensation}px`
-    );
+    const updateScrollBarCompensation = () => {
+      const scrollBarCompensation =
+        window.innerWidth - document.body.offsetWidth;
+      document.body.style.setProperty(
+        "--scrollbar-compensation",
+        `${scrollBarCompensation}px`
+      );
+    };
+
+    updateScrollBarCompensation();
+
+    window.addEventListener("resize", updateScrollBarCompensation);
+
+    return () => {
+      window.removeEventListener("resize", updateScrollBarCompensation);
+    };
   }, []);
 
   return {
