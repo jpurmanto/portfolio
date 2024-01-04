@@ -9,21 +9,17 @@ import {
 import { getSectionData } from "@/services";
 
 export default async function Home() {
-  const aboutSectionData = await getSectionData("about");
-  const formationSectionData = await getSectionData("formation");
-  const experienceSectionData = await getSectionData("experience");
-  const homeSectionData = await getSectionData("home");
-  const projectSectionData = await getSectionData("projects");
+  const allData = await getSectionData("all");
 
   return (
     <main>
-      <HomeView data={homeSectionData} />
-      <AboutView data={aboutSectionData} />
+      <HomeView data={allData?.Home} />
+      <AboutView data={allData?.About} />
       <TimelineView
-        formationData={formationSectionData}
-        experienceData={experienceSectionData}
+        formationData={allData?.Formation}
+        experienceData={allData?.Experience}
       />
-      <ProjectView data={projectSectionData} />
+      <ProjectView data={allData?.Project} />
       <ContactView />
       <Modal />
     </main>

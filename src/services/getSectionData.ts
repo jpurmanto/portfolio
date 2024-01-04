@@ -9,9 +9,8 @@ export async function getSectionData(currentSection: string) {
     );
 
     const { data } = await res.json();
-    const output = ["home", "about"].includes(currentSection) ? data[0] : data.reverse();
 
-    return output;
+    return data;
   } catch (error) {
     console.error(error);
   }
