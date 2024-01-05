@@ -17,7 +17,6 @@ export function Timeline({
           <TimelineCard
             key={index}
             section={section}
-            data={data}
             item={item}
             index={index}
           />

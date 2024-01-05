@@ -2,7 +2,7 @@
 
 import { AnimationWrapper } from "@/helpers";
 import ContentContext from "@/providers/content-provider";
-import { AllData } from "@/types";
+import { AllData, TimelineInterface } from "@/types";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { Timeline } from "../ui";
@@ -16,49 +16,37 @@ export function TimelineView() {
       id="experience"
     >
       <article className="grid grid-flow-row lg:grid-flow-col grid-cols-1 lg:grid-cols-2 gap-8">
-        <section className="flex flex-col gap-5">
-          <AnimationWrapper className={"py-6 lg:py-16"}>
-            <header className="flex flex-col justify-center items-center row-start-2 lg:row-start-1 lg:ml-36">
-              <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
-                My{" "}
-                <span className="text-[var(--primary-color)]">Experience</span>
-              </h1>
-            </header>
-          </AnimationWrapper>
+        {["Experience", "Formation"].map((section) => {
+          return (
+            <section className="flex flex-col gap-5">
+              <AnimationWrapper className={"py-6 lg:py-16"}>
+                <header className="flex flex-col justify-center items-center row-start-2 lg:row-start-1 lg:ml-36">
+                  <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
+                    My{" "}
+                    <span className="text-[var(--primary-color)]">
+                      {section}
+                    </span>
+                  </h1>
+                </header>
+              </AnimationWrapper>
 
-          <AnimationWrapper>
-            <div className="flex w-full">
-              <motion.div className="container">
-                <Timeline
-                  section="Experience"
-                  data={(data as AllData).Experience}
-                />
-              </motion.div>
-            </div>
-          </AnimationWrapper>
-        </section>
-
-        <section className="flex flex-col gap-5">
-          <AnimationWrapper className={"py-6 lg:py-16"}>
-            <header className="flex flex-col justify-center items-center row-start-2 lg:row-start-1 lg:ml-36">
-              <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
-                My{" "}
-                <span className="text-[var(--primary-color)]">Education</span>
-              </h1>
-            </header>
-          </AnimationWrapper>
-
-          <AnimationWrapper>
-            <div className="flex w-full">
-              <motion.div className="container">
-                <Timeline
-                  section="Formation"
-                  data={(data as AllData).Formation}
-                />
-              </motion.div>
-            </div>
-          </AnimationWrapper>
-        </section>
+              <AnimationWrapper>
+                <div className="flex w-full">
+                  <motion.div className="container">
+                    <Timeline
+                      section={section}
+                      data={
+                        (data as AllData)[
+                          section as keyof AllData
+                        ] as TimelineInterface[]
+                      }
+                    />
+                  </motion.div>
+                </div>
+              </AnimationWrapper>
+            </section>
+          );
+        })}
       </article>
     </main>
   );

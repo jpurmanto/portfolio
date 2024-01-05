@@ -19,15 +19,11 @@ const ContentContext = createContext({
     field: string,
     className: string,
     item?: TimelineInterface,
-    index?: number
+    index?: number,
+    listItem?: string,
+    listItemIndex?: number
   ) => <></>,
-  isEditable: ({
-    itemId,
-    field,
-  }: {
-    itemId?: string;
-    field: string;
-  }) => false,
+  isEditable: ({ itemId, field }: { itemId?: string; field: string }) => false,
 });
 
 export const ContentProvider: React.FC<{
@@ -46,9 +42,7 @@ export const ContentProvider: React.FC<{
     itemId?: string;
     field: string;
   }) => {
-    return itemId
-      ? editField?.itemId === itemId && editField?.field === field
-      : editField?.field === field;
+    return editField?.itemId === itemId && editField?.field === field;
   };
 
   const setEditColor = ({
@@ -58,11 +52,7 @@ export const ContentProvider: React.FC<{
     itemId?: string;
     field: string;
   }) => {
-    return itemId
-      ? editField?.itemId === itemId && editField?.field === field
-        ? "red"
-        : "black"
-      : editField?.field === field
+    return editField?.itemId === itemId && editField?.field === field
       ? "red"
       : "black";
   };
@@ -71,51 +61,117 @@ export const ContentProvider: React.FC<{
     e: React.FormEvent<HTMLDivElement>,
     section: string,
     field: string,
-    index?: number
+    index?: number,
+    listItem?: string,
+    listItemIndex?: number
   ) => {
-    index !== undefined
-      ? setCurrentData({
+    // an item list, nested within a card list
+    if (listItem !== undefined) {
+      if (index !== undefined) {
+        setCurrentData({
           ...currentData,
           [section]: {
             ...currentData[section as keyof AllData],
-            [index]: {
+            [index!]: {
               ...(
-                currentData[section as keyof AllData] as { [key: string]: any }
-              )[index],
-              [field]: e.currentTarget.innerText,
+                currentData[section as keyof AllData] as {
+                  [key: string]: any;
+                }
+              )[index!],
+              [field]: {
+                ...(
+                  currentData[section as keyof AllData] as {
+                    [key: string]: any;
+                  }
+                )[index!][field],
+                [listItemIndex!]: e.currentTarget.innerText,
+              },
             },
           },
-        })
-      : setCurrentData({
+        });
+
+        // an item list, not nested
+      } else {
+        setCurrentData({
           ...currentData,
           [section]: {
             ...currentData[section as keyof AllData],
-            [field]: e.currentTarget.innerText,
+            [field]: {
+              ...(
+                currentData[section as keyof AllData] as { [key: string]: any }
+              )[field],
+              [listItemIndex!]: e.currentTarget.innerText,
+            },
           },
         });
+      }
+
+      // a card, part of a card list
+    } else if (index !== undefined) {
+      setCurrentData({
+        ...currentData,
+        [section]: {
+          ...currentData[section as keyof AllData],
+          [index]: {
+            ...(
+              currentData[section as keyof AllData] as { [key: string]: any }
+            )[index],
+            [field]: e.currentTarget.innerText,
+          },
+        },
+      });
+
+      // a text only field
+    } else {
+      setCurrentData({
+        ...currentData,
+        [section]: {
+          ...currentData[section as keyof AllData],
+          [field]: e.currentTarget.innerText,
+        },
+      });
+    }
   };
 
   const handleBlur = (
     e: React.FormEvent<HTMLDivElement>,
     section: string,
     field: string,
-    index?: number
+    index?: number,
+    listItem?: string
   ) => {
     setEditField(undefined);
-    e.currentTarget.innerText = index !== undefined
-      ? (data[section as keyof AllData] as { [key: string]: any })[index][field]
-      : (data[section as keyof AllData] as { [key: string]: any })[field];
+    let prevData: string;
+
+    // an item list, like tech stack used
+    if (listItem !== undefined) {
+      prevData = listItem;
+
+      // a card, part of a card list
+    } else if (index !== undefined) {
+      prevData = (data[section as keyof AllData] as { [key: string]: any })[
+        index
+      ][field];
+
+      // a text only field
+    } else {
+      prevData = (data[section as keyof AllData] as { [key: string]: any })[
+        field
+      ];
+    }
+
+    e.currentTarget.innerText = prevData;
   };
 
   const handleKeyDown = async (
     e: React.KeyboardEvent<HTMLDivElement>,
     section: string,
     field: string,
-    index?: number
+    index?: number,
+    listItem?: string
   ) => {
-    // console.log(currentData)
     if (e.key === "Escape") {
-      handleBlur(e, section, field, index);
+      handleBlur(e, section, field, index, listItem);
     }
     if (e.key === "Enter") {
       setEditField(undefined);
@@ -151,20 +207,40 @@ export const ContentProvider: React.FC<{
     field: string,
     className: string,
     item?: TimelineInterface,
-    index?: number
+    index?: number,
+    listItem?: string,
+    listItemIndex?: number
   ) => {
+    let content: any;
+
+    // an item list, like tech stack used
+    if (listItem !== undefined) {
+      content = listItem;
+
+      // a card, part of a card list
+    } else if (item !== undefined) {
+      content = item[field as keyof TimelineInterface];
+
+      // a text only field
+    } else {
+      content = (data[section as keyof AllData] as { [key: string]: any })[
+        field
+      ];
+    }
+
     return (
       <p
+        key={listItemIndex ?? null}
         contentEditable={isEditable({ itemId: item?._id, field })}
         suppressContentEditableWarning={true}
         className={className}
-        onInput={(e) => handleChange(e, section, field, index)}
-        onKeyDown={(e) => handleKeyDown(e, section, field, index)}
-        onBlur={(e) => handleBlur(e, section, field, index)}
+        onInput={(e) =>
+          handleChange(e, section, field, index, listItem, listItemIndex)
+        }
+        onKeyDown={(e) => handleKeyDown(e, section, field, index, listItem)}
+        onBlur={(e) => handleBlur(e, section, field, index, listItem)}
       >
-        {item
-          ? item[field as keyof TimelineInterface]
-          : (data[section as keyof AllData] as { [key: string]: any })[field]}
+        {content}
       </p>
     );
   };

@@ -5,7 +5,7 @@ export interface AboutInterface {
   noofprojects: string;
   yearofexperience: string;
   noofclients: string;
-  skills: string;
+  skills: { [key: number]: string };
 }
 
 const aboutSchema = new mongoose.Schema<AboutInterface>(
@@ -14,7 +14,7 @@ const aboutSchema = new mongoose.Schema<AboutInterface>(
     noofprojects: String,
     yearofexperience: String,
     noofclients: String,
-    skills: String,
+    skills: { type: Map, of: String },
   },
   { timestamps: true }
 );

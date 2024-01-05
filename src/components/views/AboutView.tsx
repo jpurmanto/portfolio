@@ -1,10 +1,8 @@
 "use client";
 
-import { AboutInterface } from "@/db";
 import { AnimationWrapper, transitionVariants } from "@/helpers";
 import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
-import { updateData } from "@/services";
 import { AllData } from "@/types";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -22,15 +20,7 @@ const skillItemVariant = {
 export function AboutView() {
   const setVariants = useMemo(() => transitionVariants(), []);
   const { authUser } = useContext(AuthContext);
-  const {
-    data,
-    currentData,
-    setCurrentData,
-    editField,
-    setEditField,
-    renderEditButton,
-    renderContent,
-  } = useContext(ContentContext);
+  const { data, renderEditButton, renderContent } = useContext(ContentContext);
 
   const aboutDataInfo = [
     {
@@ -133,50 +123,25 @@ export function AboutView() {
               variants={setVariants}
               className="grid grid-cols-2 gap-4 h-full max-h-[200px] w-full"
             >
-              {(data as AllData)?.About.skills
-                ?.split(",")
-                .map((skill, index) => (
+              {Object.values((data as AllData)?.About.skills).map(
+                (skill, index) => (
                   <motion.div
                     key={index}
                     className="w-full flex justify-center items-center"
                     variants={skillItemVariant}
                   >
-                    <span
-                      contentEditable={editField?.field === "skills"}
-                      suppressContentEditableWarning={true}
-                      className="bg-blue-100 text-blue-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded-xl border border-[#b8bef8] select-none"
-                      onInput={(e) => {
-                        const skillsArr = (
-                          currentData as AllData
-                        )?.About?.skills?.split(", ");
-                        skillsArr[index] = e.currentTarget.innerText;
-
-                        setCurrentData({
-                          ...(currentData as AllData),
-                          About: {
-                            ...(currentData as AllData).About,
-                            skills: skillsArr.join(", "),
-                          },
-                        });
-                      }}
-                      onKeyDown={async (e) => {
-                        if (e.key === "Escape") {
-                          setEditField(undefined);
-                          e.currentTarget.innerText = skill;
-                        }
-                        if (e.key === "Enter") {
-                          setEditField(undefined);
-                          await updateData(
-                            "about",
-                            (currentData as AllData).About
-                          );
-                        }
-                      }}
-                    >
-                      {skill}
-                    </span>
+                    {renderContent(
+                      "About",
+                      "skills",
+                      "bg-blue-100 text-blue-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded-xl border border-[#b8bef8] select-none",
+                      undefined,
+                      undefined,
+                      skill,
+                      index
+                    )}
                   </motion.div>
-                ))}
+                )
+              )}
             </motion.div>
           </section>
         </AnimationWrapper>

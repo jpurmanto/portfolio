@@ -2,8 +2,7 @@
 
 import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
-import { updateData } from "@/services";
-import { AllData, TimelineInterface } from "@/types";
+import { TimelineInterface } from "@/types";
 import Image from "next/image";
 import { useContext } from "react";
 import schoolIcon from "/public/assets/school.svg";
@@ -11,24 +10,16 @@ import workIcon from "/public/assets/work.svg";
 
 export function TimelineCard({
   section,
-  data,
   item,
   index,
 }: {
   section: string;
-  data: TimelineInterface[];
   item: TimelineInterface;
   index: number;
 }) {
   const { authUser } = useContext(AuthContext);
-  const {
-    currentData,
-    setCurrentData,
-    setEditField,
-    renderEditButton,
-    renderContent,
-    isEditable,
-  } = useContext(ContentContext);
+  const { renderEditButton, renderContent, isEditable } =
+    useContext(ContentContext);
 
   const color =
     section === "Formation"
@@ -129,62 +120,18 @@ export function TimelineCard({
               : null}
           </span>
 
-          {item.tech.split(",").map((_tech, idx) => {
-            return (
-              <div
-                key={idx}
-                contentEditable={isEditable({
-                  itemId: item._id,
-                  field: "tech",
-                })}
-                suppressContentEditableWarning={true}
-                className={`bg-blue-100 text-blue-800 border border-[#b8bef8] rounded-xl px-2 py-1 text-sm m-1 ${isEditable(
-                  { itemId: item._id, field: "tech" }
-                )} ? "" : "cursor-default"
-                }`}
-                onInput={(e) => {
-                  const techArr = (
-                    (currentData as AllData)[section as keyof AllData] as {
-                      [key: string]: any;
-                    }
-                  )[index].tech.split(", ");
-                  techArr[idx] = e.currentTarget.innerText;
-
-                  setCurrentData({
-                    ...(currentData as AllData),
-                    [section]: {
-                      ...(currentData as AllData)[section as keyof AllData],
-                      [index]: {
-                        ...(
-                          (currentData as AllData)[
-                            section as keyof AllData
-                          ] as { [key: string]: any }
-                        )[index],
-                        ["tech"]: techArr.join(", "),
-                      },
-                    },
-                  });
-                }}
-                onKeyDown={async (e) => {
-                  if (e.key === "Escape") {
-                    setEditField(undefined);
-                    e.currentTarget.innerText = _tech;
-                  }
-                  if (e.key === "Enter") {
-                    setEditField(undefined);
-                    await updateData(
-                      section.toLowerCase(),
-                      (
-                        (currentData as AllData)[section as keyof AllData] as {
-                          [key: string]: any;
-                        }
-                      )[index]
-                    );
-                  }
-                }}
-              >
-                {_tech}
-              </div>
+          {Object.values(item.tech).map((_tech, idx) => {
+            return renderContent(
+              section,
+              "tech",
+              `bg-blue-100 text-blue-800 border border-[#b8bef8] rounded-xl px-2 py-1 text-sm m-1  select-none ${isEditable(
+                { itemId: item._id, field: "tech" }
+              )} ? "" : "cursor-default"
+            }`,
+              item,
+              index,
+              _tech,
+              idx
             );
           })}
         </div>

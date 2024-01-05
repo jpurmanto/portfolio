@@ -7,7 +7,7 @@ export interface ExperienceInterface {
   buttonText: string;
   date: string;
   icon: string;
-  tech: string;
+  tech: { [key: number]: string };
 }
 
 const experienceSchema = new mongoose.Schema<ExperienceInterface>(
@@ -18,7 +18,7 @@ const experienceSchema = new mongoose.Schema<ExperienceInterface>(
     buttonText: String,
     date: String,
     icon: String,
-    tech: String,
+    tech: { type: Map, of: String },
   },
   { timestamps: true }
 );

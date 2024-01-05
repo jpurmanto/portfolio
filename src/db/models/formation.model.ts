@@ -1,14 +1,7 @@
 import mongoose from "mongoose";
+import { ExperienceInterface } from "..";
 
-export interface FormationInterface {
-  title: string;
-  location: string;
-  description: string;
-  buttonText: string;
-  date: string;
-  icon: string;
-  tech: string;
-}
+export interface FormationInterface extends ExperienceInterface {}
 
 const formationSchema = new mongoose.Schema<FormationInterface>(
   {
@@ -18,7 +11,7 @@ const formationSchema = new mongoose.Schema<FormationInterface>(
     buttonText: String,
     date: String,
     icon: String,
-    tech: String,
+    tech: { type: Map, of: String },
   },
   { timestamps: true }
 );
