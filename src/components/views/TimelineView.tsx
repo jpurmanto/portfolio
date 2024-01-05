@@ -16,9 +16,9 @@ export function TimelineView() {
       id="experience"
     >
       <article className="grid grid-flow-row lg:grid-flow-col grid-cols-1 lg:grid-cols-2 gap-8">
-        {["Experience", "Formation"].map((section) => {
+        {["Experience", "Formation"].map((section, index) => {
           return (
-            <section className="flex flex-col gap-5">
+            <section key={index} className="flex flex-col gap-5">
               <AnimationWrapper className={"py-6 lg:py-16"}>
                 <header className="flex flex-col justify-center items-center row-start-2 lg:row-start-1 lg:ml-36">
                   <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
