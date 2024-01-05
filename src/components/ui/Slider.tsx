@@ -1,6 +1,7 @@
 "use client";
 
-import { ProjectInterface } from "@/db";
+import ContentContext from "@/providers/content-provider";
+import { useContext } from "react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/effect-coverflow";
@@ -15,8 +16,11 @@ import {
 } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProjectCard } from "../cards";
+import { AllData } from "@/types";
 
-export function Slider({ data }: { data: ProjectInterface[] }) {
+export function Slider() {
+  const { data } = useContext(ContentContext);
+
   return (
     <Swiper
       modules={[
@@ -60,8 +64,8 @@ export function Slider({ data }: { data: ProjectInterface[] }) {
       mousewheel
       loop
     >
-      {data?.length
-        ? data.map((item, index) => (
+      {(data as AllData)?.Project.length
+        ? (data as AllData)?.Project.map((item, index) => (
             <SwiperSlide key={index}>
               <ProjectCard item={item} />
             </SwiperSlide>

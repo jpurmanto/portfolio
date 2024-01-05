@@ -1,14 +1,14 @@
 export async function updateData(
-  currentTab: string,
-  formData: Record<string, any>
+  section: string,
+  data: Record<string, any>
 ) {
   try {
-    const response = await fetch(`/api/${currentTab}`, {
+    const response = await fetch(`/api/${section}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(data),
     });
 
     const result = await response.json();

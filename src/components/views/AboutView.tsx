@@ -3,12 +3,13 @@
 import { AboutInterface } from "@/db";
 import { AnimationWrapper, transitionVariants } from "@/helpers";
 import AuthContext from "@/providers/auth-provider";
+import ContentContext from "@/providers/content-provider";
 import { updateData } from "@/services";
+import { AllData } from "@/types";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import aboutImage from "public/about.svg";
-import { useContext, useMemo, useState } from "react";
-import { EditButton } from "../ui";
+import { useContext, useMemo } from "react";
 
 const skillItemVariant = {
   hidden: { y: 20, opacity: 0 },
@@ -18,93 +19,33 @@ const skillItemVariant = {
   },
 };
 
-export function AboutView({
-  data,
-}: {
-  data: AboutInterface & { _id: string };
-}) {
+export function AboutView() {
   const setVariants = useMemo(() => transitionVariants(), []);
   const { authUser } = useContext(AuthContext);
-  const [editField, setEditField] = useState("");
-  const [currentData, setCurrentData] = useState({
-    _id: data?._id,
-    aboutme: data?.aboutme,
-    skills: data?.skills,
-  });
+  const {
+    data,
+    currentData,
+    setCurrentData,
+    editField,
+    setEditField,
+    renderEditButton,
+    renderContent,
+  } = useContext(ContentContext);
 
   const aboutDataInfo = [
     {
       label: "Clients",
-      value: data?.noofclients ?? "",
+      value: (data as AllData)?.About.noofclients ?? "",
     },
     {
       label: "Projects",
-      value: data?.noofprojects ?? "",
+      value: (data as AllData)?.About.noofprojects ?? "",
     },
     {
       label: "Experience",
-      value: data?.yearofexperience ?? "",
+      value: (data as AllData)?.About.yearofexperience ?? "",
     },
   ];
-
-  const setEditColor = (field: string) => {
-    return editField === field ? "red" : "black";
-  };
-
-  const handleChange = (e: React.FormEvent<HTMLDivElement>, field: string) => {
-    setCurrentData({
-      ...currentData,
-      [field]: e.currentTarget.innerText,
-    });
-  };
-
-  const handleBlur = (e: React.FormEvent<HTMLDivElement>, field: string) => {
-    setEditField("");
-    // @ts-ignore
-    e.currentTarget.innerText = data[field];
-  };
-
-  const handleKeyDown = async (
-    e: React.KeyboardEvent<HTMLDivElement>,
-    field: string
-  ) => {
-    if (e.key === "Escape") {
-      handleBlur(e, field);
-    }
-    if (e.key === "Enter") {
-      setEditField("");
-      await updateData("about", currentData);
-    }
-  };
-
-  const renderEditButton = (field: string) => {
-    return (
-      <EditButton
-        field={field}
-        color={setEditColor(field)}
-        handler={() => setEditField(field)}
-      />
-    );
-  };
-
-  const renderContent = (
-    field: string,
-    className: string,
-    children: React.ReactNode
-  ) => {
-    return (
-      <p
-        contentEditable={editField === field}
-        suppressContentEditableWarning={true}
-        className={className}
-        onInput={(e) => handleChange(e, field)}
-        onKeyDown={(e) => handleKeyDown(e, field)}
-        onBlur={(e) => handleBlur(e, field)}
-      >
-        {children}
-      </p>
-    );
-  };
 
   return (
     <div
@@ -150,14 +91,14 @@ export function AboutView({
           <section className="group/aboutme flex items-start justify-start w-full">
             {authUser ? (
               <span className="hidden group-hover/aboutme:flex">
-                {renderEditButton("aboutme")}
+                {renderEditButton({ field: "aboutme" })}
               </span>
             ) : null}
 
             {renderContent(
+              "About",
               "aboutme",
-              "text-[#000] mt-4 mb-8 font-bold",
-              data?.aboutme ?? ""
+              "text-[#000] mt-4 mb-8 font-bold"
             )}
           </section>
         </div>
@@ -184,7 +125,7 @@ export function AboutView({
           <section className="group/skills flex items-start justify-start w-full">
             {authUser ? (
               <span className="hidden group-hover/skills:block">
-                {renderEditButton("skills")}
+                {renderEditButton({ field: "skills" })}
               </span>
             ) : null}
 
@@ -192,40 +133,50 @@ export function AboutView({
               variants={setVariants}
               className="grid grid-cols-2 gap-4 h-full max-h-[200px] w-full"
             >
-              {data?.skills?.split(",").map((skill, index) => (
-                <motion.div
-                  key={index}
-                  className="w-full flex justify-center items-center"
-                  variants={skillItemVariant}
-                >
-                  <span
-                    contentEditable={editField === "skills"}
-                    suppressContentEditableWarning={true}
-                    className="bg-blue-100 text-blue-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded-xl border border-[#b8bef8] select-none"
-                    onInput={(e) => {
-                      const skillsArr = currentData.skills.split(", ");
-                      skillsArr[index] = e.currentTarget.innerText;
-
-                      setCurrentData({
-                        ...currentData,
-                        skills: skillsArr.join(", "),
-                      });
-                    }}
-                    onKeyDown={async (e) => {
-                      if (e.key === "Escape") {
-                        setEditField("");
-                        e.currentTarget.innerText = skill;
-                      }
-                      if (e.key === "Enter") {
-                        setEditField("");
-                        await updateData("about", currentData);
-                      }
-                    }}
+              {(data as AllData)?.About.skills
+                ?.split(",")
+                .map((skill, index) => (
+                  <motion.div
+                    key={index}
+                    className="w-full flex justify-center items-center"
+                    variants={skillItemVariant}
                   >
-                    {skill}
-                  </span>
-                </motion.div>
-              ))}
+                    <span
+                      contentEditable={editField?.field === "skills"}
+                      suppressContentEditableWarning={true}
+                      className="bg-blue-100 text-blue-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded-xl border border-[#b8bef8] select-none"
+                      onInput={(e) => {
+                        const skillsArr = (
+                          currentData as AllData
+                        )?.About?.skills?.split(", ");
+                        skillsArr[index] = e.currentTarget.innerText;
+
+                        setCurrentData({
+                          ...(currentData as AllData),
+                          About: {
+                            ...(currentData as AllData).About,
+                            skills: skillsArr.join(", "),
+                          },
+                        });
+                      }}
+                      onKeyDown={async (e) => {
+                        if (e.key === "Escape") {
+                          setEditField(undefined);
+                          e.currentTarget.innerText = skill;
+                        }
+                        if (e.key === "Enter") {
+                          setEditField(undefined);
+                          await updateData(
+                            "about",
+                            (currentData as AllData).About
+                          );
+                        }
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  </motion.div>
+                ))}
             </motion.div>
           </section>
         </AnimationWrapper>

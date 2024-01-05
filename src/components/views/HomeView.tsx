@@ -1,84 +1,19 @@
 "use client";
 
 import { socialIcons } from "@/constants";
-import { HomeInterface } from "@/db";
 import { AnimationWrapper, transitionVariants } from "@/helpers";
 import AuthContext from "@/providers/auth-provider";
-import { updateData } from "@/services";
+import ContentContext from "@/providers/content-provider";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import profilePicture from "public/profile.png";
-import { ReactNode, useContext, useMemo, useState } from "react";
-import { EditButton } from "../ui";
+import { useContext, useMemo } from "react";
 
-export function HomeView({ data }: { data: HomeInterface & { _id: string } }) {
-  const setVariants = useMemo(() => transitionVariants(), []);
+export function HomeView() {
   const { authUser } = useContext(AuthContext);
-  const [editField, setEditField] = useState("");
-  const [currentData, setCurrentData] = useState({
-    _id: data?._id,
-    heading: data?.heading,
-    summary: data?.summary,
-  });
+  const { renderEditButton, renderContent } = useContext(ContentContext);
 
-  const setEditColor = (field: string) => {
-    return editField === field ? "red" : "black";
-  };
-
-  const handleChange = (e: React.FormEvent<HTMLDivElement>, field: string) => {
-    setCurrentData({
-      ...currentData,
-      [field]: e.currentTarget.innerText,
-    });
-  };
-
-  const handleBlur = (e: React.FormEvent<HTMLDivElement>, field: string) => {
-    setEditField("");
-    // @ts-ignore
-    e.currentTarget.innerText = data[field];
-  };
-
-  const handleKeyDown = async (
-    e: React.KeyboardEvent<HTMLDivElement>,
-    field: string
-  ) => {
-    if (e.key === "Escape") {
-      handleBlur(e, field);
-    }
-    if (e.key === "Enter") {
-      setEditField("");
-      await updateData("home", currentData);
-    }
-  };
-
-  const renderEditButton = (field: string) => {
-    return (
-      <EditButton
-        field={field}
-        color={setEditColor(field)}
-        handler={() => setEditField(field)}
-      />
-    );
-  };
-
-  const renderContent = (
-    field: string,
-    className: string,
-    children: ReactNode
-  ) => {
-    return (
-      <p
-        contentEditable={editField === field}
-        suppressContentEditableWarning={true}
-        className={className}
-        onInput={(e) => handleChange(e, field)}
-        onKeyDown={(e) => handleKeyDown(e, field)}
-        onBlur={(e) => handleBlur(e, field)}
-      >
-        {children}
-      </p>
-    );
-  };
+  const setVariants = useMemo(() => transitionVariants(), []);
 
   return (
     <div id="home" className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto">
@@ -101,30 +36,21 @@ export function HomeView({ data }: { data: HomeInterface & { _id: string } }) {
           </motion.div>
 
           <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
-            <section className="group/heading flex flex-row items-start">
+            <section className="group/heading flex flex-row items-start text-[var(--primary-color)]">
               {authUser ? (
                 <span className="hidden group-hover/heading:flex">
-                  {renderEditButton("heading")}
+                  {renderEditButton({ field: "heading" })}
                 </span>
               ) : null}
 
+              <span className="realtive mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal text-black">
+                Hi I'm&nbsp;
+              </span>
+
               {renderContent(
+                "Home",
                 "heading",
-                "realtive mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal",
-                <>
-                  {currentData.heading?.split(" ").map((item, index) => (
-                    <span
-                      key={index}
-                      className={`${
-                        index === 2 || index === 3
-                          ? "text-[var(--primary-color)]"
-                          : "text-[#000]"
-                      }`}
-                    >
-                      {item}{" "}
-                    </span>
-                  ))}
-                </>
+                "realtive mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal"
               )}
             </section>
 
@@ -132,14 +58,14 @@ export function HomeView({ data }: { data: HomeInterface & { _id: string } }) {
               <article className="flex items-start justify-start w-full">
                 {authUser ? (
                   <span className="hidden group-hover/summary:flex">
-                    {renderEditButton("summary")}
+                    {renderEditButton({ field: "summary" })}
                   </span>
                 ) : null}
 
                 {renderContent(
+                  "Home",
                   "summary",
-                  "text-[#000] mt-4 mb-6 font-bold",
-                  data ? data?.summary : null
+                  "text-[#000] mt-4 mb-6 font-bold"
                 )}
               </article>
 

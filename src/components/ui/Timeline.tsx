@@ -1,18 +1,26 @@
 "use client";
 
-import { ExperienceInterface, FormationInterface } from "@/db";
+import { TimelineInterface } from "@/types";
 import { TimelineCard } from "../cards";
 
 export function Timeline({
+  section,
   data,
 }: {
-  data: ((ExperienceInterface | FormationInterface) & { _id: string })[];
+  section: string;
+  data: TimelineInterface[];
 }) {
   return (
     <div>
-      {data.map((item, index) => {
+      {data?.map((item, index) => {
         return (
-          <TimelineCard key={index} data={data} item={item} index={index} />
+          <TimelineCard
+            key={index}
+            section={section}
+            data={data}
+            item={item}
+            index={index}
+          />
         );
       })}
     </div>

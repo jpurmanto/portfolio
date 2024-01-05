@@ -1,8 +1,26 @@
-import { AboutInterface } from "@/db";
+import {
+  AboutInterface,
+  ExperienceInterface,
+  FormationInterface,
+  HomeInterface,
+  ProjectInterface,
+} from "@/db";
 import { Model } from "mongoose";
 import { SVGProps } from "react";
 
 export type MongooseModel<T extends Document> = Model<T>;
+
+export type TimelineInterface = (ExperienceInterface | FormationInterface) & {
+  _id: string;
+};
+
+export type AllData = {
+  Home: HomeInterface;
+  About: AboutInterface;
+  Experience: TimelineInterface[];
+  Formation: TimelineInterface[];
+  Project: ProjectInterface[];
+};
 
 export type ApiResponse = {
   statusCode: number;

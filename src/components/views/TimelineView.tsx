@@ -1,21 +1,15 @@
 "use client";
 
-import { ExperienceInterface, FormationInterface } from "@/db";
 import { AnimationWrapper } from "@/helpers";
+import ContentContext from "@/providers/content-provider";
+import { AllData } from "@/types";
 import { motion } from "framer-motion";
+import { useContext } from "react";
 import { Timeline } from "../ui";
 
-export function TimelineView({
-  formationData,
-  experienceData,
-}: {
-  formationData: (FormationInterface & {
-    _id: string;
-  })[];
-  experienceData: (ExperienceInterface & {
-    _id: string;
-  })[];
-}) {
+export function TimelineView() {
+  const { data } = useContext(ContentContext);
+
   return (
     <main
       className="max-w-screen-xl mt-24 mb-6 lg:mt-14 lg:mb-14 px-6 lg:px-8 mx-auto"
@@ -35,7 +29,10 @@ export function TimelineView({
           <AnimationWrapper>
             <div className="flex w-full">
               <motion.div className="container">
-                <Timeline data={experienceData} />
+                <Timeline
+                  section="Experience"
+                  data={(data as AllData).Experience}
+                />
               </motion.div>
             </div>
           </AnimationWrapper>
@@ -54,7 +51,10 @@ export function TimelineView({
           <AnimationWrapper>
             <div className="flex w-full">
               <motion.div className="container">
-                <Timeline data={formationData} />
+                <Timeline
+                  section="Formation"
+                  data={(data as AllData).Formation}
+                />
               </motion.div>
             </div>
           </AnimationWrapper>

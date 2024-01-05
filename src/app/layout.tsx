@@ -1,4 +1,4 @@
-import { AppWrapper } from "@/components/ui";
+import Providers from "@/providers";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import "remixicon/fonts/remixicon.css";
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppWrapper>{children}</AppWrapper>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

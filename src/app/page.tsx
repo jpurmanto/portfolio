@@ -6,20 +6,14 @@ import {
   ProjectView,
   TimelineView,
 } from "@/components/views";
-import { getSectionData } from "@/services";
 
 export default async function Home() {
-  const allData = await getSectionData("all");
-
   return (
     <main>
-      <HomeView data={allData?.Home} />
-      <AboutView data={allData?.About} />
-      <TimelineView
-        formationData={allData?.Formation}
-        experienceData={allData?.Experience}
-      />
-      <ProjectView data={allData?.Project} />
+      <HomeView />
+      <AboutView />
+      <TimelineView />
+      <ProjectView />
       <ContactView />
       <Modal />
     </main>

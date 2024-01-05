@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useLayoutEffect, useState } from "react";
 
 const AuthContext = createContext({

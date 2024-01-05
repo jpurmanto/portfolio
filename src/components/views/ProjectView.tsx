@@ -1,6 +1,5 @@
 "use client";
 
-import { ProjectInterface } from "@/db";
 import { AnimationWrapper } from "@/helpers";
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -9,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Slider } from "../ui";
 
-export function ProjectView({ data }: { data: ProjectInterface[] }) {
+export function ProjectView() {
   return (
     <div
       className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto"
@@ -24,7 +23,7 @@ export function ProjectView({ data }: { data: ProjectInterface[] }) {
       </AnimationWrapper>
 
       <AnimationWrapper>
-        <Slider data={data} />
+        <Slider />
       </AnimationWrapper>
     </div>
   );
