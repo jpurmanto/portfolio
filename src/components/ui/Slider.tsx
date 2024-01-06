@@ -17,9 +17,10 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProjectCard } from "../cards";
 import { AllData } from "@/types";
+import { ProjectInterface } from "@/db";
 
 export function Slider() {
-  const { data } = useContext(ContentContext);
+  const { data, editField } = useContext(ContentContext);
 
   return (
     <Swiper
@@ -67,7 +68,11 @@ export function Slider() {
       {(data as AllData)?.Project.length
         ? (data as AllData)?.Project.map((item, index) => (
             <SwiperSlide key={index}>
-              <ProjectCard item={item} />
+              <ProjectCard
+                section="Project"
+                item={item as ProjectInterface & { _id: string }}
+                index={index}
+              />
             </SwiperSlide>
           ))
         : null}

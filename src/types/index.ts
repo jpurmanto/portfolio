@@ -14,6 +14,15 @@ export type TimelineInterface = (ExperienceInterface | FormationInterface) & {
   _id: string;
 };
 
+export type AnyData = (
+  | HomeInterface
+  | AboutInterface
+  | TimelineInterface
+  | ProjectInterface
+) & {
+  _id: string;
+};
+
 export type AllData = {
   Home: HomeInterface;
   About: AboutInterface;

@@ -2,7 +2,7 @@
 
 import { EditButton } from "@/components/ui";
 import { updateData } from "@/services";
-import { AllData, TimelineInterface } from "@/types";
+import { AllData, AnyData } from "@/types";
 import React, { createContext, useState } from "react";
 
 const ContentContext = createContext({
@@ -18,7 +18,7 @@ const ContentContext = createContext({
     section: string,
     field: string,
     className: string,
-    item?: TimelineInterface,
+    item?: AnyData,
     index?: number,
     listItem?: string,
     listItemIndex?: number
@@ -206,7 +206,7 @@ export const ContentProvider: React.FC<{
     section: string,
     field: string,
     className: string,
-    item?: TimelineInterface,
+    item?: AnyData,
     index?: number,
     listItem?: string,
     listItemIndex?: number
@@ -219,7 +219,7 @@ export const ContentProvider: React.FC<{
 
       // a card, part of a card list
     } else if (item !== undefined) {
-      content = item[field as keyof TimelineInterface];
+      content = item[field as keyof AnyData];
 
       // a text only field
     } else {
