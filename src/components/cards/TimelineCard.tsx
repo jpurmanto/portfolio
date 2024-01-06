@@ -96,7 +96,7 @@ export function TimelineCard({
           {renderContent(
             section,
             "location",
-            "text-gray-500 mb-6 sm:mb-8 sm:text-xs",
+            "text-gray-500 mt-1 mb-6 sm:mb-8 sm:text-sm",
             item,
             index
           )}

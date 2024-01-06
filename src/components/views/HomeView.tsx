@@ -50,7 +50,7 @@ export function HomeView() {
               {renderContent(
                 "Home",
                 "heading",
-                "realtive mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal"
+                "realtive mb-8 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal"
               )}
             </section>
 
@@ -65,7 +65,7 @@ export function HomeView() {
                 {renderContent(
                   "Home",
                   "summary",
-                  "text-[#000] mt-4 mb-6 font-bold"
+                  "text-[#000] mb-6 font-bold"
                 )}
               </article>
 

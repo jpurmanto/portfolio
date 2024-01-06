@@ -72,7 +72,7 @@ export function AboutView() {
 
       <AnimationWrapper className={"pt-6"}>
         <div className="flex flex-col justify-center items-center">
-          <h1 className="sm:leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
+          <h1 className="sm:leading-[70px] mb-8 text-3xl lg:text-4xl xl:text-5xl font-medium">
             Why hire <span className="text-[var(--primary-color)]">me</span> for
             your next{" "}
             <span className="text-[var(--primary-color)]">project?</span>
@@ -88,7 +88,7 @@ export function AboutView() {
             {renderContent(
               "About",
               "aboutme",
-              "text-[#000] mt-4 mb-8 font-bold"
+              "text-[#000] mb-8 font-bold"
             )}
           </section>
         </div>
