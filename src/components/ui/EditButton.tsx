@@ -7,7 +7,7 @@ export function EditButton({
   color,
   handler,
   field,
-  position
+  position,
 }: {
   color: string;
   handler: React.MouseEventHandler<SVGSVGElement>;
@@ -19,7 +19,7 @@ export function EditButton({
       color={color}
       size={33}
       className={`${
-        position === "sticky" ? "sticky -mx-1 -translate-x-2" : "absolute"
+        position === "sticky" ? "sticky -ml-8 mr-1 translate-x-1" : "absolute"
       } -translate-x-8 cursor-pointer select-none`}
       onClick={handler}
       title={`Edit ${field}`}

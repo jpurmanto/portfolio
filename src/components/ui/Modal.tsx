@@ -27,6 +27,7 @@ export function Modal(): JSX.Element {
           <section id="modal" className="flex flex-row-reverse overflow-hidden">
             <i
               className="ri-close-line text-2xl p-2 text-indigo-950 cursor-pointer hover:text-[var(--primary-color)] transition-colors ease-in-out duration-200 absolute -translate-x-3"
+              title="Close"
               onClick={closeModal}
             />
 
