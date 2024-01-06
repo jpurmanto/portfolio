@@ -3,6 +3,7 @@
 import { loginFields } from "@/constants/fields";
 import { FormFields } from "@/helpers";
 import { LoginFormData } from "@/types";
+import Button from "../ui/buttons/Button";
 
 export function LoginForm({
   formData,
@@ -14,9 +15,7 @@ export function LoginForm({
   handleLogin: () => {};
 }) {
   const isValidForm = () => {
-    return formData &&
-      formData.username !== "" &&
-      formData.password !== ""
+    return formData && formData.username !== "" && formData.password !== ""
       ? true
       : false;
   };
@@ -29,14 +28,13 @@ export function LoginForm({
           formData={formData}
           setFormData={setFormData}
         />
-        <button
+        <Button
           onClick={handleLogin}
           disabled={!isValidForm()}
           className="w-full py-1"
-          type="button"
         >
           Login
-        </button>
+        </Button>
       </form>
     </div>
   );

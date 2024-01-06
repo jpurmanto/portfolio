@@ -6,6 +6,7 @@ import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
 import { useContext } from "react";
 import ProjectDetails from "./ProjectDetails";
+import Button from "../ui/buttons/Button";
 
 export function ProjectCard({
   section,
@@ -62,8 +63,9 @@ export function ProjectCard({
           )}
         </div>
 
-        <button
-          className="py-1 px-2.5 w-fit"
+        <Button
+          size="sm"
+          className="px-4 py-1"
           onClick={() =>
             showModal(
               <ProjectDetails section={section} item={item} index={index} />
@@ -71,7 +73,7 @@ export function ProjectCard({
           }
         >
           Details
-        </button>
+        </Button>
       </section>
     </article>
   );

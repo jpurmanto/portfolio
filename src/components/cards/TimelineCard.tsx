@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useContext } from "react";
 import schoolIcon from "/public/assets/school.svg";
 import workIcon from "/public/assets/work.svg";
+import Button from "../ui/buttons/Button";
 
 export function TimelineCard({
   section,
@@ -143,15 +144,14 @@ export function TimelineCard({
                 ? renderEditButton({ itemId: item._id, field: "buttonText" })
                 : null}
             </span>
-            <a
-              className={`${color} text-gray-950 font-medium px-4 py-1 rounded-md ${
-                isEditable({ itemId: item._id, field: "buttonText" })
-                  ? ""
-                  : "cursor-pointer hover:text-gray-100"
-              } transition-colors duration-300 select-none`}
+
+            <Button
+              size="sm"
+              color={section === "Experience" ? "tertiary" : "secondary"}
+              className="px-4 py-1"
             >
-              {renderContent(section, "buttonText", "", item, index)}
-            </a>
+              {item.buttonText}
+            </Button>
           </div>
         ) : null}
       </section>

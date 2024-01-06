@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { EditIcon } from "./EditIcon";
+import { EditIcon } from "../icons/EditIcon";
 
 export function EditButton({
   color,

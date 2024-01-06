@@ -2,6 +2,7 @@ import { ProjectInterface } from "@/db";
 import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
 import { useContext } from "react";
+import Button from "../ui/buttons/Button";
 
 export default function ProjectDetails({
   section,
@@ -15,9 +16,6 @@ export default function ProjectDetails({
   const { authUser } = useContext(AuthContext);
   const { renderEditButton, renderContent, isEditable } =
     useContext(ContentContext);
-
-  const buttonStyle =
-    "bg-[var(--secondary-color)] text-gray-100 font-medium px-4 py-1 rounded-md mx-4 cursor-pointer hover:text-gray-300 transition-colors duration-300 select-none";
 
   return (
     <>
@@ -122,25 +120,25 @@ export default function ProjectDetails({
 
         <section id="links" className="flex items-center justify-center">
           {item.deploy ? (
-            <a
+            <Button
               href={item.deploy}
-              rel="noreferrer noopener"
-              target="_blank"
-              className={buttonStyle}
+              size="sm"
+              color="secondary"
+              className="px-4 py-1 mx-4"
             >
               Deploy
-            </a>
+            </Button>
           ) : null}
 
           {item.github ? (
-            <a
+            <Button
               href={item.github}
-              rel="noreferrer noopener"
-              target="_blank"
-              className={buttonStyle}
+              size="sm"
+              color="secondary"
+              className="px-4 py-1 mx-4"
             >
               GitHub
-            </a>
+            </Button>
           ) : null}
         </section>
       </article>

@@ -4,6 +4,7 @@ import { navbarItems } from "@/constants";
 import { CreateNavbarLinks } from "@/helpers";
 import { useState } from "react";
 import { scroller } from "react-scroll";
+import Button from "./buttons/Button";
 
 export default function Navbar(): JSX.Element {
   const [activeLink, setActiveLink] = useState<string>("home");
@@ -17,7 +18,7 @@ export default function Navbar(): JSX.Element {
     >
       <nav className="relative px-4 py-6 flex justify-between items-center">
         <div className="lg:hidden pl-2">
-          <button
+          <Button
             id="navbar-burger"
             className="flex items-center text-[var(--primary-color)] p-3"
             onClick={() => setShowSidebar(true)}
@@ -29,7 +30,7 @@ export default function Navbar(): JSX.Element {
             >
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
             </svg>
-          </button>
+          </Button>
         </div>
         <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
           <CreateNavbarLinks
@@ -40,7 +41,7 @@ export default function Navbar(): JSX.Element {
           />
         </ul>
         <div className="col-start-10 col-end-12 font-medium flex lg:hidden justify-center items-center">
-          <button
+          <Button
             onClick={() =>
               scroller.scrollTo("contact", {
                 duration: 1500,
@@ -50,7 +51,7 @@ export default function Navbar(): JSX.Element {
             }
           >
             Contact Me
-          </button>
+          </Button>
         </div>
       </nav>
 
@@ -60,7 +61,7 @@ export default function Navbar(): JSX.Element {
         <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
         <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
           <div className="flex items-center mb-8 pt-2">
-            <button
+            <Button
               id="navbar-close"
               className="p-[.5rem]"
               onClick={() => setShowSidebar(false)}
@@ -79,7 +80,7 @@ export default function Navbar(): JSX.Element {
                   d="M6 18L18 6M6 6l12 12"
                 ></path>
               </svg>
-            </button>
+            </Button>
           </div>
           <div>
             <ul className="flex flex-col">
