@@ -11,9 +11,15 @@ const ContentContext = createContext({
   setCurrentData: (value: AllData) => {},
   editField: { id: "", field: "" },
   setEditField: (value: { id?: string; field: string } | undefined) => {},
-  renderEditButton: ({ itemId, field }: { itemId?: string; field: string }) => (
-    <></>
-  ),
+  renderEditButton: ({
+    itemId,
+    field,
+    position,
+  }: {
+    itemId?: string;
+    field: string;
+    position?: string;
+  }) => <></>,
   renderContent: (
     section: string,
     field: string,
@@ -189,15 +195,18 @@ export const ContentProvider: React.FC<{
   const renderEditButton = ({
     itemId,
     field,
+    position,
   }: {
     itemId?: string;
     field: string;
+    position?: string;
   }) => {
     return (
       <EditButton
         field={field}
         color={setEditColor({ itemId, field })}
         handler={() => setEditField({ itemId, field })}
+        position={position}
       />
     );
   };

@@ -30,7 +30,7 @@ export function ProjectCard({
       </section>
 
       <section className="relative flex flex-col items-center z-10 mx-7 -mt-20 rounded-lg bg-white py-[25px] px-3 text-center shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300">
-        <div className="group/name">
+        <div className="group/name flex">
           {authUser ? (
             <span className="hidden group-hover/name:flex">
               {renderEditButton({ itemId: item._id, field: "name" })}
@@ -46,7 +46,7 @@ export function ProjectCard({
           )}
         </div>
 
-        <div className="group/summary">
+        <div className="group/summary flex">
           {authUser ? (
             <span className="hidden group-hover/summary:flex mb-1">
               {renderEditButton({ itemId: item._id, field: "summary" })}
@@ -56,7 +56,7 @@ export function ProjectCard({
           {renderContent(
             section,
             "summary",
-            "text-primary mb-4 block text-sm font-medium",
+            "mb-4 block text-sm font-medium w-[21ch]",
             item,
             index
           )}
@@ -64,7 +64,11 @@ export function ProjectCard({
 
         <button
           className="py-1 px-2.5 w-fit"
-          onClick={() => showModal(<ProjectDetails item={item} />)}
+          onClick={() =>
+            showModal(
+              <ProjectDetails section={section} item={item} index={index} />
+            )
+          }
         >
           Details
         </button>

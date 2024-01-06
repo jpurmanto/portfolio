@@ -6,7 +6,7 @@ export interface ProjectInterface {
   summary: string;
   image?: string;
   description: string;
-  tech: string;
+  tech: { [key: number]: string };
   deploy: string;
   github: string;
 }
@@ -21,7 +21,7 @@ const projectSchema = new mongoose.Schema<ProjectInterface>(
       default: "https://i.imgur.com/BjCN4gy.jpg",
     },
     description: String,
-    tech: String,
+    tech: { type: Map, of: String },
     deploy: String,
     github: String,
   },
