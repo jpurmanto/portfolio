@@ -10,8 +10,8 @@ export function ContactForm() {
   const [formData, setFormData] = useState<ContactFormData>(
     initialContactFormData
   );
-  const [showSuccessMessage, setShowSuccessMessage] = useState<Boolean>(false);
-  const [sendingMessage, setSendingMessage] = useState(false);
+  const [alert, setAlert] = useState<string | null>(null);
+  const [sendingMessage, setSendingMessage] = useState<boolean>(false);
 
   async function handleSendMessage() {
     setSendingMessage(true);
@@ -20,17 +20,21 @@ export function ContactForm() {
 
     if (res?.statusCode === 201) {
       setFormData(initialContactFormData);
-      setShowSuccessMessage(true);
+      setAlert("Your message has been successfully delivered!");
+    }
+
+    if (res?.statusCode === 400) {
+      setAlert("The message couldn't be delivered. Try again later.");
     }
   }
 
   useEffect(() => {
-    if (showSuccessMessage) {
+    if (alert) {
       setTimeout(() => {
-        setShowSuccessMessage(false);
+        setAlert(null);
       }, 1500);
     }
-  }, [showSuccessMessage]);
+  }, [alert]);
 
   const isValidForm = () => {
     return formData &&
@@ -84,9 +88,9 @@ export function ContactForm() {
           </div>
         );
       })}
-      {showSuccessMessage && (
+      {alert && (
         <p className="text-[14px] text-[var(--primary-color)] font-bold my-[8px]">
-          Your message has been successfully delivered!
+          {alert}
         </p>
       )}
       <div className="p-2 w-full">
