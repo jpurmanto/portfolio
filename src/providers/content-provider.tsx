@@ -179,7 +179,7 @@ export const ContentProvider: React.FC<{
     if (e.key === "Escape") {
       handleBlur(e, section, field, index, listItem);
     }
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
       setEditField(undefined);
       await updateData(
         section.toLowerCase(),

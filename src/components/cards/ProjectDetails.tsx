@@ -70,7 +70,7 @@ export default function ProjectDetails({
         </section>
 
         <section id="info">
-          <div className="group/description flex">
+          <div className="group/description flex whitespace-pre-wrap">
             {authUser ? (
               <span className="hidden group-hover/description:flex">
                 {renderEditButton({
@@ -84,7 +84,7 @@ export default function ProjectDetails({
             {renderContent(
               section,
               "description",
-              "mb-4 text-left whitespace-pre-wrap",
+              "mb-4 text-left",
               item,
               index
             )}

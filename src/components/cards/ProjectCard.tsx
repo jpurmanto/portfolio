@@ -22,7 +22,7 @@ export function ProjectCard({
   const { showModal } = useModal();
 
   return (
-    <article className="relative mb-12 mt-3 select-none hover:scale-105 transition-transform ease-in-out duration-300">
+    <article className="group/main relative mb-20 mt-3 select-none hover:scale-105 transition-transform ease-in-out duration-300">
       <section
         className="overflow-hidden rounded-[10px]"
         // onClick={() => showModal(<img src={item.image} />)}
@@ -30,7 +30,7 @@ export function ProjectCard({
         <img src={item.image} alt={item.name} className="w-full" />
       </section>
 
-      <section className="relative flex flex-col items-center z-10 mx-7 -mt-20 rounded-lg bg-white py-[25px] px-3 text-center shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300">
+      <section className="relative group-hover/main:translate-y-5 flex flex-col items-center z-10 mx-7 -mt-20 rounded-lg bg-white py-[25px] px-3 text-center shadow-lg hover:shadow-xl transition-all ease-in-out duration-300">
         <div className="group/name flex">
           {authUser ? (
             <span className="hidden group-hover/name:flex">

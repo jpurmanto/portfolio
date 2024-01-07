@@ -105,12 +105,13 @@ export function TimelineCard({
           <span className="text-gray-500 sm:hidden">&nbsp;| {item.date}</span>
         </div>
 
-        <div className="group/description flex">
+        <div className="group/description flex whitespace-pre-wrap">
           <span className="hidden group-hover/description:flex">
             {authUser
               ? renderEditButton({ itemId: item._id, field: "description" })
               : null}
           </span>
+
           {renderContent(section, "description", "mb-4 text-left", item, index)}
         </div>
 
@@ -146,6 +147,7 @@ export function TimelineCard({
             </span>
 
             <Button
+              href={item.buttonLink}
               size="sm"
               color={section === "Experience" ? "tertiary" : "secondary"}
               className="px-4 py-1"
