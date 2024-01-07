@@ -1,21 +1,23 @@
 import mongoose from "mongoose";
 
-export interface ExperienceInterface {
+export interface TimelineInterface {
   title: string;
   location: string;
   description: string;
-  buttonText: string;
+  buttonText?: string;
+  buttonLink?: string;
   date: string;
   icon: string;
   tech: { [key: number]: string };
 }
 
-const experienceSchema = new mongoose.Schema<ExperienceInterface>(
+const timelineSchema = new mongoose.Schema<TimelineInterface>(
   {
     title: String,
     location: String,
     description: String,
     buttonText: String,
+    buttonLink: String,
     date: String,
     icon: String,
     tech: { type: Map, of: String },
@@ -24,4 +26,6 @@ const experienceSchema = new mongoose.Schema<ExperienceInterface>(
 );
 
 export const Experience =
-  mongoose.models.Experience || mongoose.model("Experience", experienceSchema);
+  mongoose.models.Experience || mongoose.model("Experience", timelineSchema);
+export const Formation =
+  mongoose.models.Formation || mongoose.model("Formation", timelineSchema);

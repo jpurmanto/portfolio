@@ -2,7 +2,7 @@
 
 import { AnimationWrapper } from "@/helpers";
 import ContentContext from "@/providers/content-provider";
-import { AllData, TimelineInterface } from "@/types";
+import { AllData, TimelineInterfaceType } from "@/types";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { Timeline } from "../ui";
@@ -38,7 +38,7 @@ export function TimelineView() {
                       data={
                         (data as AllData)[
                           section as keyof AllData
-                        ] as TimelineInterface[]
+                        ] as TimelineInterfaceType[]
                       }
                     />
                   </motion.div>

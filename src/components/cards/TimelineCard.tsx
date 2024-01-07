@@ -2,7 +2,7 @@
 
 import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
-import { TimelineInterface } from "@/types";
+import { TimelineInterfaceType } from "@/types";
 import Image from "next/image";
 import { useContext } from "react";
 import schoolIcon from "/public/assets/school.svg";
@@ -15,7 +15,7 @@ export function TimelineCard({
   index,
 }: {
   section: string;
-  item: TimelineInterface;
+  item: TimelineInterfaceType;
   index: number;
 }) {
   const { authUser } = useContext(AuthContext);

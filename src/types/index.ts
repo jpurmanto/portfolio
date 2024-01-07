@@ -1,16 +1,15 @@
 import {
   AboutInterface,
-  ExperienceInterface,
-  FormationInterface,
   HomeInterface,
   ProjectInterface,
+  TimelineInterface,
 } from "@/db";
 import { Model } from "mongoose";
 import { SVGProps } from "react";
 
 export type MongooseModel<T extends Document> = Model<T>;
 
-export type TimelineInterface = (ExperienceInterface | FormationInterface) & {
+export type TimelineInterfaceType = TimelineInterface & {
   _id: string;
 };
 

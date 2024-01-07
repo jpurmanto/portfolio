@@ -1,6 +1,6 @@
 "use client";
 
-import { TimelineInterface } from "@/types";
+import { TimelineInterfaceType } from "@/types";
 import { TimelineCard } from "../cards";
 
 export function Timeline({
@@ -8,7 +8,7 @@ export function Timeline({
   data,
 }: {
   section: string;
-  data: TimelineInterface[];
+  data: TimelineInterfaceType[];
 }) {
   return (
     <div>

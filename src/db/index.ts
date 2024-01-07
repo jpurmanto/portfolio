@@ -20,8 +20,7 @@ const connectToDB = async () => {
 
 export * from "./models/about.model";
 export * from "./models/contact.model";
-export * from "./models/experience.model";
-export * from "./models/formation.model";
+export * from "./models/timeline.model";
 export * from "./models/home.model";
 export * from "./models/project.model";
 export * from "./models/user.model";
