@@ -9,33 +9,6 @@
   --error-color: #f87171;
 }
 
-@layer base {
-  /* button {
-    @apply shadow-[inset_0_0_0_0_var(--primary-color)] no-underline hover:shadow-[inset_0_-100px_0_0_var(--primary-color)];
-    @apply relative inline-block py-2 px-4 text-center text-base font-semibold tracking-wider text-[var(--primary-color)] bg-transparent cursor-pointer transition-all ease-out duration-500 border-2 border-[var(--primary-color)] rounded-lg select-none;
-    @apply hover:text-white;
-    @apply active:scale-90;
-    @apply disabled:opacity-50;
-    @apply disabled:hover:text-[var(--primary-color)] disabled:hover:shadow-none;
-    @apply disabled:active:transform-none;
-  } */
-  /* button:hover {
-    @apply text-white;
-  }
-  button:active {
-    @apply scale-90;
-  }
-  button:disabled {
-    @apply opacity-50;
-  }
-  button:disabled:hover {
-    @apply text-[var(--primary-color)] shadow-none;
-  }
-  button:disabled:active {
-    @apply transform-none;
-  } */
-}
-
 @layer components {
   .project-wrapper {
     @apply flex list-none h-[350px] overflow-x-scroll py-5;
@@ -63,19 +36,6 @@
 .animation-hover:hover:after {
   @apply left-0 w-full;
 }
-
-/* body::-webkit-scrollbar {
-  width: 5px;
-}
-
-body::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
-} */
 
 ::-webkit-scrollbar {
   height: 5px;
