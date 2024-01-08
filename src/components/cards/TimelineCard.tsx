@@ -5,9 +5,9 @@ import ContentContext from "@/providers/content-provider";
 import { TimelineInterfaceType } from "@/types";
 import Image from "next/image";
 import { useContext } from "react";
+import { Button } from "../ui";
 import schoolIcon from "/public/assets/school.svg";
 import workIcon from "/public/assets/work.svg";
-import Button from "../ui/buttons/Button";
 
 export function TimelineCard({
   section,

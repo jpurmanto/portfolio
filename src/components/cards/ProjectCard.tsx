@@ -5,8 +5,8 @@ import { useModal } from "@/hooks";
 import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
 import { useContext } from "react";
+import { Button } from "../ui";
 import ProjectDetails from "./ProjectDetails";
-import Button from "../ui/buttons/Button";
 
 export function ProjectCard({
   section,
@@ -23,10 +23,7 @@ export function ProjectCard({
 
   return (
     <article className="group/main relative mb-20 mt-3 select-none hover:scale-105 transition-transform ease-in-out duration-300">
-      <section
-        className="overflow-hidden rounded-[10px]"
-        // onClick={() => showModal(<img src={item.image} />)}
-      >
+      <section className="overflow-hidden rounded-[10px] shadow-md">
         <img src={item.image} alt={item.name} className="w-full" />
       </section>
 

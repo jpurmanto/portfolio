@@ -3,7 +3,7 @@
 import { loginFields } from "@/constants/fields";
 import { FormFields } from "@/helpers";
 import { LoginFormData } from "@/types";
-import Button from "../ui/buttons/Button";
+import { Button } from "../ui";
 
 export function LoginForm({
   formData,

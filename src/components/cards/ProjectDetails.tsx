@@ -2,7 +2,7 @@ import { ProjectInterface } from "@/db";
 import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
 import { useContext } from "react";
-import Button from "../ui/buttons/Button";
+import { Button, ImageRender } from "../ui";
 
 export default function ProjectDetails({
   section,
@@ -62,12 +62,12 @@ export default function ProjectDetails({
       </header>
 
       <article className="flex flex-col">
-        <section
-          id="image"
-          className="mb-6 rounded-lg overflow-hidden select-none self-center"
-        >
-          <img src={item.image} draggable={false} />
-        </section>
+        <ImageRender
+          section={section}
+          item={item}
+          index={index}
+          className="mb-6 rounded-lg self-center"
+        />
 
         <section id="info">
           <div className="group/description flex whitespace-pre-wrap">

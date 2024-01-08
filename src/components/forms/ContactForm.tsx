@@ -4,7 +4,7 @@ import { contactFields, initialContactFormData } from "@/constants/fields";
 import { addData } from "@/services";
 import { ApiResponse, ContactFormData } from "@/types";
 import React, { useEffect, useState } from "react";
-import Button from "../ui/buttons/Button";
+import { Button } from "../ui";
 
 export function ContactForm() {
   const [formData, setFormData] = useState<ContactFormData>(

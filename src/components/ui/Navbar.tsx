@@ -4,7 +4,7 @@ import { navbarItems } from "@/constants";
 import { CreateNavbarLinks } from "@/helpers";
 import { useState } from "react";
 import { scroller } from "react-scroll";
-import Button from "./buttons/Button";
+import { Button } from ".";
 
 export default function Navbar(): JSX.Element {
   const [activeLink, setActiveLink] = useState<string>("home");
