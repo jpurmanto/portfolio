@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
 export interface ContactInterface {
+  _id: string;
   name: string;
   email: string;
   message: string;
+  createdAt: string;
 }
 
 const contactSchema = new mongoose.Schema<ContactInterface>(
