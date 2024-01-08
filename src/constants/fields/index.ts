@@ -5,3 +5,4 @@ export * from "./formation.constants";
 export * from "./home.constants";
 export * from "./login.constants";
 export * from "./projects.constants";
+export * from "./timeline.constants";

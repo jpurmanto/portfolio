@@ -1,14 +1,19 @@
 "use client";
 
 import { AnimationWrapper } from "@/helpers";
+import { useModal } from "@/hooks";
+import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
 import { AllData, TimelineInterfaceType } from "@/types";
 import { motion } from "framer-motion";
 import { useContext } from "react";
+import { NewTimelineItemForm } from "../forms";
 import { Timeline } from "../ui";
 
 export function TimelineView() {
+  const { authUser } = useContext(AuthContext);
   const { data } = useContext(ContentContext);
+  const { showModal } = useModal();
 
   return (
     <main
@@ -27,6 +32,13 @@ export function TimelineView() {
                       {section}
                     </span>
                   </h1>
+
+                  {authUser && (
+                    <i
+                      className="ri-add-circle-line text-[var(--primary-color)] hover:text-[var(--secondary-color)] active:scale-95 transition-all ease-in-out duration-300 text-5xl cursor-pointer"
+                      onClick={() => showModal(<NewTimelineItemForm section={section} />)}
+                    />
+                  )}
                 </header>
               </AnimationWrapper>
 

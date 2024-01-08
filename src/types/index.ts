@@ -55,10 +55,11 @@ export type ContactFormData = {
 };
 
 export type FormField = {
+  tag: string;
+  type?: string;
   name: string;
-  placeholder: string;
-  type: string;
   label: string;
+  placeholder?: string;
 };
 
 export type Setters = {
