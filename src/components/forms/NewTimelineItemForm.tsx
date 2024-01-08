@@ -36,8 +36,8 @@ export function NewTimelineItemForm({ section }: { section: string }) {
   };
 
   return (
-    <form className="w-96 flex flex-col items-center">
-      <header className="text-3xl font-medium text-[var(--primary-color)] mb-3">
+    <form className="w-96 flex flex-col items-center select-none">
+      <header className="text-3xl font-medium text-[var(--primary-color)] mb-3 sticky inset-0 bg-white z-10 w-full">
         New {section}
       </header>
 
@@ -46,7 +46,7 @@ export function NewTimelineItemForm({ section }: { section: string }) {
         formData={formData}
         setFormData={setFormData}
       />
-      <Button className="w-fit mt-3" onClick={handleSaveData}>
+      <Button className="w-fit py-2 mt-3" onClick={handleSaveData}>
         Submit
       </Button>
     </form>

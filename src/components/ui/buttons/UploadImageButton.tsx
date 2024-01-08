@@ -22,7 +22,7 @@ export default function UploadImageButton({
 
   return (
     <main
-      className={`group-hover/image:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 ${
+      className={`group-hover/image:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
         uploading ? "block" : "hidden"
       }`}
       style={{ filter: "drop-shadow(5px 5px 10px #000" }}

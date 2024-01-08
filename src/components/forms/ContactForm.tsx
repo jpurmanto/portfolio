@@ -95,6 +95,7 @@ export function ContactForm() {
       )}
       <div className="p-2 w-full">
         <Button
+          className="py-2"
           disabled={!isValidForm()}
           onClick={handleSendMessage}
           isLoading={sendingMessage}

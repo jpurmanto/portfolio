@@ -7,6 +7,7 @@ import ContentContext from "@/providers/content-provider";
 import { useContext } from "react";
 import { Button } from "../ui";
 import ProjectDetails from "./ProjectDetails";
+import { useSwiper } from "swiper/react";
 
 export function ProjectCard({
   section,
@@ -20,6 +21,7 @@ export function ProjectCard({
   const { authUser } = useContext(AuthContext);
   const { renderEditButton, renderContent } = useContext(ContentContext);
   const { showModal } = useModal();
+  const swiper = useSwiper();
 
   return (
     <article className="group/main relative mb-20 mt-3 select-none hover:scale-105 transition-transform ease-in-out duration-300">
@@ -62,12 +64,16 @@ export function ProjectCard({
 
         <Button
           size="sm"
-          className="px-4 py-1"
-          onClick={() =>
+          onClick={() => {
             showModal(
-              <ProjectDetails section={section} item={item} index={index} />
-            )
-          }
+              <ProjectDetails
+                section={section}
+                item={item}
+                index={index}
+                swiper={swiper}
+              />
+            );
+          }}
         >
           Details
         </Button>

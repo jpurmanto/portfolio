@@ -32,6 +32,17 @@ export function TimelineCard({
 
   const { toDelete, setToDelete } = deleteState;
 
+  const handleDelete = async () => {
+    if (toDelete[section as keyof Record<string, boolean>]) {
+      await deleteData(section.toLowerCase(), { _id: item._id });
+      setToDelete({
+        ...toDelete,
+        [section]: false,
+      });
+      router.refresh();
+    } else null;
+  };
+
   const color =
     section === "Formation"
       ? "bg-[var(--secondary-color)]"
@@ -45,16 +56,7 @@ export function TimelineCard({
           ? "hover:border-2 border-dashed border-red-500 rounded-lg cursor-pointer"
           : ""
       }`}
-      onClick={async () => {
-        if (toDelete[section as keyof Record<string, boolean>]) {
-          await deleteData(section.toLowerCase(), { _id: item._id });
-          setToDelete({
-            ...toDelete,
-            [section]: false,
-          });
-          router.refresh();
-        } else null;
-      }}
+      onClick={handleDelete}
     >
       <div
         className={`${color} w-0.5 h-6 translate-x-20 translate-y-56 opacity-60 sm:hidden`}
@@ -128,8 +130,21 @@ export function TimelineCard({
             item,
             index
           )}
+        </div>
 
-          <span className="text-gray-500 sm:hidden">&nbsp;| {item.date}</span>
+        <div className="group/date flex self-center items-start">
+          {authUser ? (
+            <span className="hidden group-hover/date:flex -mt-7">
+              {renderEditButton({ itemId: item._id, field: "date" })}
+            </span>
+          ) : null}
+          {renderContent(
+            section,
+            "date",
+            "text-gray-500 sm:hidden -mt-6 mb-6",
+            item,
+            index
+          )}
         </div>
 
         <div className="group/description flex whitespace-pre-wrap">
@@ -177,7 +192,6 @@ export function TimelineCard({
               href={item.buttonLink}
               size="sm"
               color={section === "Experience" ? "tertiary" : "secondary"}
-              className="px-4 py-1"
             >
               {item.buttonText}
             </Button>

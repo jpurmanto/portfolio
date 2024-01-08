@@ -31,8 +31,8 @@ export function Modal(): JSX.Element {
               onClick={closeModal}
             />
 
-            <div className="w-full max-w-[777px] max-h-[80vh] rounded-xl rounded-e-md bg-white px-8 py-8 text-center md:px-[60px] overflow-y-auto">
-              {modalContent}
+            <div className="w-full max-w-[777px] max-h-[80vh] rounded-xl rounded-e-md bg-white px-8 text-center md:px-[60px] overflow-y-auto">
+              <div className="my-8">{modalContent}</div>
             </div>
           </section>
         </main>

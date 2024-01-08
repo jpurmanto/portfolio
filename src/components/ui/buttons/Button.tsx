@@ -82,7 +82,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type={props.type ?? "button"}
         style={buttonStyles}
         className={twMerge(
-          `no-underline relative inline-block py-2 px-4 text-center font-semibold tracking-wider bg-transparent cursor-pointer transition-all ease-out duration-500 border-2 select-none hover:text-white active:scale-90 disabled:cursor-default disabled:opacity-50 disabled:hover:shadow-none disabled:active:transform-none text-${size}`,
+          `no-underline relative inline-block py-1 px-4 text-center font-semibold tracking-wider bg-transparent cursor-pointer transition-all ease-out duration-500 border-2 select-none hover:text-white active:scale-90 disabled:cursor-default disabled:opacity-50 disabled:hover:shadow-none disabled:active:transform-none text-${size}`,
           className
         )}
         onClick={handleButtonClick}

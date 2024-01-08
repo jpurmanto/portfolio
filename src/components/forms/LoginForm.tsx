@@ -31,7 +31,7 @@ export function LoginForm({
         <Button
           onClick={handleLogin}
           disabled={!isValidForm()}
-          className="w-full py-1"
+          className="w-full"
         >
           Login
         </Button>

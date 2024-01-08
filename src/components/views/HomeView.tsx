@@ -31,9 +31,9 @@ export function HomeView() {
               src={(currentData as AllData)?.Home?.image ?? ""}
               alt="Profile Picture"
               quality={90}
-              height={90}
-              width={90}
-              className="object-contain group-hover/profile:grayscale-[50%] transition-all rounded-full"
+              height={100}
+              width={100}
+              className="object-contain group-hover/profile:grayscale-[50%] transition-all rounded-full p-1 border-2 border-[#BF7AF5]"
               draggable="false"
               priority
             />

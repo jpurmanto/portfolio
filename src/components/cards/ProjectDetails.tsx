@@ -1,25 +1,36 @@
 import { ProjectInterface } from "@/db";
 import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
-import { useContext } from "react";
+import { useContext, useEffect, useLayoutEffect } from "react";
 import { Button, ImageRender } from "../ui";
+import Swiper from "swiper";
 
 export default function ProjectDetails({
   section,
   item,
   index,
+  swiper,
 }: {
   section: string;
   item: ProjectInterface & { _id: string };
   index: number;
+  swiper: Swiper;
 }) {
   const { authUser } = useContext(AuthContext);
   const { renderEditButton, renderContent, isEditable } =
     useContext(ContentContext);
 
+  useEffect(() => {
+    swiper.autoplay.stop();
+
+    return () => {
+      swiper.autoplay.start();
+    };
+  }, []);
+
   return (
     <>
-      <header>
+      <header className="sticky inset-0 bg-white z-10">
         <div className="group/name flex justify-center">
           {authUser ? (
             <span className="hidden group-hover/name:flex">
@@ -122,9 +133,9 @@ export default function ProjectDetails({
           {item.deploy ? (
             <Button
               href={item.deploy}
-              size="sm"
+              size="md"
               color="secondary"
-              className="px-4 py-1 mx-4"
+              className="mx-4"
             >
               Deploy
             </Button>
@@ -133,9 +144,9 @@ export default function ProjectDetails({
           {item.github ? (
             <Button
               href={item.github}
-              size="sm"
+              size="md"
               color="secondary"
-              className="px-4 py-1 mx-4"
+              className="mx-4"
             >
               GitHub
             </Button>
