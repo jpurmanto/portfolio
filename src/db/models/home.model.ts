@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
 
 export interface HomeInterface {
+  image: string;
   heading: string;
   summary: string;
 }
 
 const homeSchema = new mongoose.Schema<HomeInterface>(
   {
+    image: String,
     heading: String,
     summary: String,
   },

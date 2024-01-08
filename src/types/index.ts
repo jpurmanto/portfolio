@@ -23,11 +23,15 @@ export type AnyData = (
 };
 
 export type AllData = {
-  Home: HomeInterface;
-  About: AboutInterface;
-  Experience: TimelineInterface[];
-  Formation: TimelineInterface[];
-  Project: ProjectInterface[];
+  Home: HomeInterface & {
+    _id: string;
+  };
+  About: AboutInterface & {
+    _id: string;
+  };
+  Experience: (TimelineInterface & { _id: string })[];
+  Formation: (TimelineInterface & { _id: string })[];
+  Project: (ProjectInterface & { _id: string })[];
 };
 
 export type ApiResponse = {

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProjectInterface } from "@/db";
+import { HomeInterface, ProjectInterface } from "@/db";
 import AuthContext from "@/providers/auth-provider";
 import { useContext, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -13,9 +13,9 @@ export function ImageRender({
   className,
 }: {
   section: string;
-  item: ProjectInterface & { _id: string };
+  item: (ProjectInterface | HomeInterface) & { _id: string };
   index?: number;
-  className: string;
+  className?: string;
 }) {
   const { authUser } = useContext(AuthContext);
   const [currentImage, setCurrentImage] = useState(item.image);
