@@ -1,5 +1,5 @@
 import { Experience } from "@/db";
-import { getter, poster, putter } from "@/db/helpers";
+import { deleter, getter, poster, putter } from "@/db/helpers";
 import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -17,4 +17,9 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   const experiencePutterResult: NextResponse = await putter(Experience, req);
   return experiencePutterResult;
+}
+
+export async function DELETE(req: NextRequest) {
+  const experienceDeleterResult: NextResponse = await deleter(Experience, req);
+  return experienceDeleterResult;
 }

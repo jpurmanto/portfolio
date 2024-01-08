@@ -1,6 +1,4 @@
-import { getter } from "./getter";
-import { poster } from "./poster";
-import { putter } from "./putter";
-
-export { getter, poster, putter };
-
+export * from "./deleter";
+export * from "./getter";
+export * from "./poster";
+export * from "./putter";

@@ -6,7 +6,7 @@ import AuthContext from "@/providers/auth-provider";
 import ContentContext from "@/providers/content-provider";
 import { AllData, TimelineInterfaceType } from "@/types";
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NewTimelineItemForm } from "../forms";
 import { Timeline } from "../ui";
 
@@ -14,6 +14,7 @@ export function TimelineView() {
   const { authUser } = useContext(AuthContext);
   const { data } = useContext(ContentContext);
   const { showModal } = useModal();
+  const [toDelete, setToDelete] = useState<Record<string, boolean>>({});
 
   return (
     <main
@@ -34,10 +35,33 @@ export function TimelineView() {
                   </h1>
 
                   {authUser && (
-                    <i
-                      className="ri-add-circle-line text-[var(--primary-color)] hover:text-[var(--secondary-color)] active:scale-95 transition-all ease-in-out duration-300 text-5xl cursor-pointer"
-                      onClick={() => showModal(<NewTimelineItemForm section={section} />)}
-                    />
+                    <div className="flex gap-3">
+                      <i
+                        title={`Add ${section.toLocaleLowerCase()}`}
+                        className={
+                          "ri-add-circle-line text-[var(--tertiary-color)] hover:text-[var(--secondary-color)] active:scale-95 transition-all ease-in-out duration-300 text-5xl cursor-pointer"
+                        }
+                        onClick={() =>
+                          showModal(<NewTimelineItemForm section={section} />)
+                        }
+                      />
+                      <i
+                        title={`Remove ${section.toLocaleLowerCase()}`}
+                        className={`ri-close-circle-line ${
+                          toDelete[section as keyof Record<string, boolean>]
+                            ? "text-[red]"
+                            : "text-red-400"
+                        } hover:text-[red] active:scale-95 transition-all ease-in-out duration-300 text-5xl cursor-pointer`}
+                        onClick={() =>
+                          setToDelete({
+                            [section]:
+                              !toDelete[
+                                section as keyof Record<string, boolean>
+                              ],
+                          })
+                        }
+                      />
+                    </div>
                   )}
                 </header>
               </AnimationWrapper>
@@ -52,6 +76,7 @@ export function TimelineView() {
                           section as keyof AllData
                         ] as TimelineInterfaceType[]
                       }
+                      deleteState={{ toDelete, setToDelete }}
                     />
                   </motion.div>
                 </div>

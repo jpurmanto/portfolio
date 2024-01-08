@@ -6,9 +6,14 @@ import { TimelineCard } from "../cards";
 export function Timeline({
   section,
   data,
+  deleteState,
 }: {
   section: string;
   data: TimelineInterfaceType[];
+  deleteState: {
+    toDelete: Record<string, boolean>;
+    setToDelete: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+  };
 }) {
   return (
     <div>
@@ -19,6 +24,7 @@ export function Timeline({
             section={section}
             item={item}
             index={index}
+            deleteState={deleteState}
           />
         );
       })}

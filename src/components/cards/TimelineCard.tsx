@@ -8,19 +8,29 @@ import { useContext } from "react";
 import { Button } from "../ui";
 import schoolIcon from "/public/assets/school.svg";
 import workIcon from "/public/assets/work.svg";
+import { deleteData } from "@/services";
+import { useRouter } from "next/navigation";
 
 export function TimelineCard({
   section,
   item,
   index,
+  deleteState,
 }: {
   section: string;
   item: TimelineInterfaceType;
   index: number;
+  deleteState: {
+    toDelete: Record<string, boolean>;
+    setToDelete: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+  };
 }) {
+  const router = useRouter();
   const { authUser } = useContext(AuthContext);
   const { renderEditButton, renderContent, isEditable } =
     useContext(ContentContext);
+
+  const { toDelete, setToDelete } = deleteState;
 
   const color =
     section === "Formation"
@@ -28,7 +38,24 @@ export function TimelineCard({
       : "bg-[var(--tertiary-color)]";
 
   return (
-    <article key={index} className="flex m-4 relative">
+    <article
+      key={index}
+      className={`flex m-4 relative ${
+        toDelete[section as keyof Record<string, boolean>]
+          ? "hover:border-2 border-dashed border-red-500 rounded-lg cursor-pointer"
+          : ""
+      }`}
+      onClick={async () => {
+        if (toDelete[section as keyof Record<string, boolean>]) {
+          await deleteData(section.toLowerCase(), { _id: item._id });
+          setToDelete({
+            ...toDelete,
+            [section]: false,
+          });
+          router.refresh();
+        } else null;
+      }}
+    >
       <div
         className={`${color} w-0.5 h-6 translate-x-20 translate-y-56 opacity-60 sm:hidden`}
       ></div>

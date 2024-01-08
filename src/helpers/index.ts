@@ -1,6 +1,7 @@
 export * from "./AnimationWrapper";
 export * from "./CreateNavbarLinks";
 export * from "./FormFields";
+export * from "./convert-to-dictionary";
 export * from "./getAllData";
 export * from "./handleLogin";
 export * from "./resetFormData";
